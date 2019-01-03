@@ -1,0 +1,1 @@
+select * from deck order by random() limit 1 ;

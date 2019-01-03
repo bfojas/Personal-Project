@@ -1,0 +1,1 @@
+update users set email = ${value} where auth0_id = ${auth0_id}
