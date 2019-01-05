@@ -52,6 +52,19 @@ header, .head {
   margin:0 10px;
   list-style-type: none;
 }
+
+.gameParent{
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.gameParent > div {
+  flex:1;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

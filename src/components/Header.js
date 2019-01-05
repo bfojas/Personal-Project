@@ -11,9 +11,10 @@ class Header extends Component {
     componentDidMount(){
         
         axios.get('/auth/user-data').then(response =>{
-            console.log('mount',response.data)
+            // console.log('mount',response.data)
+            const {bank} = this.props
             const {name, picture, email, auth0_id} = response.data
-            this.props.setUser([name, picture, email, auth0_id])
+            this.props.setUser([name, picture, email, auth0_id, bank])
           })
     }
     login= ()=>{
@@ -26,16 +27,13 @@ class Header extends Component {
         var logButton = '';
         if(this.props.user)
             {
-                console.log('hit if')
                 logged= '/profile'
-                logButton= 'Profile'
+                logButton= this.props.user
             }
             else{
-                console.log('hit else')
                 logged= '/login'
                 logButton= 'Log In'
             }
-            console.log('props user',this.props.user)
             
 
         return(
@@ -63,7 +61,8 @@ class Header extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        user: state.user
+        user: state.user,
+        bank: state.bank
     }
 }
 

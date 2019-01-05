@@ -9,12 +9,13 @@ massive(process.env.CONNECTION_STRING).then(db =>{
     app.set('db', db);
     setTimeout(()=>{db.draw_card().then(cardResponse=>{
         console.log('initial' ,cardResponse)
-        previousCard = cardResponse
+        drawnCard = cardResponse
     })},2000)
 }).catch(error => console.log('massive shit',error))
 const server = require('http').createServer(app)
 const io = require('socket.io')(server);
-const authController = require('./authController.js')
+const authController = require('./authController')
+const profileController = require('./profileController')
 const connect=require('connect-pg-simple');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json())
@@ -32,55 +33,107 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 7 * 2
     }
 }))
-// const dbInstance = app.get('db');
 
-// io.sockets.on('connection', socket =>{
-//     console.log('socket to me')
-//     socket.join('gameRoom')
-//     setInterval(function(){ 
-//         app.get('db').draw_card().then(cardResponse=>{
-//             console.log('card response', cardResponse)
-//             io.in('gameRoom').emit('messageFromServer', cardResponse)
-//             console.log('emit')
-//         }); 
-//     }, 15000);
-// })
-
-let sockets = [];
-let drawnCard = [];
+let timeLimit = 10;
 let previousCard =[];
-let countdown = 5;
+let countdown = timeLimit;
+let winningGuess = '';
+let sockets = [];
 
 io.sockets.on('connection', socket =>{
-    console.log('socket to me')
-    socket.join('gameRoom')
-    sockets.push(socket);
-    socket.emit('messageFromServer', previousCard)
-    socket.emit('timer', {countdown: countdown})
+    sockets.push(socket.id)
+    console.log('socket push', sockets)
+    socket.join('gameRoom');
+    socket.on('user', user=>{
+        console.log('socket on', user)
+        app.get('db').add_user_table({auth0_id: user.user, socket_id: socket.id})
+        // console.log('user', user)
+    })
+
+//receive and handle bets
+    socket.on('bet', betRequest=>{
+        console.log(betRequest.auth0_id)
+        let win = false;
+        if (winningGuess === "tie" || 
+        winningGuess === betRequest.value ){
+            win = true
+        }
+        app.get('db').bet_to_table({
+            socket_id: socket.id,
+            bet: betRequest.bet,
+            win: win
+        }).catch(error => console.log('bet error', error))
+    })
+
+//initial emits
+    socket.emit('messageFromServer', previousCard);//first card
+    socket.emit('timer', {countdown: countdown});//timer
+    socket.emit('socketId', socket.id);//socket id to client
+
+//get initial bank to user
+    setTimeout(()=>app.get('db').get_bank({socket_id:socket.id}).then(res=> {
+        console.log('get bank',res)
+        return io.sockets.connected[socket.id].emit('bank', res[0].credit)}),700)
+
+    socket.on('disconnect', () =>{
+        // console.log('socket', io.sockets.adapter.rooms['gameRoom'].sockets )
+        app.get('db').remove_user_table({socket_id: socket.id})
+        sockets = sockets.filter(val=> {
+            return val !== socket.id})
+        
+        console.log('res', sockets)
+    })
 })
+
+// app.get('db').then(res=>res.draw_card().then(card=> drawnCard = card));
+
 setInterval(function(){
     countdown--;
     io.sockets.emit('timer', {countdown:countdown})
 },1000)    
+
 setInterval(function(){ 
-    countdown = 5
-    if(!sockets.length) return;
-        sockets.forEach((s) => s.emit('messageFromServer', drawnCard))
-        app.get('db').draw_card().then(cardResponse=>{
-            console.log('card response', cardResponse)
-            previousCard = drawnCard.slice(0,1)
-            drawnCard = cardResponse
-            console.log('emit')
-        }); 
-    }, 5000);
+    countdown = timeLimit
+    if(!io.sockets.adapter.rooms['gameRoom']) return;
+
+//send drawn card
+    io.sockets.to('gameRoom').emit('messageFromServer', drawnCard)
+        
+//send bank info to sockets
+    sockets.forEach(s=>{
+        app.get('db').get_bank({socket_id: s}).then(res=> {
+            return io.sockets.connected[s].emit('bank', res[0].credit)})
+        })
+
+//send winners list
+    app.get('db').winners().then(winners=>{
+        io.sockets.to('gameRoom')
+        .emit('winners', winners)
+    })
+
+//reset game table
+    app.get('db').clear_table();
+        
+//draw card
+    app.get('db').draw_card().then(cardResponse=>{
+        console.log('card response', cardResponse)
+        previousCard = drawnCard.slice(0,1)
+        drawnCard = cardResponse
+        if (previousCard[0].value < drawnCard[0].value)
+        {winningGuess = 'high'} 
+        else if (previousCard[0].value > drawnCard[0].value)
+        {winningGuess = 'low'}
+        else
+        {{winningGuess = 'tie'}}
+        console.log('winner', winningGuess)
+    }); 
+}, `${timeLimit}000`);
 
 app.get('/auth/callback', authController.login);
 app.get('/auth/user-data', authController.getUser);
-app.post('/api/logout', authController.logOut);
-app.get('/auth/test', (req,res)=>{res.send('test')});
-app.put('/api/edit/name', authController.editName);
-app.put('/api/edit/email', authController.editEmail);
-app.put('/api/edit/image', authController.editImage);
+app.post('/api/logout', profileController.logOut);
+app.put('/api/edit', profileController.edit);
+app.delete('api/delete', profileController.delete)
 
 const PORT=4000;
 server.listen(PORT, ()=>console.log(`server on ${PORT}`));

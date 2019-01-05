@@ -1,4 +1,19 @@
-delete from deck where value >0;
+create table users (
+    id serial, 
+    name varchar(50), 
+    email varchar(75), 
+    picture text,
+    auth0_id varchar(25) unique,
+    credit integer);
+
+create table game_table (
+    socket_id text,
+    auth0_id varchar(25) references users(auth0_id),
+    bet integer,
+    win boolean
+)
+
+create table deck (image text, value integer, code varchar(2));
 insert into deck (image, value, code) values
 ('https://deckofcardsapi.com/static/img/AS.png', 14, 'AS'),
 ('https://deckofcardsapi.com/static/img/AD.png', 14, 'AD'),

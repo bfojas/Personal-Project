@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {logOutUser} from '../ducks/reducer';
 import axios from 'axios';
-import {NavLink} from 'react-router-dom'
-
+import {NavLink} from 'react-router-dom';
 
 class Profile extends Component{
     
@@ -16,7 +15,6 @@ class Profile extends Component{
     }
 
     render(){
-        console.log('logout props', this.props)
         return(
             <div className="logdiv">
                 <div>

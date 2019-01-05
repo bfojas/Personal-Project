@@ -8,18 +8,14 @@ import routes from './routes'
 // const socket = socketIOClient("http://localhost:4000")
 
 class App extends Component {
-  constructor(){
-    super();
-    
-  
-  }
+
 
 
   render() {
     return (
       <div className="App">
         <div><Header/></div>
-        <div>{routes}</div>
+        <div className = 'routeParent'>{routes}</div>
       </div>
     );
   }

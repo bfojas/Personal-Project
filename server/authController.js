@@ -61,37 +61,9 @@ module.exports ={
     getUser: (req,res) =>{
         res.status(200).json(req.session.user)
 
-    },
-
-    logOut: (req, res) => {
-        req.session.destroy();
-        res.send();
-    },
-
-    editName: (req, res) =>{
-        const db = req.app.get('db');
-        const {value, auth0_id} = req.body;
-        req.session.user = value 
-        db.edit_name({value,auth0_id})
-        .then(()=>res.send())
-        .catch(error=>console.log('edit error', error));
-    },
-    editEmail: (req, res) =>{
-        const db = req.app.get('db');
-        const {value, auth0_id} = req.body;
-        req.session.email = value 
-        db.edit_email({value,auth0_id})
-        .then(()=>res.send())
-        .catch(error=>console.log('edit error', error));
-    },
-    editImage: (req, res) =>{
-        const db = req.app.get('db');
-        const {value, auth0_id} = req.body;
-        req.session.picture = value 
-        db.edit_image({value,auth0_id})
-        .then(()=>res.send())
-        .catch(error=>console.log('edit error', error));
     }
+
+    
 }
 
 

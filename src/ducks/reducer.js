@@ -3,35 +3,39 @@ const INITIAL_STATE ={
     image: '',
     email: '',
     auth0_id: '',
-    credit: 0
+    bank: 0
 }
 const SET_USER = "SET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
-const USER_NAME = "USER_NAME";
-const CHANGE_EMAIL = "CHANGE_EMAIL";
-const CHANGE_IMAGE = "CHANGE_IMAGE";
+const EDIT_USER = "EDIT_USER";
+const UPDATE_BANK = "UPDATE_BANK";
 
 export default function reducer (state = INITIAL_STATE, action) {
 
     switch (action.type){
         case SET_USER:
-        return Object.assign({},state,{user: action.payload[0], 
+            return Object.assign({},state,{user: action.payload[0], 
             image: action.payload[1],
             email: action.payload[2],
-            auth0_id: action.payload[3]})
-        case USER_NAME:
-        return Object.assign({},state,{user: action.payload})
-        case CHANGE_EMAIL:
-        return Object.assign({},state,{email: action.payload})
-        case CHANGE_IMAGE:
-        return Object.assign({},state,{image: action.payload})
+            auth0_id: action.payload[3],
+            bank: action.payload[4]})
+
+        case EDIT_USER:
+            return Object.assign({},state,{
+            user: action.payload.name,
+            image: action.payload.image,
+            email: action.payload.email})
+
         case LOGOUT_USER:
-        return Object.assign({    
-            user: '',
-            image: '',
-            email: '',
-            auth0_id: '',
-            credit: 0})
+            return Object.assign({    
+                user: '',
+                image: '',
+                email: '',
+                auth0_id: '',
+                bank: 0})
+        
+        case UPDATE_BANK:
+            return Object.assign({},state,{bank:action.payload})
         default: return state;
     }
 }
@@ -50,23 +54,16 @@ export function logOutUser(user){
     }
 }
 
-export function userName(user){
+export function editUser(user){
     return {
-        type:USER_NAME,
+        type:EDIT_USER,
         payload: user
     }
 }
 
-export function changeEmail(email){
-    return {
-        type: CHANGE_EMAIL,
-        payload: email
-    }
-}
-
-export function changeImage(image){
-    return {
-        type: CHANGE_IMAGE,
-        payload: image
+export function updateBank(bank){
+    return{
+        type: UPDATE_BANK,
+        payload: bank
     }
 }
