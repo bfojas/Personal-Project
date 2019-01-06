@@ -74,6 +74,12 @@ io.sockets.on('connection', socket =>{
     setTimeout(()=>app.get('db').get_bank({socket_id:socket.id}).then(res=> {
         console.log('get bank',res)
         return io.sockets.connected[socket.id].emit('bank', res[0].credit)}),700)
+//handle chat messages
+    socket.on('chatSend', message=>{
+        console.log('message received')
+        io.sockets.to('gameRoom').emit('message', message)
+    })
+
 
     socket.on('disconnect', () =>{
         // console.log('socket', io.sockets.adapter.rooms['gameRoom'].sockets )
@@ -133,7 +139,7 @@ app.get('/auth/callback', authController.login);
 app.get('/auth/user-data', authController.getUser);
 app.post('/api/logout', profileController.logOut);
 app.put('/api/edit', profileController.edit);
-app.delete('api/delete', profileController.delete)
+app.delete('/api/delete/:id', profileController.delete)
 
 const PORT=4000;
 server.listen(PORT, ()=>console.log(`server on ${PORT}`));

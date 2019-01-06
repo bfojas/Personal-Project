@@ -53,23 +53,74 @@ header, .head {
   list-style-type: none;
 }
 
-.gameParent{
+.routeParent{
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+height: calc(100vh - 75px);
+position: relative;
+background-color: darkorange;
+
+}
+.homeParent{
+  position: relative;
   width: 100%;
   max-width: 1000px;
+  height: 100%;
   display: flex;
-  flex-direction: row;
   /* justify-content: center; */
   align-items: center;
+  background-color: blue;
+}
+.gameParent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.gameParent > div {
-  flex:1;
+.chatContent {
+  height: 100%;
+  width: 45%;
+  background-color: red;
+  position: relative;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chatWindow {
+  width: 100%;
+  height: 90%;
 }
+.chatInput {
+  width:100%;
+  height:10%;
+}
+
+.gameContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 45%;
+  height: 100%;
+  background-color: rgb(63, 219, 63);
+}
+
+.gameInfoContainer{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.cardImage{
+  position: relative;
+  width:100%;
+  max-width: 226px;
+}
+
+

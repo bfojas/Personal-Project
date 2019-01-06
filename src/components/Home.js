@@ -5,16 +5,16 @@ import Login from './Login';
 import Game from './Game';
 
 
-export function Home() {
+export function Home(props) {
 
 
 
         return (
-            this.props.auth0_id?
-            <div>
+            props.auth0_id?
+            <div className="homeParent">
                 <Game/>
             </div>:
-            <div>
+            <div className="homeParent">
                 <Login/>
             </div>
         )

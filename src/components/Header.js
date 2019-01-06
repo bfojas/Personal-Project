@@ -25,12 +25,15 @@ class Header extends Component {
     render(){
         var logged = '';
         var logButton = '';
+        var play = '';
         if(this.props.user)
-            {
+            {   
+                play='/'
                 logged= '/profile'
                 logButton= this.props.user
             }
             else{
+                play= '/login'
                 logged= '/login'
                 logButton= 'Log In'
             }
@@ -47,7 +50,7 @@ class Header extends Component {
                                 <button>{`${logButton}`}</button>
                             </NavLink></li>
                         <li>
-                            <NavLink to='/'>
+                            <NavLink to={`${play}`}>
                                 <button>Play</button>
                             </NavLink>
                         </li>

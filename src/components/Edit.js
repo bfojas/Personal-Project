@@ -26,12 +26,15 @@ class Edit extends Component{
         return (
             <div>
                 <div className="userEditDiv">
+                    <div>Username: </div>
                     <input value={this.state.editName} onChange={e=>this.setState({editName: e.target.value})}/>
                 </div>
                 <div className="userEditDiv">
+                    <div>E-mail: </div>
                     <input value={this.state.editEmail} onChange={e=>this.setState({editEmail: e.target.value})}/>
                 </div>
                 <div className="userEditDiv">
+                    <div>Image URL</div>
                     <input value={this.state.editImage} onChange={e=>this.setState({editImage: e.target.value})}/>
                 </div>
                 <div>

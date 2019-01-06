@@ -3,6 +3,7 @@ module.exports ={
     logOut: (req, res) => {
         req.session.destroy();
         res.send();
+        
     },
 
     edit: (req, res) =>{
@@ -19,6 +20,12 @@ module.exports ={
         .catch(error=>console.log('edit error', error));
     },
     delete: (req,res) =>{
+        console.log('delete params',req.params)
+        const {id} = req.params;
+        req.app.get('db').delete_user({auth0_id:id})
+        .then(req.session.destroy())
+        .then(()=>res.send())
+        .catch(error=>console.log('delete error', error));
 
     }
 

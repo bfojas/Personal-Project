@@ -18,7 +18,9 @@ export class Game extends Component{
             timer: 0,
             socketId:'',
             winners: [],
-            bank: 0
+            bank: 0,
+            chatMessages:['test'],
+            messageText:''
         }
         
         if(this.props){
@@ -61,7 +63,16 @@ export class Game extends Component{
         //receive timer
         socket.on('timer', countdown=>{
             this.setState({timer: countdown.countdown})
-          })
+        })
+
+        //receive messages
+        socket.on('message', message=>{
+            console.log('message emitted')
+            let updated= [...this.state.chatMessages, message]
+            if(updated.length > 10) 
+            {updated.shift()}
+            this.setState({chatMessages:updated})
+        })
     };
     componentDidMount=()=>{
         // if (this.props.auth0_id){
@@ -96,9 +107,22 @@ export class Game extends Component{
         :
         this.setState({betInput: 0})
     }
+
+    sendMessage = (text)=>{
+        console.log('text', text)
+        if (text.length){
+        socket.emit('chatSend', {text:text, user:this.props.user});
+        this.setState({messageText:''})}
+    }
     render(){
         console.log('bank', this.state.bank)
-        const {timer, fromServer, buttonDisable, betInput} = this.state;
+        const {timer, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
+        const displayChat = chatMessages.map(chats=>{
+            return <div className="chatMessage">
+                <div className="chatUser">{chats.user}:</div>
+                <div className="chatText">{chats.text}</div>
+            </div>
+        })
         const winnerList = this.state.winners.map(winners=>{
             return <p>{winners.name}</p>
         })
@@ -107,40 +131,57 @@ export class Game extends Component{
             !this.props.user.length
             ?
             <div>
-                <Login/>
+            {this.props.history.push('/login')}
             </div>
             :
             <div className = 'gameParent'>
                 <div className= "gameContent">
-                    <div>
-                    Socket test: 
-                    {timer}
-                    {fromServer && fromServer.code}
+                    <div className="gameInfoContainer">
+                        <div className="timerContainer">
+                            <div>Time Remaining:</div>
+                            <div>{timer}</div>
+                        </div>
+                        <div className="bankContainer">
+                            <div>Bank:</div>
+                            <div>{this.props.bank}</div>
+                        </div>
                     </div>
-                    <img src={fromServer && fromServer.image} alt={fromServer && fromServer.code}/>
-                    <div>
-                        <button onClick={()=>this.placeBet('low')} disabled={buttonDisable}>
-                            Lower
-                        </button>
-                        <button onClick={()=>this.placeBet('high')} disabled={buttonDisable}>
-                            Higher
-                        </button>
+                    <div classname="cardImageContainer">
+                        <img className="cardImage" src={fromServer && fromServer.image} alt={fromServer && fromServer.code}/>
                     </div>
-                    <div>
-                        <input type="number" min="0" value={betInput} onChange={e=>this.setState({betInput: e.target.value})}/>
-                    </div>
-                    <div>
-                        <button onClick={()=>this.lowerBet()} disabled={buttonDisable}>Bet -5</button>
-                        <button onClick={()=>this.raiseBet()} disabled={buttonDisable}>Bet +5</button>
+                    <div classname="betContainer">               
+                        <div>
+                            <input type="number" 
+                                min="0" 
+                                max={this.props.bank}
+                                value={betInput} 
+                                onChange={e=>this.setState({betInput: e.target.value})}/>
+                        </div>
+                        <div >
+                            <button onClick={()=>this.lowerBet()} disabled={buttonDisable}>Bet -5</button>
+                            <button onClick={()=>this.raiseBet()} disabled={buttonDisable}>Bet +5</button>
+                        </div>
+                        <div>
+                            <button onClick={()=>this.placeBet('low')} disabled={buttonDisable}>
+                                Lower
+                            </button>
+                            <button onClick={()=>this.placeBet('high')} disabled={buttonDisable}>
+                                Higher
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        {this.props.bank}
+                <div className="chatContent">
+                    <div className="chatWindow">
+                        {displayChat}
                     </div>
-                    <div>
-                        <p>Winners:</p>
-                        <div>{winnerList}</div>
+                    <div className="chatInput">
+                        <input type="text" value={messageText} 
+                        onChange={e=>this.setState({messageText:e.target.value})}
+                        onKeyDown={e=>{if(e.keyCode==13) {this.sendMessage(messageText)}}} />
+                        <button onClick={()=>this.sendMessage(messageText)}>Send</button>
+                        
+                        
                     </div>
                 </div>
             </div>
