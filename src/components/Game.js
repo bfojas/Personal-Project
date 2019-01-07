@@ -24,7 +24,8 @@ export class Game extends Component{
         }
         
         if(this.props){
-            socket = socketIOClient("http://localhost:4000")
+            // socket = socketIOClient("http://localhost:4000")
+            socket = socketIOClient()
             }
             else{
                 socket = '';
