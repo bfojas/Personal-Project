@@ -35,10 +35,7 @@ app.use(session({
     }
 }))
 
-const path = require('path')
-app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-})
+
 
 let timeLimit = 10;
 let previousCard =[];
@@ -151,7 +148,11 @@ app.get('/auth/callback', authController.login);
 app.get('/auth/user-data', authController.getUser);
 app.post('/api/logout', profileController.logOut);
 app.put('/api/edit', profileController.edit);
-app.delete('/api/delete/:id', profileController.delete)
+app.delete('/api/delete/:id', profileController.delete);
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const PORT=4000;
 server.listen(PORT, ()=>console.log(`server on ${PORT}`));
