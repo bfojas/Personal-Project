@@ -35,6 +35,11 @@ app.use(session({
     }
 }))
 
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
+
 let timeLimit = 10;
 let previousCard =[];
 let countdown = timeLimit;
@@ -77,7 +82,7 @@ io.sockets.on('connection', socket =>{
         return io.sockets.connected[socket.id].emit('bank', res[0].credit)}),700)
 //handle chat messages
     socket.on('chatSend', message=>{
-        console.log('message received')
+        console.log('message received', message)
         io.sockets.to('gameRoom').emit('message', message)
     })
 
@@ -114,8 +119,14 @@ setInterval(function(){
 
 //send winners list
     app.get('db').winners().then(winners=>{
+        console.log('winners', winners)
+        if(winners.length){
+        let list = "";
+        winners.forEach(val=> list = list + val.name + ", ")
+
         io.sockets.to('gameRoom')
-        .emit('winners', winners)
+        .emit('message', {text:list, user:'Winners:'})
+        }
     })
 
 //reset game table

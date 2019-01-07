@@ -38,7 +38,7 @@ module.exports ={
             res.redirect('/');
             } else {
                 return db.create_user({
-                    name: user.name,
+                    name: user.nickname,
                     email: user.email,
                     picture: user.picture,
                     auth0_id :user.sub // github|2394723, google|234872
