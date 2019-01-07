@@ -19,6 +19,7 @@ const profileController = require('./profileController')
 const connect=require('connect-pg-simple');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json())
+app.use( express.static( `${__dirname}/../build` ) );
 
 
 
