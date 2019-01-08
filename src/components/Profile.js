@@ -43,6 +43,9 @@ class Profile extends Component{
                     <NavLink to="/edit">
                         <button>Edit your Profile</button>
                     </NavLink>
+                    <NavLink to="/credits">
+                        <button>Purchase Credits</button>
+                    </NavLink>
                 </div>
             </div>
         )

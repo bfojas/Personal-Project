@@ -4,11 +4,13 @@ const app = express();
 const session = require('express-session');
 const dotenv = require('dotenv');
 dotenv.config();
+const util = require('util');
+const colorize = {colors: true}
 const massive = require('massive');
 massive(process.env.CONNECTION_STRING).then(db =>{
     app.set('db', db);
     setTimeout(()=>{db.draw_card().then(cardResponse=>{
-        console.log('initial' ,cardResponse)
+        console.log('initial' ,util.inspect(cardResponse,colorize))
         drawnCard = cardResponse
     })},2000)
 }).catch(error => console.log('massive shit',error))

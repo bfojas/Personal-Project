@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
-import Login from './Login'
 import {updateBank} from '../ducks/reducer'
 let socket='';
 export class Game extends Component{
@@ -124,9 +123,6 @@ export class Game extends Component{
                 <div className="chatText">{chats.text}</div>
             </div>
         })
-        const winnerList = this.state.winners.map(winners=>{
-            return <p>{winners.name}</p>
-        })
         return(
             
             !this.props.user.length
@@ -179,7 +175,7 @@ export class Game extends Component{
                     <div className="chatInput">
                         <input type="text" value={messageText} 
                         onChange={e=>this.setState({messageText:e.target.value})}
-                        onKeyDown={e=>{if(e.keyCode==13) {this.sendMessage(messageText)}}} />
+                        onKeyDown={e=>{if(e.keyCode===13) {this.sendMessage(messageText)}}} />
                         <button onClick={()=>this.sendMessage(messageText)}>Send</button>
                         
                         
