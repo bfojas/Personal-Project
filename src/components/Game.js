@@ -23,8 +23,8 @@ export class Game extends Component{
         }
         
         if(this.props){
-            // socket = socketIOClient("http://localhost:4000")
-            socket = socketIOClient()
+            socket = socketIOClient("http://localhost:4000")
+            // socket = socketIOClient()
             }
             else{
                 socket = '';
@@ -92,6 +92,10 @@ export class Game extends Component{
         betInput < 1
         ?
         betAmount = 0
+        :
+        betInput > this.props.bank
+        ?
+        betAmount = this.props.bank
         :
         betAmount = betInput;
         this.setState({buttonDisable: true})

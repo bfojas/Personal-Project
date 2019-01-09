@@ -1,3 +1,5 @@
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
+
 module.exports ={
 
     logOut: (req, res) => {
@@ -26,7 +28,32 @@ module.exports ={
         .then(req.session.destroy())
         .then(()=>res.send())
         .catch(error=>console.log('delete error', error));
+    },
 
+    creditCheck: (req,res) =>{
+        const {id} = req.body.token
+        const {amount, auth0_id} = req.body.user
+        stripe.charges.create({source:id, 
+            amount, 
+            currency: 'usd',
+            description: 'dev-mountain.fun!'},
+            (error, response)=>{
+                error
+                ?res.status(500).send({error})
+                :res.status(200).send({response})
+
+            })
+
+        
+    },
+    creditAdd: (req,res)=>{
+        console.log('credit add body',req.body)
+        const {amount, auth0_id} = req.body.user
+        req.app.get('db')
+        .add_credit({
+            amount, auth0_id})
+        .then(()=>res.send())
+        .catch(error=>console.log('credit error', error))
     }
 
 }
