@@ -18,13 +18,13 @@ export class Game extends Component{
             socketId:'',
             winners: [],
             bank: 0,
-            chatMessages:['test'],
+            chatMessages:[],
             messageText:''
         }
         
         if(this.props){
-            socket = socketIOClient("http://localhost:4000")
-            // socket = socketIOClient()
+            // socket = socketIOClient("http://localhost:4000")
+            socket = socketIOClient()
             }
             else{
                 socket = '';
@@ -69,7 +69,7 @@ export class Game extends Component{
         socket.on('message', message=>{
             console.log('message emitted')
             let updated= [...this.state.chatMessages, message]
-            if(updated.length > 10) 
+            if(updated.length > 30) 
             {updated.shift()}
             this.setState({chatMessages:updated})
         })
@@ -121,7 +121,8 @@ export class Game extends Component{
     render(){
         console.log('bank', this.state.bank)
         const {timer, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
-        const displayChat = chatMessages.map(chats=>{
+        const displayChat =
+            chatMessages.map(chats=>{
             return <div className="chatMessage">
                 <div className="chatUser">{chats.user}:</div>
                 <div className="chatText">{chats.text}</div>
@@ -173,8 +174,10 @@ export class Game extends Component{
                     </div>
                 </div>
                 <div className="chatContent">
-                    <div className="chatWindow">
-                        {displayChat}
+                    <div className="chatWindow" >
+                        {chatMessages.length
+                        ?displayChat
+                        :<div></div>}
                     </div>
                     <div className="chatInput">
                         <input type="text" value={messageText} 

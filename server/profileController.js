@@ -22,7 +22,7 @@ module.exports ={
         .catch(error=>console.log('edit error', error));
     },
     delete: (req,res) =>{
-        console.log('delete params',req.params)
+        // console.log('delete params',req.params)
         const {id} = req.params;
         req.app.get('db').delete_user({auth0_id:id})
         .then(req.session.destroy())

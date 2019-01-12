@@ -13,8 +13,8 @@ class Header extends Component {
         axios.get('/auth/user-data').then(response =>{
             // console.log('mount',response.data)
             const {bank} = this.props
-            const {name, picture, email, auth0_id} = response.data
-            this.props.setUser([name, picture, email, auth0_id, bank])
+            const {name, picture, email, auth0_id, wins, games} = response.data
+            this.props.setUser([name, picture, email, auth0_id, bank, wins, games])
           })
     }
     login= ()=>{
@@ -28,9 +28,9 @@ class Header extends Component {
         var play = '';
         if(this.props.user)
             {   
-                play='/'
+                play='/game'
                 logged= '/profile'
-                logButton= this.props.user
+                logButton= 'Profile'
             }
             else{
                 play= '/login'
@@ -42,9 +42,16 @@ class Header extends Component {
         return(
             <header>
                 <div className="head">
-                    <div>{this.props.user}</div>
+                    <div className="headerImage">
+                        <img src="graphic.png"/>
+                    </div>
 
                     <ul>
+                        <li>
+                            <NavLink to="/">
+                                <button>Home</button>
+                            </NavLink>
+                        </li>
                         <li>
                             <NavLink to={`${logged}`}>
                                 <button>{`${logButton}`}</button>

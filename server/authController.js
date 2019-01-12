@@ -3,7 +3,6 @@ const axios = require('axios')
 module.exports ={
     login: (req,res) =>{
         const { code } = req.query;
-    console.log('-------------- code', req.headers);
     let redirect_uri = 
         process.env.HOST == "localhost"
         ? `http://${req.headers.host}/auth/callback`
@@ -23,12 +22,10 @@ module.exports ={
     }
 
     function tradeAccessTokenForUserInfo(response) {
-        console.log('-------------- response.data.access_token', response.data.access_token);
         return axios.get(`https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo?access_token=${response.data.access_token}`)
     }
 
     function storeUserInfoInDatabase(response) {
-        console.log('user info', response.data);
         const user = response.data;
         const db = req.app.get('db');
         return db.get_user([user.sub]).then(users => {
@@ -38,7 +35,9 @@ module.exports ={
                 email: users[0].email,
                 picture: users[0].picture,
                 auth0_id: users[0].auth0_id,
-                credit: users[0].credit
+                credit: users[0].credit,
+                wins: users[0].wins,
+                games: users[0].games
                 }
             res.redirect('/');
             } else {

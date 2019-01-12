@@ -39,7 +39,7 @@ app.use(session({
 
 
 
-let timeLimit = 10;
+let timeLimit = 20;
 let previousCard =[];
 let countdown = timeLimit;
 let winningGuess = '';
@@ -76,13 +76,14 @@ io.sockets.on('connection', socket =>{
     socket.emit('socketId', socket.id);//socket id to client
 
 //get initial bank to user
-    setTimeout(()=>app.get('db').get_bank({socket_id:socket.id}).then(res=> {
-        console.log('get bank',res)
-        return io.sockets.connected[socket.id].emit('bank', res[0].credit)}),700)
+    // setTimeout(()=>app.get('db').get_bank({socket_id:socket.id}).then(res=> {
+    //     console.log('get bank',res)
+    //     return io.sockets.connected[socket.id].emit('bank', res[0].credit)}),1000)
 //handle chat messages
     socket.on('chatSend', message=>{
-        console.log('message received', message)
-        io.sockets.to('gameRoom').emit('message', message)
+        message.text === "who here?"
+        ?io.sockets.to('gameRoom').emit('message', {text:'yo momma',user:'Server'})
+        :io.sockets.to('gameRoom').emit('message', message)
     })
 
 

@@ -1,0 +1,353 @@
+$mainColor: green;
+
+.App {
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+header, .head {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center
+}
+
+.head{
+  background-color: black;
+  max-width: 1000px;
+  justify-content: space-between;
+  
+  .headerImage {
+    margin-left: 30px;
+    img{
+      max-height: 75px;
+    }
+
+  }
+  ul {
+    margin-right: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    li{
+      margin:0 10px;
+      list-style-type: none;
+    }
+  }
+}
+
+.routeParent{
+max-width: 1000px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+height: calc(100vh - 75px);
+position: relative;
+background-color: $mainColor;
+
+  .gameParent {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .profileParent{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .profile{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      
+      @media (max-width: 668px){
+      flex-direction: column;
+      }
+
+      .imageContainer{
+        width: 25%;
+        max-width: 250px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .profileButtons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 30px;
+
+      div {
+        width: 75%;
+        display: flex;
+        // justify-content: center;
+        // align-items: center;
+        flex-direction: row;
+        height: 100%;
+
+        a{
+          width: 75%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+
+          button {
+            display: flex;
+            width: 75%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+      .profileButtonsOne{
+        justify-content: right;
+        align-items: right;
+      }
+      .profileButtonsTwo{
+        justify-content: left;
+        align-items: left;
+      }
+      @media (max-width: 668px){
+        flex-direction: column;
+        height: 80px;
+        div{
+          display: flex;
+          width: 100%;
+          height: 100%;
+          margin: 5px;
+          justify-content: center;
+          div{
+            width: 46%;
+
+          }
+        }
+      }
+
+    }
+  }
+
+  .editParent{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    @media (max-width: 668px){
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+    }
+    div {
+      width: 45%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 10;
+
+      .editButtons{
+        display:flex;
+        flex-direction: row;
+        
+
+      }
+
+      .imageContainer{
+        width: 100%;
+        max-width: 250px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+   
+  }
+
+  .homeParent{
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    background-color: $mainColor;
+
+    .rules {
+      font-size: 24px;
+      width: 90%;
+      background-color: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      ul {
+        text-align: left;
+        overflow: auto;
+        font-size: 20px;
+        padding: 10px;
+        width: 90%;
+        background-color: white;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        @media (max-width: 668px){
+          font-size: 14px;
+        }
+        li{
+        width: 90%;
+        
+        }
+      }
+    }
+  }
+}
+// .homeParent{
+//   position: relative;
+//   width: 100%;
+//   max-width: 1000px;
+//   height: 100%;
+//   display: flex;
+//   /* justify-content: center; */
+//   align-items: center;
+//   background-color: blue;
+// }
+
+// .gameParent {
+//   width: 100%;
+//   height: 100%;
+//   position: relative;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+// }
+
+.chatContent {
+  height: 100%;
+  width: 45%;
+  background-color:$mainColor;
+  position: relative;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  .chatWindow {
+    margin: 10px 0;
+    background-color: white;
+    overflow: auto ;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    
+    .chatMessage{
+      // height: 25px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin: 0 0 10px 0;
+      @media (max-width: 668px) {
+        flex-direction: column;
+      }
+
+
+      .chatUser{
+        font-weight: bold;
+        width: 25%;
+        margin: 0 2% 0 2%;
+      }
+
+      .chatText{
+        justify-content: left;
+        text-align: left;
+        padding-left: 4px;
+        width: 70%;
+        overflow-wrap: break-word;
+        @media (max-width:668px){
+          padding: 0 0 0 10px;
+        }
+      }
+    }
+
+  }
+  .chatInput {
+    width:100%;
+    height:10%;
+    input{
+      width: 80%;
+      margin: 0 10px 0 0;
+    }
+  }
+}
+
+
+.gameContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 45%;
+  height: 100%;
+  background-color: $mainColor;
+}
+
+.gameInfoContainer{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.cardImage{
+  position: relative;
+  width:100%;
+  max-width: 226px;
+}
+

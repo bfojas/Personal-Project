@@ -22,35 +22,38 @@ class Edit extends Component{
 
 
     render(){
-
+        const {image} = this.props
         return (
-            <div>
-                <div className="userEditDiv">
-                    <div>Username: </div>
-                    <input value={this.state.editName} onChange={e=>this.setState({editName: e.target.value})}/>
-                </div>
-                <div className="userEditDiv">
-                    <div>E-mail: </div>
-                    <input value={this.state.editEmail} onChange={e=>this.setState({editEmail: e.target.value})}/>
-                </div>
-                <div className="userEditDiv">
-                    <div>Image URL</div>
-                    <input value={this.state.editImage} onChange={e=>this.setState({editImage: e.target.value})}/>
+            <div className="editParent">
+                <div className="imageContainer">
+                <img src={image} onError={(e)=>{e.target.onerror = null; e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}/>
                 </div>
                 <div>
-                    <NavLink to="/profile">
-                        <button>Cancel</button>
-                    </NavLink>
-                    <NavLink to="/profile"onClick={()=>this.edit({
-                        name: this.state.editName,
-                        email: this.state.editEmail,
-                        image: this.state.editImage
-                    })}>
-                        <button >Submit</button>
-                    </NavLink>
+                    <div className="userEditDiv">
+                        <div>Username: </div>
+                        <input value={this.state.editName} onChange={e=>this.setState({editName: e.target.value})}/>
+                    </div>
+                    <div className="userEditDiv">
+                        <div>E-mail: </div>
+                        <input value={this.state.editEmail} onChange={e=>this.setState({editEmail: e.target.value})}/>
+                    </div>
+                    <div className="userEditDiv">
+                        <div>Image URL</div>
+                        <input value={this.state.editImage} onChange={e=>this.setState({editImage: e.target.value})}/>
+                    </div>
+                    <div className="editButtons">
+                        <NavLink to="/profile">
+                            <button>Cancel</button>
+                        </NavLink>
+                        <NavLink to="/profile"onClick={()=>this.edit({
+                            name: this.state.editName,
+                            email: this.state.editEmail,
+                            image: this.state.editImage
+                        })}>
+                            <button >Submit</button>
+                        </NavLink>
+                    </div>
                 </div>
-
-
             </div>
         )
 

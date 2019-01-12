@@ -24,9 +24,7 @@ class Credits extends Component{
         axios.post('/api/creditcheck', {token, user})
         .then(res=>{console.log('res data', res)
             axios.post('/api/creditadd', {user})
-        })
-        .then(res=>{
-            console.log('done hit', res)
+            alert('Thank You! Identity Stolen! (just kidding)')
         })
     }
 
@@ -48,12 +46,14 @@ class Credits extends Component{
                         onChange={e=>this.setState({addCredit:e.target.value})} />
                 </div>
                 <StripeCheckout
+                    ComponentClass = "stripe"
                     email = {email}
                     amount={addCredit}
                     name= "Get Credits!"
-                    // description="Warning: This is a test checkout for funsies"
-                    // zipCode={true}
+                    description="Warning: This is a project site"
+                    zipCode={true}
                     token = {this.onToken(this.getUser())}
+                    allowRememberMe={false}
                     stripeKey = {process.env.REACT_APP_STRIPE_KEY}
                     closed ={()=>this.props.history.push('/')}
                 />

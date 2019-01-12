@@ -9,11 +9,18 @@ class Login extends Component{
         const redirectUri = encodeURIComponent(window.location.origin + '/auth/callback')
         window.location = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/authorize?client_id=${process.env.REACT_APP_AUTH0_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`
       }
-    // test(){
-    //     axios.get('/auth/test').then(res=>console.log('response',res.data))
-    // }
+
+
     render(){
+        console.log('user', this.props.user)
         return(
+            this.props.user
+            ?
+            <div>
+            {this.props.history.push('/')}
+            {/* test */}
+            </div>
+            :
             <div className='logdiv'>
             <div>
                 <h1>Login to enjoy these benefits!</h1>
@@ -24,7 +31,6 @@ class Login extends Component{
 
             </div>
             <button onClick={this.login}>Log In</button>
-            {/* <button onClick={this.test}>Test</button> */}
             </div>
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import Header from './components/Header';
 import routes from './routes'
 
@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div><Header/></div>
+        <Header/>
         <div className = 'routeParent'>{routes}</div>
       </div>
     );

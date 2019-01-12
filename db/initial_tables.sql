@@ -4,7 +4,9 @@ create table users (
     email varchar(75), 
     picture text,
     auth0_id varchar(25) unique,
-    credit integer);
+    credit integer,
+    wins integer,
+    games integer);
 
 create table game_table (
     socket_id text,

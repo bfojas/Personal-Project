@@ -3,7 +3,9 @@ const INITIAL_STATE ={
     image: '',
     email: '',
     auth0_id: '',
-    bank: 0
+    bank: 0,
+    wins:0,
+    games:0
 }
 const SET_USER = "SET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
@@ -18,7 +20,9 @@ export default function reducer (state = INITIAL_STATE, action) {
             image: action.payload[1],
             email: action.payload[2],
             auth0_id: action.payload[3],
-            bank: action.payload[4]})
+            bank: action.payload[4],
+            wins: action.payload[5],
+            games: action.payload[6]})
 
         case EDIT_USER:
             return Object.assign({},state,{
@@ -32,7 +36,9 @@ export default function reducer (state = INITIAL_STATE, action) {
                 image: '',
                 email: '',
                 auth0_id: '',
-                bank: 0})
+                bank: 0,
+                wins: 0,
+                games: 0})
         
         case UPDATE_BANK:
             return Object.assign({},state,{bank:action.payload})
