@@ -13,8 +13,8 @@ class Header extends Component {
         axios.get('/auth/user-data').then(response =>{
             // console.log('mount',response.data)
             const {bank} = this.props
-            const {name, picture, email, auth0_id, wins, games} = response.data
-            this.props.setUser([name, picture, email, auth0_id, bank, wins, games])
+            const {name, picture, email, auth0_id, credit, wins, games} = response.data
+            this.props.setUser([name, picture, email, auth0_id, credit, wins, games])
           })
     }
     login= ()=>{
@@ -43,7 +43,7 @@ class Header extends Component {
             <header>
                 <div className="head">
                     <div className="headerImage">
-                        <img src="graphic.png"/>
+                        <img src="/images/graphic.png"/>
                     </div>
 
                     <ul>

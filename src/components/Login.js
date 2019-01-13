@@ -18,19 +18,26 @@ class Login extends Component{
             ?
             <div>
             {this.props.history.push('/')}
-            {/* test */}
             </div>
             :
-            <div className='logdiv'>
-            <div>
-                <h1>Login to enjoy these benefits!</h1>
-                <ul>
-                    <li>Ability to actually use this app!</li>
-                    <li>That's it. That's the only benefit...</li>
-                </ul>
-
-            </div>
-            <button onClick={this.login}>Log In</button>
+            <div className='logParent'>
+                <div className="logHead">
+                    <h1>Login to enjoy these benefits!</h1>
+                </div>
+                <div className="logInfoContainer">
+                    <div className="logInfo">
+                        <ul>
+                            <li>Ability to actually use this app!</li>
+                            <li>That's it. That's the only benefit...</li>
+                        </ul>
+                        <div className="loginPic">
+                        <img src="/images/login.jpg" alt="play"/>
+                        </div>
+                    </div>
+                    <div className="logButton">
+                        <button onClick={this.login}>Log In</button>
+                    </div>
+                </div>
             </div>
         )
     }
