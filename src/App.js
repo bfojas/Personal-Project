@@ -10,8 +10,13 @@ class App extends Component {
 
 
   render() {
+    const myCustomStyles = {
+      height: window.innerHeight
+  }
     return (
-      <div className="App">
+      <div 
+      style={myCustomStyles} 
+      className="App">
         <Header/>
         <div className = 'routeParent'>{routes}</div>
       </div>
