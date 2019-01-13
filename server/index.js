@@ -39,7 +39,7 @@ app.use(session({
 
 
 
-let timeLimit = 20;
+let timeLimit = 10;
 let previousCard =[];
 let countdown = timeLimit;
 let winningGuess = '';
@@ -114,7 +114,7 @@ setInterval(function(){
 //send bank info to sockets
     sockets.forEach(s=>{
         app.get('db').get_bank({socket_id: s}).then(res=> {
-            return io.sockets.connected[s].emit('bank', res[0].credit)})
+            return io.sockets.connected[s].emit('stats', res[0])})
         })
 
 //send winners list
@@ -125,9 +125,12 @@ setInterval(function(){
         winners.forEach(val=> list = list + val.name + ", ")
 
         io.sockets.to('gameRoom')
-        .emit('message', {text:list, user:'Winners:'})
+        .emit('message', {text:list, user:'Winners'})
         }
     })
+
+//update stats
+    app.get('db').update_stats();
 
 //reset game table
     app.get('db').clear_table();

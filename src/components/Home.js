@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter, NavLink} from 'react-router-dom'
-import Login from './Login';
-import Game from './Game';
 
 
 export function Home(props) {
@@ -17,13 +15,6 @@ export function Home(props) {
 
 
         return (
-            // props.auth0_id?
-            // <div className="homeParent">
-            //     <Game/>
-            // </div>:
-            // <div className="homeParent">
-            //     <Login/>
-            // </div>
 
             <div className="homeParent">
                 <h1>Welcome to my project!</h1>

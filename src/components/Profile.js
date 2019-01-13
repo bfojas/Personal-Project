@@ -9,7 +9,6 @@ class Profile extends Component{
     
     logout=()=> {
         let yes=window.confirm('Are you sure you want to log out?')
-        console.log('logout props', this.props)
         if(yes=== true)
         {axios.post('/api/logout').then(() => {
           this.props.logOutUser('');
@@ -34,7 +33,10 @@ class Profile extends Component{
             <div className="profileParent">
                 <div className="profile">
                     <div className="imageContainer">
-                    <img src={image} onError={(e)=>{e.target.onerror = null; e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}/>
+                    <img src={image} 
+                        onError={(e)=>{e.target.onerror = null; 
+                            e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}
+                        alt="User"/>
                     </div>
                     <div className="profileContainer">
                         <h1>Hello {user}!</h1>
@@ -54,18 +56,18 @@ class Profile extends Component{
                 </div>
                 <div className="profileButtons">
                     <div className="profileButtonsOne">
-                        <NavLink to="/delete">
+                        <NavLink className="navLink" to="/delete">
                             <button>Delete your Profile</button>
                         </NavLink>
-                        <NavLink onClick={this.logout} to="/">
+                        <NavLink className="navLink" onClick={this.logout} to="/">
                             <button>Log Out</button>
                         </NavLink>
                     </div>
                     <div className="profileButtonsTwo">
-                        <NavLink to="/edit">
+                        <NavLink className="navLink" to="/edit">
                             <button>Edit your Profile</button>
                         </NavLink>
-                        <NavLink to="/credits">
+                        <NavLink className="navLink" to="/credits">
                             <button>Purchase Credits</button>
                         </NavLink>
                     </div>

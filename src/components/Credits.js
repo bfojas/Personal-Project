@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import {NavLink, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout'
 
 
@@ -19,24 +19,20 @@ class Credits extends Component{
 
     }
     onToken  = (user)=>(token)=>{
-        console.log('user', user)
-        console.log('token',token)
         axios.post('/api/creditcheck', {token, user})
-        .then(res=>{console.log('res data', res)
+        .then(res=>{
             axios.post('/api/creditadd', {user})
             alert('Thank You! Identity Stolen! (just kidding)')
         })
     }
 
     stripeRedirect = () =>{
-    console.log('closed hit')
         this.props.history.push('/')}
     
 
     render(){
         const {addCredit} = this.state
-        const {auth0_id, email} = this.props
-        console.log('key',process.env.REACT_APP_STRIPE_KEY)
+        const {email} = this.props
         return(
             <div>
                 <h1>Want to put some credits in your bank?</h1>

@@ -10,7 +10,7 @@ const INITIAL_STATE ={
 const SET_USER = "SET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
 const EDIT_USER = "EDIT_USER";
-const UPDATE_BANK = "UPDATE_BANK";
+const UPDATE_STATS = "UPDATE_STATS";
 
 export default function reducer (state = INITIAL_STATE, action) {
 
@@ -40,8 +40,11 @@ export default function reducer (state = INITIAL_STATE, action) {
                 wins: 0,
                 games: 0})
         
-        case UPDATE_BANK:
-            return Object.assign({},state,{bank:action.payload})
+        case UPDATE_STATS:
+            return Object.assign({},state,
+                {bank:action.payload.credit,
+                wins: action.payload.wins,
+                games: action.payload.games})
         default: return state;
     }
 }
@@ -67,9 +70,9 @@ export function editUser(user){
     }
 }
 
-export function updateBank(bank){
+export function updateStats(stats){
     return{
-        type: UPDATE_BANK,
-        payload: bank
+        type: UPDATE_STATS,
+        payload: stats
     }
 }

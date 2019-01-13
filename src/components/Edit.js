@@ -26,7 +26,10 @@ class Edit extends Component{
         return (
             <div className="editParent">
                 <div className="imageContainer">
-                <img src={image} onError={(e)=>{e.target.onerror = null; e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}/>
+                <img src={image} 
+                onError={(e)=>{e.target.onerror = null; 
+                    e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}
+                    alt="User"/>
                 </div>
                 <div>
                     <div className="userEditDiv">

@@ -2,11 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
-import {updateBank} from '../ducks/reducer'
+import {updateStats} from '../ducks/reducer'
 let socket='';
 export class Game extends Component{
-    
-        
     constructor(props){
         super(props);
         this.state = {
@@ -23,8 +21,9 @@ export class Game extends Component{
         }
         
         if(this.props){
-            // socket = socketIOClient("http://localhost:4000")
-            socket = socketIOClient()
+            process.env.REACT_APP_SOCKET ==="localhost"
+            ?socket = socketIOClient("http://localhost:4000")
+            :socket = socketIOClient()
             }
             else{
                 socket = '';
@@ -32,7 +31,6 @@ export class Game extends Component{
 
         // receive card and activate button
         socket.on('messageFromServer', message => {
-            console.log('socket message', message)
             if (message.length){
             this.setState({
               fromServer: message[0],
@@ -42,7 +40,6 @@ export class Game extends Component{
         
           //receive winners list
         socket.on('winners', list =>{
-            console.log('winner hit',list)
             this.setState({
                 winners: list
             })
@@ -50,14 +47,12 @@ export class Game extends Component{
         
         //receive socket id
         socket.on('socketId', message =>{
-            console.log('id message', message)
             this.setState({socketId: message})
         })
 
         //receive bank
-        socket.on('bank', bank=>{
-            console.log('bank hit', bank)
-            props.updateBank(bank)
+        socket.on('stats', stats=>{
+            props.updateStats(stats)
         })
 
         //receive timer
@@ -67,37 +62,33 @@ export class Game extends Component{
 
         //receive messages
         socket.on('message', message=>{
-            console.log('message emitted')
             let updated= [...this.state.chatMessages, message]
             if(updated.length > 30) 
             {updated.shift()}
             this.setState({chatMessages:updated})
         })
     };
+
     componentDidMount=()=>{
         // if (this.props.auth0_id){
         socket.on('connect', ()=>{
         setTimeout(()=>{
-        console.log('mount hit', this.props.auth0_id)        
         socket.emit('user',{user: this.props.auth0_id})},500)
         })
-    }
+    };
 
     componentWillUnmount=()=>{
         socket.disconnect()
-    }
+    };
+
     placeBet = (value)=>{
         let {betInput} = this.state
         let betAmount=0;
         betInput < 1
-        ?
-        betAmount = 0
-        :
-        betInput > this.props.bank
-        ?
-        betAmount = this.props.bank
-        :
-        betAmount = betInput;
+        ?betAmount = 0
+        :betInput > this.props.bank
+        ?betAmount = this.props.bank
+        :betAmount = betInput;
         this.setState({buttonDisable: true})
         socket.emit('bet', {auth0_id: this.props.auth0_id, bet: betAmount, value: value})
     }
@@ -113,13 +104,11 @@ export class Game extends Component{
     }
 
     sendMessage = (text)=>{
-        console.log('text', text)
         if (text.length){
         socket.emit('chatSend', {text:text, user:this.props.user});
         this.setState({messageText:''})}
     }
     render(){
-        console.log('bank', this.state.bank)
         const {timer, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
         const displayChat =
             chatMessages.map(chats=>{
@@ -206,7 +195,7 @@ const mapStateToProps= (state)=>{
 }
 
 const mapDispatchToProps = {
-    updateBank: updateBank
+    updateStats: updateStats
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Game))
