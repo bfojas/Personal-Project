@@ -39,7 +39,10 @@ app.use(session({
 
 
 
-let timeLimit = 10;
+let timeLimit = 
+process.env.HOST == "localhost"
+?10
+:20;
 let previousCard =[];
 let countdown = timeLimit;
 let winningGuess = '';
@@ -97,7 +100,6 @@ io.sockets.on('connection', socket =>{
     })
 })
 
-// app.get('db').then(res=>res.draw_card().then(card=> drawnCard = card));
 
 setInterval(function(){
     countdown--;
@@ -125,7 +127,7 @@ setInterval(function(){
         winners.forEach(val=> list = list + val.name + ", ")
 
         io.sockets.to('gameRoom')
-        .emit('message', {text:list, user:'Winners'})
+        .emit('message', {text:list.slice(0,-2), user: `${previousCard[0].code} winners`})
         }
     })
 
@@ -156,6 +158,7 @@ app.post('/api/logout', profileController.logOut);
 app.post('/api/creditcheck', profileController.creditCheck);
 app.post('/api/creditadd', profileController.creditAdd)
 app.put('/api/edit', profileController.edit);
+app.put('api/image', profileController.image)
 app.delete('/api/delete/:id', profileController.delete);
 const path = require('path')
 app.get('*', (req, res)=>{

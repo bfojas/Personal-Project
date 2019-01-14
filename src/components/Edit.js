@@ -4,7 +4,6 @@ import {withRouter, NavLink} from 'react-router-dom';
 import {editUser} from '../ducks/reducer';
 import axios from 'axios';
 
-
 class Edit extends Component{
     constructor(props){
         super(props)
@@ -13,13 +12,11 @@ class Edit extends Component{
             editEmail: this.props.email,
             editImage: this.props.image,
         }
-
     }
     edit = (value)=>{
         this.props.editUser(value)
         axios.put('/api/edit', {value, auth0_id: this.props.auth0_id}).then(res=> console.log(res))
     }
-
 
     render(){
         const {image} = this.props
@@ -32,30 +29,33 @@ class Edit extends Component{
                     alt="User"/>
                 </div>
                 <div>
-                    <div className="userEditDiv">
-                        <div>Username: </div>
-                        <input value={this.state.editName} onChange={e=>this.setState({editName: e.target.value})}/>
+                    <div className="infoEdit">
+                        <div className="userEditDiv">
+                            <div>Username: </div>
+                            <input value={this.state.editName} onChange={e=>this.setState({editName: e.target.value})}/>
+                        </div>
+                        <div className="userEditDiv">
+                            <div>E-mail: </div>
+                            <input value={this.state.editEmail} onChange={e=>this.setState({editEmail: e.target.value})}/>
+                        </div>
+                        <div className="userEditDiv">
+                            <div>Image Url: </div>
+                            <input value={this.state.editImage} onChange={e=>this.setState({editImage: e.target.value})}/>
+                        </div>
+                        <div className="editButtons">
+                            <NavLink to="/profile">
+                                <button>Cancel</button>
+                            </NavLink>
+                            <NavLink to="/profile"onClick={()=>this.edit({
+                                name: this.state.editName,
+                                email: this.state.editEmail,
+                                image: this.state.editImage
+                            })}>
+                                <button >Submit</button>
+                            </NavLink>
+                        </div>
                     </div>
-                    <div className="userEditDiv">
-                        <div>E-mail: </div>
-                        <input value={this.state.editEmail} onChange={e=>this.setState({editEmail: e.target.value})}/>
-                    </div>
-                    <div className="userEditDiv">
-                        <div>Image URL</div>
-                        <input value={this.state.editImage} onChange={e=>this.setState({editImage: e.target.value})}/>
-                    </div>
-                    <div className="editButtons">
-                        <NavLink to="/profile">
-                            <button>Cancel</button>
-                        </NavLink>
-                        <NavLink to="/profile"onClick={()=>this.edit({
-                            name: this.state.editName,
-                            email: this.state.editEmail,
-                            image: this.state.editImage
-                        })}>
-                            <button >Submit</button>
-                        </NavLink>
-                    </div>
+                    
                 </div>
             </div>
         )

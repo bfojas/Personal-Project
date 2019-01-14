@@ -138,7 +138,10 @@ export class Game extends Component{
                         </div>
                     </div>
                     <div classname="cardImageContainer">
-                        <img className="cardImage" src={fromServer && fromServer.image} alt={fromServer && fromServer.code}/>
+                        <img className="cardImage" src={fromServer && fromServer.image}
+                            onError={(e)=>{e.target.onerror = null; 
+                                e.target.src=fromServer.altimage}}
+                            alt={fromServer && fromServer.code}/>
                     </div>
                     <div classname="betContainer">               
                         <div>

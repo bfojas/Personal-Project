@@ -51,7 +51,7 @@ class Credits extends Component{
                     token = {this.onToken(this.getUser())}
                     allowRememberMe={false}
                     stripeKey = {process.env.REACT_APP_STRIPE_KEY}
-                    closed ={()=>this.props.history.push('/')}
+                    closed ={()=>this.props.history.push('/profile')}
                 />
 
             </div>
