@@ -158,7 +158,6 @@ app.post('/api/logout', profileController.logOut);
 app.post('/api/creditcheck', profileController.creditCheck);
 app.post('/api/creditadd', profileController.creditAdd)
 app.put('/api/edit', profileController.edit);
-app.put('api/image', profileController.image)
 app.delete('/api/delete/:id', profileController.delete);
 const path = require('path')
 app.get('*', (req, res)=>{
