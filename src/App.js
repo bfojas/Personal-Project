@@ -12,23 +12,23 @@ class App extends Component {
 
   render() {
     return (
-      <AppWrap>
+      // <AppWrap>
       <div 
-      className="App">
+      className="App" style={{height: window.innerheight}}>
         <Header/>
         <div className = 'routeParent'>{routes}</div>
       </div>
-      </AppWrap>
+      // </AppWrap>
     );
   }
 }
 
-const AppWrap = styled.div`
-  height: window.innerHeight;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`
+// const AppWrap = styled.div`
+//   height: window.innerHeight;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   position: relative;
+// `
 export default App;

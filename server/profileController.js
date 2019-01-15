@@ -15,7 +15,7 @@ module.exports ={
         const {name, email, image} = req.body.value;
         req.session.user = name;
         req.session.email = email;
-        // req.session.picture = image
+        req.session.picture = image
         db.edit({
             user:name, email, image, auth0_id})
         .then(()=>res.send())
@@ -54,8 +54,18 @@ module.exports ={
         req.app.get('db')
         .add_credit({
             amount, auth0_id})
-        .then(()=>res.send())
+        .then((credit)=>{
+            // console.log('credit send', credit)
+            res.send(credit[0])})
         .catch(error=>console.log('credit error', error))
+    // },
+    // statUpdate: (req,res)=>{
+    //     console.log('body',req.body)
+    //     const {auth0_id, bank, wins, games} = req.body;
+    //     req.session.credit = bank;
+    //     req.session.wins = wins;
+    //     req.session.games = games;
+
     }
 
 }

@@ -8,6 +8,20 @@ import { Doughnut } from 'react-chartjs-2';
 
 class Profile extends Component{
     
+    // componentDidMount(){
+    //     // if (prevProps !== this.props)
+    //     {console.log('test', this.props)
+    //     const {bank, wins, games, auth0_id} = this.props
+    //     axios.put('/api/statUpdate', 
+    //         {auth0_id: auth0_id,
+    //         bank: bank, 
+    //         wins:wins, 
+    //         games: games}
+    //         )
+    //     .then(res=>{})
+    //     }
+    // }
+
     logout=()=> {
         let yes=window.confirm('Are you sure you want to log out?')
         if(yes=== true)
@@ -22,24 +36,30 @@ class Profile extends Component{
 
     render(){
         const {user, image, email, bank, wins, games} = this.props
-        let winPercent;
-        games === 0
-        ?winPercent = 0
-        : winPercent = wins / games *100
+        let winPercent, chartPercent;
+        if(games === 0)
+        {winPercent = 0;
+        chartPercent = [0,0,1]}
+        else {winPercent = wins / games *100;
+            chartPercent = [wins, games-wins,0]}
+
 
         const data = {
             labels: [
                 'Wins',
-                'Losses'
+                'Losses',
+                'Not Played'
             ],
             datasets: [{
-                data: [wins, wins - games],
+                data: chartPercent,
                 backgroundColor: [
                 '#36A2EB',
+                '#FF6384',
                 '#FF6384'
                 ],
                 hoverBackgroundColor: [
                 '#36A2EB',
+                '#FF6384',
                 '#FF6384'
                 ]
             }]
@@ -78,11 +98,12 @@ class Profile extends Component{
                             <ul>
                                 <li>Bank: {bank} </li>
                                 <li>Wins: {wins}</li>
+                                <li>Games: {games}</li>
                             </ul>
                         </div>                        
                         <div className="chartDiv">
                             <div className="winPercentage">
-                            Win %:<br/>{winPercent}%</div>
+                            Win %:<br/>{Math.round(winPercent)}%</div>
                             <Doughnut className="chart"
                             // height='250'
                             // width='250'
@@ -90,19 +111,21 @@ class Profile extends Component{
                             options={{
                                 responsive: true,
                                 maintainAspectRatio: false,
-                                legend:{
-                                labels:{fontColor: 'black',
-                                font: (context)=> {
-                                    var width = context.chart.width;
-                                    var size = Math.round(width/ 5);
-                                    console.log('width', width)
-                                    
-                                    return {
-                                        // weight: 'bold',
-                                        size: size
-                                    };
-                                }}
-                            }}}
+                                legend:{display: false}
+                                //     labels:{fontColor: 'black',
+                                //         font: (context)=> {
+                                //             var width = context.chart.width;
+                                //             var size = Math.round(width/ 5);
+                                //             console.log('width', width)
+                                            
+                                //             return {
+                                //                 // weight: 'bold',
+                                //                 size: size
+                                //             };
+                                //         }
+                                //     }
+                                // }
+                            }}
                             />
                         </div>
                     </div>

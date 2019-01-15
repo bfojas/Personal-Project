@@ -52,6 +52,7 @@ export class Game extends Component{
 
         //receive bank
         socket.on('stats', stats=>{
+            console.log('socket stats',stats)
             props.updateStats(stats)
         })
 
@@ -137,7 +138,7 @@ export class Game extends Component{
                             <div>{this.props.bank}</div>
                         </div>
                     </div>
-                    <div classname="cardImageContainer">
+                    <div className="cardImageContainer">
                         <img className="cardImage" src={fromServer && fromServer.image}
                             onError={(e)=>{e.target.onerror = null; 
                                 e.target.src=fromServer.altimage}}

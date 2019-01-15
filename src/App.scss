@@ -175,9 +175,9 @@ background-color: $mainColor;
       height: 100%;
       width: 60%;
       max-width: 600px;
-      background-color: blue;
+      // background-color: blue;
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
       flex-direction: column;
       
@@ -186,7 +186,7 @@ background-color: $mainColor;
       }
 
       .profile{
-        background-color: aqua;
+        // background-color: aqua;
         font-size: 3.0vh;
         width: 100%;
         display: flex;
@@ -202,7 +202,7 @@ background-color: $mainColor;
           justify-content: center;
           align-items: center;
           flex-direction: column;
-          width: 100%;
+          width: 90%;
 
           li{
             width: 75%;
@@ -214,7 +214,7 @@ background-color: $mainColor;
 
       .chartDiv{
         height: 50%;
-        width: 100%;
+        width: 90%;
         background-color: white;
         display: flex;
         position: relative;
@@ -230,11 +230,10 @@ background-color: $mainColor;
           font-size: 3.5vh;
           display: flex;
           position: absolute;
-          top: 55%;
+          top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           @media (max-width: 668px){
-            top: 60%;
             font-size: 2.5vh
           }
 
@@ -402,11 +401,12 @@ background-color: $mainColor;
           height: 60%;
           img {
             height: 90%;
+            width: auto;
             max-width: 400px;
             // max-height: 50%;
           }
         }
-      }
+      } 
     }
   }
   .homeParent{

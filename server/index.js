@@ -132,7 +132,6 @@ setInterval(function(){
     })
 
 //update stats
-    app.get('db').update_stats();
 
 //reset game table
     app.get('db').clear_table();
@@ -159,6 +158,9 @@ app.post('/api/creditcheck', profileController.creditCheck);
 app.post('/api/creditadd', profileController.creditAdd)
 app.put('/api/edit', profileController.edit);
 app.delete('/api/delete/:id', profileController.delete);
+// app.put('/api/statUpdate', profileController.statUpdate)
+
+
 const path = require('path')
 app.get('*', (req, res)=>{
   res.sendFile(path.join(__dirname, '../build/index.html'));

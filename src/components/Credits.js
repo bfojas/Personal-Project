@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout'
+import {updateStats} from '../ducks/reducer'
 
 
 class Credits extends Component{
@@ -22,6 +23,14 @@ class Credits extends Component{
         axios.post('/api/creditcheck', {token, user})
         .then(res=>{
             axios.post('/api/creditadd', {user})
+            .then(credit=>{
+                console.log('credit',credit)
+                this.props.updateStats({
+                    credit: credit.data.credit,
+                    wins: this.props.wins,
+                    games: this.props.games
+                })
+            })
             alert('Thank You! Identity Stolen! (just kidding)')
         })
     }
@@ -66,8 +75,15 @@ const mapStateToProps = (state =>{
     return {
         user: state.user,
         email: state.email,
-        auth0_id: state.auth0_id
+        auth0_id: state.auth0_id,
+        bank: state.bank,
+        wins: state.wins,
+        games: state.games
     }
 })
 
-export default withRouter(connect(mapStateToProps)(Credits))
+const mapDispatchToProps ={
+    updateStats
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Credits))
