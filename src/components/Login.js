@@ -30,7 +30,10 @@ class Login extends Component{
                             <li>That's it. That's the only benefit...</li>
                         </ul>
                         <div className="loginPic">
-                        <img src="/images/login.jpg" alt="play"/>
+                        <img src="https://s3-us-west-1.amazonaws.com/dev-fun-cards/login.jpg"
+                        onError={(e)=>{e.target.onerror = null; 
+                            e.target.src="/images/login.jpg"}}
+                        alt="play"/>
                         </div>
                     </div>
                     <div className="logButton">

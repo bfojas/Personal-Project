@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 import {logOutUser} from '../ducks/reducer';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
+import { Doughnut } from 'react-chartjs-2';
 
 class Profile extends Component{
     
@@ -15,6 +16,8 @@ class Profile extends Component{
         })
         .then(setTimeout(()=>this.props.history.push('/'),500))}
     }
+
+    
     
 
     render(){
@@ -23,6 +26,26 @@ class Profile extends Component{
         games === 0
         ?winPercent = 0
         : winPercent = wins / games *100
+
+        const data = {
+            labels: [
+                'Wins',
+                'Losses'
+            ],
+            datasets: [{
+                data: [wins, wins - games],
+                backgroundColor: [
+                '#36A2EB',
+                '#FF6384'
+                ],
+                hoverBackgroundColor: [
+                '#36A2EB',
+                '#FF6384'
+                ]
+            }]
+        };
+
+        
         return(
             !this.props.user.length
             ?
@@ -31,26 +54,56 @@ class Profile extends Component{
             </div>
             :
             <div className="profileParent">
-                <div className="profile">
-                    <div className="imageContainer">
+                <div className="userMobile">
+                    <h1>Hello {user}!</h1>
+                    <div>Email: {email}</div>
+                </div>
+                <div className="imageContainer">
+                    <div className="image">
                     <img src={image} 
                         onError={(e)=>{e.target.onerror = null; 
                             e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}
                         alt="User"/>
+                    <div className="statsMobile">
+                            <ul>
+                                <li>Bank: {bank} </li>
+                                <li>Wins: {wins}</li>
+                            </ul>
+                        </div> 
                     </div>
                     <div className="profileContainer">
-                        <h1>Hello {user}!</h1>
-                        <div>
-                            <div>
-                                <div>Email: {email}</div>
-                                <div>Stats: 
-                                    <ul>
-                                        <li>Bank: {bank} </li>
-                                        <li>Wins: {wins}</li>
-                                        <li>Win Percentage: {winPercent}%</li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <div className="profile">
+                            <h1>Hello {user}!</h1>
+                            <div>Email: {email}</div>
+                            <ul>
+                                <li>Bank: {bank} </li>
+                                <li>Wins: {wins}</li>
+                            </ul>
+                        </div>                        
+                        <div className="chartDiv">
+                            <div className="winPercentage">
+                            Win %:<br/>{winPercent}%</div>
+                            <Doughnut className="chart"
+                            // height='250'
+                            // width='250'
+                            data={data}
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend:{
+                                labels:{fontColor: 'black',
+                                font: (context)=> {
+                                    var width = context.chart.width;
+                                    var size = Math.round(width/ 5);
+                                    console.log('width', width)
+                                    
+                                    return {
+                                        // weight: 'bold',
+                                        size: size
+                                    };
+                                }}
+                            }}}
+                            />
                         </div>
                     </div>
                 </div>
