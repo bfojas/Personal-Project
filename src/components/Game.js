@@ -3,12 +3,13 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 import {updateStats} from '../ducks/reducer'
+import { Doughnut } from 'react-chartjs-2';
+
 let socket='';
 export class Game extends Component{
     constructor(props){
         super(props);
         this.state = {
-            // user: this.props.user,
             fromServer: '',
             betInput: 5,
             buttonDisable: true,
@@ -118,6 +119,28 @@ export class Game extends Component{
                 <div className="chatText">{chats.text}</div>
             </div>
         })
+        const chartPercent = [20-timer, timer]
+        const data = {
+            labels: [
+                'Time',
+                '',
+            ],
+            datasets: [{
+                data: chartPercent,
+                backgroundColor: [
+                '#36A2EB',
+                '#FF6384'
+                ],
+                hoverBackgroundColor: [
+                '#36A2EB',
+                '#FF6384'
+                ]
+            }]
+        };
+        let windowWatch=150;
+        // window.inner/5
+        
+        // window.addEventListener('resize', windowWatch = window.innerHeight/5)
         return(
             
             !this.props.user.length
@@ -130,13 +153,20 @@ export class Game extends Component{
                 <div className= "gameContent">
                     <div className="gameInfoContainer">
                         <div className="timerContainer">
-                            <div>Time Remaining:</div>
-                            <div>{timer}</div>
+                            <div className="timer">Time:<br/>{timer}</div>
+                            <Doughnut className="chartTimer"
+                            height={windowWatch}
+                            width={windowWatch}
+                            data={data}
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend:{display: false},
+                                cutoutPercentage:80
+                            }}
+                            />
                         </div>
-                        <div className="bankContainer">
-                            <div>Bank:</div>
-                            <div>{this.props.bank}</div>
-                        </div>
+                        
                     </div>
                     <div className="cardImageContainer">
                         <img className="cardImage" src={fromServer && fromServer.image}
@@ -146,6 +176,10 @@ export class Game extends Component{
                     </div>
                     <div classname="betContainer">               
                         <div>
+                            <div className="bankContainer">
+                                <div>Bank:</div>
+                                <div>{this.props.bank}</div>
+                            </div>
                             <input type="number" 
                                 min="0" 
                                 max={this.props.bank}

@@ -62,15 +62,15 @@ module.exports ={
             res.status(500).send('Something bad happened on the server');
         });
     },
-    getUser: (req,res) =>{
+    getUser: async (req,res) =>{
         const {name, picture, email, auth0_id} = req.session.user
-        req.app.get('db').get_stats({auth0_id})
-        .then(stats => {
+        stats = await req.app.get('db').get_stats({auth0_id})
+        // .then(stats => {
             console.log('stats',stats)
             const {credit, wins, games} = stats[0]
             update = {name, picture, email, auth0_id, credit, wins, games}
             res.status(200).json(update)
-        })
+        // })
         
 
     }

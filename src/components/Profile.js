@@ -8,19 +8,6 @@ import { Doughnut } from 'react-chartjs-2';
 
 class Profile extends Component{
     
-    // componentDidMount(){
-    //     // if (prevProps !== this.props)
-    //     {console.log('test', this.props)
-    //     const {bank, wins, games, auth0_id} = this.props
-    //     axios.put('/api/statUpdate', 
-    //         {auth0_id: auth0_id,
-    //         bank: bank, 
-    //         wins:wins, 
-    //         games: games}
-    //         )
-    //     .then(res=>{})
-    //     }
-    // }
 
     logout=()=> {
         let yes=window.confirm('Are you sure you want to log out?')
@@ -75,31 +62,37 @@ class Profile extends Component{
             :
             <div className="profileParent">
                 <div className="userMobile">
-                    <h1>Hello {user}!</h1>
-                    <div>Email: {email}</div>
+                    <div className="mobileHello" >Hello {user}!</div>
+                    <div className="mobileEmail">Email: {email}</div>
                 </div>
                 <div className="imageContainer">
                     <div className="image">
-                    <img src={image} 
-                        onError={(e)=>{e.target.onerror = null; 
-                            e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}
-                        alt="User"/>
-                    <div className="statsMobile">
-                            <ul>
-                                <li>Bank: {bank} </li>
-                                <li>Wins: {wins}</li>
-                            </ul>
+                        <div className="asshole">
+                            <img src={image} 
+                            onError={(e)=>{e.target.onerror = null; 
+                                e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}
+                            alt="User"/>
+                        </div>
+                        <div className="statsMobile">
+                                {/* <ul>
+                                    <li>Bank: {bank} </li>
+                                    <li>Wins: {wins}</li>
+                                </ul> */}
+                            <div>Bank: {bank}</div>
+                            <div>Wins: {wins}</div>
                         </div> 
                     </div>
                     <div className="profileContainer">
                         <div className="profile">
-                            <h1>Hello {user}!</h1>
+                            <div className="profileGreet">
+                            <div className="profileHello">Hello {user}!</div>
                             <div>Email: {email}</div>
-                            <ul>
-                                <li>Bank: {bank} </li>
-                                <li>Wins: {wins}</li>
-                                <li>Games: {games}</li>
-                            </ul>
+                            </div>
+                            <div className="stats">
+                                <div>Bank: {bank} </div>
+                                <div>Wins: {wins}</div>
+                                <div>Games: {games}</div>
+                            </div>
                         </div>                        
                         <div className="chartDiv">
                             <div className="winPercentage">

@@ -48,6 +48,10 @@ header, .head {
   
   .headerImage {
     margin-left: 30px;
+    @media(max-width: 668px){
+      // display: none;
+      margin-left: 10px;
+    }
     img{
       max-height: 75px;
     }
@@ -56,15 +60,18 @@ header, .head {
   ul {
     height: 100%;
     width: 50%;
-    margin-right: 30px;
+    margin-right: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    @media(max-width:668px){
+      width: 80%;
+    }
     li{
       margin:0 10px;
       list-style-type: none;
-      width: 30%;
+      width: 33%;
 
       button {
         height: 30px;
@@ -111,8 +118,12 @@ background-color: $mainColor;
         display: flex;
         flex-direction: column;
         height: 15%;
-        h1{
-          font-size: 20px;
+        .mobileHello{
+          font-size: 5vh;
+          font-weight: bold;
+        }
+        .mobileEmail{
+          font-size: 3vh;
         }
       }
     }
@@ -130,23 +141,49 @@ background-color: $mainColor;
       }
 
       .image{
+        
         display: flex;
         justify-content: center;
         align-items: center;
-        // background-color: red;
         height: 100%;
         width: 35%;
         // max-width: 300px;
         @media(max-width:668px){
+          border: solid black 5px;
+          background-color: white;
           width: 95%;
           height: 35%;
           max-width: 600px;
+          justify-content: space-evenly;
+        }
+
+        .asshole {
+          display: flex;
+          align-items: left;
+          justify-content: center;
+          width: 100%;
+          height: 50%;
+          
+          @media (max-width: 668px){
+            width: 30%;
+            height: 100%;
+          }
+
+          img{
+            width: 95%;
+            // height: 100%;
+            // width: auto;
+            @media (max-width: 668px){
+              width: 100%;
+            }
+          }
         }
         .statsMobile {
           display: none;
           @media (max-width: 668px){
             font-size: 5.5vw;
             // background-color: aqua;
+            
             width: 65%;
             display: flex;
             flex-direction: column;
@@ -155,20 +192,6 @@ background-color: $mainColor;
           }
         }
 
-        img {
-          width: 100%;
-          // display: block;
-          // margin-left: auto;
-          // margin-right: auto;
-          // width: 50%;
-        
-          @media(max-width: 668px){
-            width: 50%;
-            // max-width: 50%;
-            // height: 100%;
-            max-height: 100%;
-          }
-        }
       }
     }
     .profileContainer{
@@ -177,9 +200,14 @@ background-color: $mainColor;
       max-width: 600px;
       // background-color: blue;
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
       flex-direction: column;
+      background-color: black;
+      color: white;
+
+      
+      
       
       @media(max-width:668px){
         height: 50%
@@ -187,27 +215,47 @@ background-color: $mainColor;
 
       .profile{
         // background-color: aqua;
+        
         font-size: 3.0vh;
-        width: 100%;
+        width: 90%;
+        height:50%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        @media (max-width: 668px){
-          display: none;
+        .profileGreet{
+          height: 50%;
+        }
+        .profileHello{
+          font-size: 4.5vw;
+          @media (min-width: 1000px){
+            font-size: 44px;
+          }
         }
         
-        ul{
+        
+        
+        .stats{
           display: flex;
           justify-content: center;
           align-items: center;
-          flex-direction: column;
-          width: 90%;
+          flex-direction: row;
+          height: 40%;
+          width: 100%;
+          background-color: white;
+          color: black;
+          margin: 0;
+          border-left: solid black 10px;
+          border-right: solid black 10px;
+          border-top: solid black 10px;
 
-          li{
+          div{
+            height:33%;
             width: 75%;
-            text-align: left;
           }
+        }
+        @media (max-width: 668px){
+          display: none;
         }
         
       }
@@ -220,13 +268,22 @@ background-color: $mainColor;
         position: relative;
         align-items: center;
         justify-content: center;
-        border: solid black 10px;
+        border-left: solid black 10px;
+        border-right: solid black 10px;
+        border-bottom: solid black 10px;
+        margin-bottom: 10px;
         @media (max-width: 668px){
-          border: solid black 3px;
+          border-left: solid black 5px;
+          border-right: solid black 5px;
+          border-bottom: solid black 5px;
+          border-top: solid black 5px;
+          margin-bottom: 0;
+          width: 100%;
         }
 
 
         .winPercentage {
+          color: black;
           font-size: 3.5vh;
           display: flex;
           position: absolute;
@@ -345,10 +402,9 @@ background-color: $mainColor;
       .imageContainer{
         width: 100%;
         max-width: 250px;
+        
 
-        img {
-          width: 100%;
-        }
+        
       }
     }
 
@@ -419,22 +475,40 @@ background-color: $mainColor;
     justify-content: space-around; 
     align-items: center;
     background-color: $mainColor;
-
+    .homeWelcome{
+      width: 90%;
+      height: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      h1{
+        width: 90%;
+        margin: 10px 0 0 0 ;
+        font-size: 4.5vh;
+      }
+      p{
+        font-size: 2vh;
+      }
+    }
     .rules {
       font-size: 24px;
       width: 90%;
+      height: 55%;
       background-color: black;
       color: white;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
       ul {
         text-align: left;
         overflow: auto;
-        font-size: 20px;
+        font-size: 2.5vh;
         padding: 10px;
         width: 90%;
+        height: 80%;
         background-color: white;
         color: black;
         display: flex;
@@ -442,13 +516,47 @@ background-color: $mainColor;
         align-items: center;
         flex-direction: column;
         @media (max-width: 668px){
-          font-size: 14px;
+          font-size: 3.5vw;
         }
         li{
         width: 90%;
-        
+        text-align: left;
         }
+        
       }
+    }
+      
+    .homeButtons{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      width: 60%;
+      height: 15%;
+
+    .homeLinks{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30%;
+      height: 100%;
+      text-decoration: none;
+
+      @media(max-width: 668px){
+        width: 50%;
+      }
+
+
+      button{
+        height: 50px;
+        width: 50%;
+        font-size: 20px;
+
+        @media(max-width: 668px){
+          font-size: 14px;
+      }
+      }
+    }
     }
   }
 }
@@ -543,9 +651,36 @@ background-color: $mainColor;
 
 .gameInfoContainer{
   position: relative;
+  height: 25%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  
+  .timerContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    .timer{
+      display: flex;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+
+    }
+    .chartTimer{
+      background-color: yellow;
+      width: 50%;
+      height: 50%;
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+  }
 }
 
 .cardImage{

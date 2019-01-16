@@ -17,9 +17,11 @@ export function Home(props) {
         return (
 
             <div className="homeParent">
+                <div className="homeWelcome">
                 <h1>Welcome to my project!</h1>
                 <p>This is just a simple game made by a web dev student.<br/>
                 Feel free to login and enjoy!</p>
+                </div>
                 <div className="rules">
                 How to play:
                 <ul className="rulesList">
@@ -35,11 +37,11 @@ export function Home(props) {
 
                 </ul>
                 </div>
-                <div>
-                    <NavLink to={logged}>
+                <div className="homeButtons">
+                    <NavLink className="homeLinks" to={logged}>
                         <button>{button}</button>
                     </NavLink>
-                    <NavLink to="/game">
+                    <NavLink className="homeLinks" to="/game">
                         <button>Play</button>
                     </NavLink>
                 </div>

@@ -41,12 +41,12 @@ class Header extends Component {
             <header>
                 <div className="head">
                     <div className="headerImage">
-                        <img src="/images/graphic.png" alt="logo"/>
+                        <img src="/images/spade2.jpg" alt="logo"/>
                     </div>
 
                     <ul>
                         <li>
-                            <NavLink to="/">
+                            <NavLink className="buttonLink" to="/">
                                 <button>Home</button>
                             </NavLink>
                         </li>
@@ -55,7 +55,7 @@ class Header extends Component {
                                 <button>{`${logButton}`}</button>
                             </NavLink></li>
                         <li>
-                            <NavLink to={`${play}`}>
+                            <NavLink className="buttonLink" to={`${play}`}>
                                 <button>Play</button>
                             </NavLink>
                         </li>
