@@ -4,21 +4,34 @@ import Header from './components/Header';
 import routes from './routes'
 import styled from 'styled-components'
 
+
+  
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {screenHeight: window.innerHeight};
+  }
+  componentDidMount(){
+    window.addEventListener('resize', this.updateWindow())
+  }
+
+
+  updateWindow=()=>{
+    console.log('test')
+    window.addEventListener('resize', ()=>{
+      this.setState({screenHeight: window.innerHeight})
+      console.log('height2', this.state.screenHeight)
+    })
+  }
 
   render() {
-    let vh
-    window.addEventListener('resize', () =>{
-         vh =window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
-    })
-
+    
+    
     return (
+      
       <div 
       className="App" 
-      style={{height: 100 * vh}}
-      >
-      
+      style={{height: this.state.screenHeight}}>
         <Header/>
         <div className = 'routeParent'>{routes}</div>
       </div>
