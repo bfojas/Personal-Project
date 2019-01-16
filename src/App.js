@@ -9,12 +9,18 @@ import styled from 'styled-components'
 class App extends Component {
 
 
-
   render() {
+    window.addEventListener('resize', () =>{
+       let vh =window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    })
+
     return (
       // <AppWrap>
       <div 
-      className="App" style={{height: window.innerheight}}>
+      className="App" >
+      {/* // style={{height: this.state.vh}} */}
+      
         <Header/>
         <div className = 'routeParent'>{routes}</div>
       </div>
