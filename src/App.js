@@ -4,37 +4,26 @@ import Header from './components/Header';
 import routes from './routes'
 import styled from 'styled-components'
 
-// const socket = socketIOClient("http://localhost:4000")
-
 class App extends Component {
 
-
   render() {
+    let vh
     window.addEventListener('resize', () =>{
-       let vh =window.innerHeight * 0.01
+         vh =window.innerHeight * 0.01
       document.documentElement.style.setProperty('--vh', `${vh}px`)
     })
 
     return (
-      // <AppWrap>
       <div 
-      className="App" >
-      {/* // style={{height: this.state.vh}} */}
+      className="App" 
+      style={{height: 100 * vh}}
+      >
       
         <Header/>
         <div className = 'routeParent'>{routes}</div>
       </div>
-      // </AppWrap>
     );
   }
 }
 
-// const AppWrap = styled.div`
-//   height: window.innerHeight;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   position: relative;
-// `
 export default App;
