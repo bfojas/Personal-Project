@@ -15,7 +15,7 @@ class Edit extends Component{
     }
     edit = (value)=>{
         this.props.editUser(value)
-        axios.put('/api/edit', {value, auth0_id: this.props.auth0_id}).then(res=> console.log(res))
+        axios.put('/api/edit', {value, auth0_id: this.props.auth0_id}).then()
     }
     colorToDb = (color)=>{
         axios.put('api/color', {color, auth0_id: this.props.auth0_id})
@@ -35,7 +35,7 @@ class Edit extends Component{
                 <div className="imageContainer">
                 <img src={image} 
                 onError={(e)=>{e.target.onerror = null; 
-                    e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}
+                    e.target.src="images/unavailable.jpg"}}
                     alt="User"/>
                 </div>
                 <div className="infoEdit">

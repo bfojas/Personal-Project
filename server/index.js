@@ -4,13 +4,10 @@ const app = express();
 const session = require('express-session');
 const dotenv = require('dotenv');
 dotenv.config();
-const util = require('util');
-const colorize = {colors: true}
 const massive = require('massive');
 massive(process.env.CONNECTION_STRING).then(db =>{
     app.set('db', db);
     setTimeout(()=>{db.draw_card().then(cardResponse=>{
-        console.log('initial' ,util.inspect(cardResponse,colorize))
         drawnCard = cardResponse
     })},2000)
 }).catch(error => console.log('massive shit',error))
@@ -42,7 +39,7 @@ app.use(session({
 let timeLimit = 
 process.env.HOST == "localhost"
 ?10
-:20;
+:21;
 let previousCard =[];
 let countdown = timeLimit;
 let winningGuess = '';
@@ -50,12 +47,9 @@ let sockets = [];
 
 io.sockets.on('connection', socket =>{
     sockets.push(socket.id)
-    console.log('socket push', sockets)
     socket.join('gameRoom');
     socket.on('user', user=>{
-        console.log('socket on', user)
         app.get('db').add_user_table({auth0_id: user.user, socket_id: socket.id})
-        // console.log('user', user)
     })
 
 //receive and handle bets
@@ -78,10 +72,6 @@ io.sockets.on('connection', socket =>{
     socket.emit('timer', {countdown: countdown});//timer
     socket.emit('socketId', socket.id);//socket id to client
 
-//get initial bank to user
-    // setTimeout(()=>app.get('db').get_bank({socket_id:socket.id}).then(res=> {
-    //     console.log('get bank',res)
-    //     return io.sockets.connected[socket.id].emit('bank', res[0].credit)}),1000)
 //handle chat messages
     socket.on('chatSend', message=>{
         message.text === "who here?"
@@ -91,12 +81,9 @@ io.sockets.on('connection', socket =>{
 
 
     socket.on('disconnect', () =>{
-        // console.log('socket', io.sockets.adapter.rooms['gameRoom'].sockets )
         app.get('db').remove_user_table({socket_id: socket.id})
         sockets = sockets.filter(val=> {
             return val !== socket.id})
-        
-        console.log('res', sockets)
     })
 })
 
@@ -121,7 +108,6 @@ setInterval(function(){
 
 //send winners list
     app.get('db').winners().then(winners=>{
-        console.log('winners', winners)
         if(winners.length){
         let list = "";
         winners.forEach(val=> list = list + val.name + ", ")
@@ -138,7 +124,6 @@ setInterval(function(){
         
 //draw card
     app.get('db').draw_card().then(cardResponse=>{
-        console.log('card response', cardResponse)
         previousCard = drawnCard.slice(0,1)
         drawnCard = cardResponse
         if (previousCard[0].value < drawnCard[0].value)
@@ -147,7 +132,6 @@ setInterval(function(){
         {winningGuess = 'low'}
         else
         {{winningGuess = 'tie'}}
-        console.log('winner', winningGuess)
     }); 
 }, `${timeLimit}000`);
 

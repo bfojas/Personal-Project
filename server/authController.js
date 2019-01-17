@@ -66,12 +66,9 @@ module.exports ={
     getUser: async (req,res) =>{
         const {name, picture, email, auth0_id, color} = req.session.user
         stats = await req.app.get('db').get_stats({auth0_id})
-        // .then(stats => {
-            console.log('stats',stats)
             const {credit, wins, games} = stats[0]
             update = {name, picture, email, auth0_id, credit, wins, games, color}
             res.status(200).json(update)
-        // })
         
 
     }

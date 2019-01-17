@@ -123,7 +123,6 @@ export class Game extends Component{
 
     
     render(){
-        console.log('history', this.props.history)
         const {timer, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
         const displayChat =
             chatMessages.map(chats=>{
@@ -150,7 +149,7 @@ export class Game extends Component{
                 ]
             }]
         };
-        let windowWatch=150;
+        let windowWatch=130;
         // window.inner/5
         
         // window.addEventListener('resize', windowWatch = window.innerHeight/5)

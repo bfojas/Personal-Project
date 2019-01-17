@@ -9,7 +9,6 @@ module.exports ={
     },
 
     edit: (req, res) =>{
-        console.log('req', req.body.value)
         const db = req.app.get('db');
         const {auth0_id} = req.body;
         const {name, email, image} = req.body.value;
@@ -24,7 +23,6 @@ module.exports ={
 
 
     delete: (req,res) =>{
-        // console.log('delete params',req.params)
         const {id} = req.params;
         req.app.get('db').delete_user({auth0_id:id})
         .then(req.session.destroy())
@@ -49,23 +47,13 @@ module.exports ={
         
     },
     creditAdd: (req,res)=>{
-        console.log('credit add body',req.body)
         const {amount, auth0_id} = req.body.user
         req.app.get('db')
         .add_credit({
             amount, auth0_id})
         .then((credit)=>{
-            // console.log('credit send', credit)
             res.send(credit[0])})
         .catch(error=>console.log('credit error', error))
-    // },
-    // statUpdate: (req,res)=>{
-    //     console.log('body',req.body)
-    //     const {auth0_id, bank, wins, games} = req.body;
-    //     req.session.credit = bank;
-    //     req.session.wins = wins;
-    //     req.session.games = games;
-
     },
 
     color: (req,res)=>{

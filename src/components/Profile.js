@@ -71,14 +71,10 @@ class Profile extends Component{
                         <div className="asshole">
                             <img src={image} 
                             onError={(e)=>{e.target.onerror = null; 
-                                e.target.src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"}}
+                                e.target.src="images/unavailable.jpg"}}
                             alt="User"/>
                         </div>
                         <div className="statsMobile">
-                                {/* <ul>
-                                    <li>Bank: {bank} </li>
-                                    <li>Wins: {wins}</li>
-                                </ul> */}
                             <div>Bank: {bank}</div>
                             <div>Wins: {wins}</div>
                         </div> 
@@ -106,19 +102,6 @@ class Profile extends Component{
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 legend:{display: false}
-                                //     labels:{fontColor: 'black',
-                                //         font: (context)=> {
-                                //             var width = context.chart.width;
-                                //             var size = Math.round(width/ 5);
-                                //             console.log('width', width)
-                                            
-                                //             return {
-                                //                 // weight: 'bold',
-                                //                 size: size
-                                //             };
-                                //         }
-                                //     }
-                                // }
                             }}
                             />
                         </div>
