@@ -653,6 +653,7 @@ height: calc(100% - 75px);
       }
     }
     .rules {
+      padding: 5px;
       font-size: 20px;
       width: 90%;
       height: 55%;
@@ -677,7 +678,7 @@ height: calc(100% - 75px);
         align-items: center;
         flex-direction: column;
         @media (max-width: $phoneMedia){
-          font-size: 3vw;
+          font-size: 1.5vh;
         }
         li{
         margin: 5px 0 0 0;
@@ -767,29 +768,33 @@ height: calc(100% - 75px);
     .chatMessage{
       // height: 25px;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-around;
-      margin: 0 0 10px 0;
+      // margin: 0 0 1px 0;
+      font-size: 14px;
       @media (max-width: $phoneMedia) {
         flex-direction: column;
+        font-size: 8px;
       }
 
 
       .chatUser{
         font-weight: bold;
         text-align: left;
-        width: 25%;
-        margin: 0 2% 0 2%;
+        width: 95%;
+        margin: 2px 0 5px 2px;
       }
 
       .chatText{
         justify-content: left;
         text-align: left;
-        padding-left: 4px;
-        width: 70%;
+        padding-left: 10px;
+        margin-bottom: 8px;
+        width: 90%;
         overflow-wrap: break-word;
         @media (max-width:$phoneMedia){
-          padding: 0 0 0 10px;
+          padding-left: 4px;
+          margin-bottom: 5px;
         }
       }
     }

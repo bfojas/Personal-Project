@@ -165,7 +165,7 @@ export class Game extends Component{
                 <div className= "gameContent">
                     <div className="gameInfoContainer">
                         <div className="timerContainer">
-                            <div className="timer">Time:<br/>{timer}</div>
+                            <div className="timer">Time<br/>{timer}</div>
                             <Doughnut className="chartTimer"
                             height={windowWatch}
                             width={windowWatch}

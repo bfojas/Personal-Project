@@ -18,7 +18,7 @@ class Edit extends Component{
         axios.put('/api/edit', {value, auth0_id: this.props.auth0_id}).then()
     }
     colorToDb = (color)=>{
-        axios.put('api/color', {color, auth0_id: this.props.auth0_id})
+        axios.put('/api/color', {color, auth0_id: this.props.auth0_id})
         .then(res=>this.props.updateColor(res.data)).then(res=>console.log('color', this.props.color))
     }
 
