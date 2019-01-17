@@ -19,7 +19,7 @@ class Edit extends Component{
     }
     colorToDb = (color)=>{
         axios.put('api/color', {color, auth0_id: this.props.auth0_id})
-        .then(res=>this.props.updateColor(res.data))
+        .then(res=>this.props.updateColor(res.data)).then(res=>console.log('color', this.props.color))
     }
 
     render(){
@@ -66,10 +66,10 @@ class Edit extends Component{
                     <div className="colorContainer">
                         <div className="colorTitle">Update Theme</div>
                         <div className="colorBox">
-                            <div className="colorOne" onClick={()=>this.colorToDb('green')}></div>
-                            <div className="colorTwo" onClick={()=>this.colorToDb('grey')}></div>
-                            <div className="colorThree" onClick={()=>this.colorToDb('aqua')}></div>
-                            <div className="colorFour" onClick={()=>this.colorToDb('red')}></div>
+                            <div className="colorOne" style={{backgroundColor: 'green'}} onClick={()=>this.colorToDb('green')}></div>
+                            <div className="colorTwo" style={{backgroundColor:'grey'}} onClick={()=>this.colorToDb('grey')}></div>
+                            <div className="colorThree" style={{backgroundColor:'#1A5387'}} onClick={()=>this.colorToDb('#1A5387')}></div>
+                            <div className="colorFour" style={{backgroundColor: '#871D0C'}}onClick={()=>this.colorToDb('#871D0C')}></div>
                         </div>
                     </div>
                 </div>

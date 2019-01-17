@@ -140,16 +140,16 @@ export class Game extends Component{
             datasets: [{
                 data: chartPercent,
                 backgroundColor: [
-                '#36A2EB',
-                '#FF6384'
+                '#FF6384',
+                '#36A2EB'
                 ],
                 hoverBackgroundColor: [
-                '#36A2EB',
-                '#FF6384'
+                '#FF6384',
+                '#36A2EB'
                 ]
             }]
         };
-        let windowWatch=130;
+        let windowWatch=115;
         // window.inner/5
         
         // window.addEventListener('resize', windowWatch = window.innerHeight/5)

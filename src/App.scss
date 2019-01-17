@@ -8,7 +8,7 @@ $phoneMedia: 415px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // background-color: $mainColor;
+  font-family: 'Press Start 2P', cursive;
 }
 
 
@@ -63,22 +63,26 @@ header, .head {
     margin-right: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    padding: 0;
     @media(max-width:$phoneMedia){
       width: 80%;
+      
     }
     li{
-      margin:0 10px;
+      margin:0 5px;
       list-style-type: none;
       width: 33%;
 
       button {
         height: 30px;
         width: 100%;
+        font-size: 12px;
 
         @media (max-width: $phoneMedia){
           height: 50px;
+          font-size: 3vw;
         }
       }
     }
@@ -119,11 +123,12 @@ height: calc(100% - 75px);
         flex-direction: column;
         height: 15%;
         .mobileHello{
-          font-size: 5vh;
+          font-size: 3vh;
           font-weight: bold;
+          margin: 10px;
         }
         .mobileEmail{
-          font-size: 3vh;
+          font-size: 2vh;
         }
       }
     }
@@ -183,7 +188,7 @@ height: calc(100% - 75px);
         .statsMobile {
           display: none;
           @media (max-width: $phoneMedia){
-            font-size: 5.5vw;
+            font-size: 4.5vw;
             // background-color: aqua;
             
             width: 55%;
@@ -226,12 +231,15 @@ height: calc(100% - 75px);
         align-items: center;
         .profileGreet{
           height: 50%;
+          font-size: 16px;
         }
         .profileHello{
-          font-size: 4.5vw;
+          margin: 10px;
+          font-size: 3vw;
           @media (min-width: 1000px){
-            font-size: 44px;
+            font-size: 30px;
           }
+          
         }
         
         
@@ -253,6 +261,7 @@ height: calc(100% - 75px);
           div{
             height:33%;
             width: 75%;
+            font-size: 24px;
           }
         }
         @media (max-width: $phoneMedia){
@@ -285,14 +294,14 @@ height: calc(100% - 75px);
 
         .winPercentage {
           color: black;
-          font-size: 3.5vh;
+          font-size: 2.2vh;
           display: flex;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           @media (max-width: $phoneMedia){
-            font-size: 2.5vh
+            font-size: 2vh
           }
 
         }
@@ -341,6 +350,9 @@ height: calc(100% - 75px);
             height: 100%;
             justify-content: center;
             align-items: center;
+            @media(max-width: $phoneMedia){
+              font-size: 10px;
+            }
           }
         }
       }
@@ -448,7 +460,7 @@ height: calc(100% - 75px);
         font-weight: bold;
         font-size: 24px;
         .colorTitle{
-          margin: 0 0 15px 0;
+          // margin: 0 0 8px 0;
           height: 50%;
           width: 100%;
 
@@ -464,18 +476,18 @@ height: calc(100% - 75px);
             width: 25px;
             margin: 5px;
           }
-          .colorOne{
-            background-color: green;
-          }
-          .colorTwo{
-            background-color: grey;
-          }
-          .colorThree{
-            background-color: aqua;
-          }
-          .colorFour{
-            background-color: red;
-          }
+          // .colorOne{
+          //   background-color: green;
+          // }
+          // .colorTwo{
+          //   background-color: grey;
+          // }
+          // .colorThree{
+          //   background-color: aqua;
+          // }
+          // .colorFour{
+          //   background-color: red;
+          // }
         }
 
         @media(max-width: $phoneMedia){
@@ -525,16 +537,20 @@ height: calc(100% - 75px);
       align-items: center;
       background-color: black;
       color: white;
+      @media(max-width:$phoneMedia){
+        height: 80%;
+      }
       
       h1 {
-        width: 80%;
-        height: 30px;
-        font-size: 4.0vw;
+        width: 90%;
+        height: 10%;
+        font-size: 2.5vw;
+        margin: 5px;
         @media(max-width: $phoneMedia){
-          font-size: 20px;
+          font-size: 16px;
         }
         @media(min-width: 1000px){
-          font-size: 40px
+          font-size: 24px
         }
       }
 
@@ -547,10 +563,10 @@ height: calc(100% - 75px);
         align-items: center;
         background-color: white;
         color: black;
-        font-size: 20px;
+        font-size: 14px;
         margin: 10px;
         @media (max-width:$phoneMedia){
-          font-size: 12px;
+          font-size: 10px;
         }
 
        
@@ -562,6 +578,14 @@ height: calc(100% - 75px);
           height: 15%;
           background-color: white;
           margin: 0;
+          @media (max-width: $phoneMedia){
+            padding: 0;
+          }
+          li{
+            text-align: left;
+            margin: 10px 0 0 0 ;
+            list-style-type: square;
+          }
 
         }
         .loginPic{
@@ -570,8 +594,8 @@ height: calc(100% - 75px);
           height: 60%;
           img {
             height: 100%;
-            width: auto;
-            max-width: 400px;
+            // width: auto;
+            max-width: 100%;
             @media( max-width: $phoneMedia){
               max-width: 100%;
               height: auto;
@@ -590,9 +614,9 @@ height: calc(100% - 75px);
       button{
         height: 50px;
         width: 100px;
-        font-size: 24px;
+        font-size: 20px;
         @media (max-width: $phoneMedia){
-          font-size: 16px;
+          font-size: 12px;
           height: 80%;
           width: 75px;
         }
@@ -620,13 +644,16 @@ height: calc(100% - 75px);
         width: 90%;
         margin: 10px 0 0 0 ;
         font-size: 4.5vh;
+        @media(max-width: $phoneMedia){
+          font-size: 3.5vh;
+        }
       }
       p{
         font-size: 2vh;
       }
     }
     .rules {
-      font-size: 24px;
+      font-size: 20px;
       width: 90%;
       height: 55%;
       background-color: black;
@@ -639,7 +666,7 @@ height: calc(100% - 75px);
       ul {
         text-align: left;
         overflow: auto;
-        font-size: 2.5vh;
+        font-size: 2vh;
         padding: 10px;
         width: 90%;
         height: 80%;
@@ -650,11 +677,13 @@ height: calc(100% - 75px);
         align-items: center;
         flex-direction: column;
         @media (max-width: $phoneMedia){
-          font-size: 3.5vw;
+          font-size: 3vw;
         }
         li{
+        margin: 5px 0 0 0;
         width: 90%;
         text-align: left;
+        list-style-type: square;
         }
         
       }
@@ -675,6 +704,7 @@ height: calc(100% - 75px);
       width: 30%;
       height: 100%;
       text-decoration: none;
+      
 
       @media(max-width: $phoneMedia){
         width: 50%;
@@ -684,10 +714,10 @@ height: calc(100% - 75px);
       button{
         height: 50px;
         width: 100px;
-        font-size: 20px;
+        font-size: 12px;
 
         @media(max-width: $phoneMedia){
-          font-size: 14px;
+          font-size: 10px;
       }
       }
     }
@@ -730,6 +760,9 @@ height: calc(100% - 75px);
     height: 90%;
     display: flex;
     flex-direction: column;
+    @media(max-width:$phoneMedia){
+      height: 75%;
+    }
     
     .chatMessage{
       // height: 25px;
@@ -765,9 +798,25 @@ height: calc(100% - 75px);
   .chatInput {
     width:100%;
     height:10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     input{
-      width: 80%;
+      width: 75%;
+      height: 24px;
       margin: 0 10px 0 0;
+    }
+    button{
+      margin: 5px;
+      height: 26px;
+    }
+
+    @media(max-width: $phoneMedia){
+      flex-direction: column;
+      input{
+        width: 100%;
+        margin: 0;
+      }
     }
   }
 }
@@ -797,13 +846,14 @@ height: calc(100% - 75px);
   
   .timerContainer{
     height: 100%;
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     position: relative;
     @media(max-width: $phoneMedia){
-      font-size: 14px;
+      font-size: 12px;
+      width: 60%;
     }
     
     .timer{
@@ -831,9 +881,11 @@ height: calc(100% - 75px);
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width:30%;
   }
   @media( max-width: $phoneMedia){
     height: 20%;
+    font-size: 10px;
   }
 }
 
@@ -844,9 +896,11 @@ height: calc(100% - 75px);
     height: 50%;
     // position: relative;
     width:100%;
+    margin-top: 5px;
     img{
       width: 100%;
       max-width: 275px;
+      max-height: 100%;
       
     }
     @media(max-width: $phoneMedia){
@@ -874,7 +928,10 @@ height: calc(100% - 75px);
 
     @media(max-width:$phoneMedia){
       height: 30%;
-      font-size: 12px;
+      font-size: 10px;
+      div{
+        margin: 0 0 3px 0;
+      }
     }
     .betInput{
       width: 100%;
@@ -914,7 +971,7 @@ height: calc(100% - 75px);
         button{
         height: 35px;
 
-          font-size: 12px;
+          font-size: 8px;
         }  
       }
     }
@@ -946,10 +1003,17 @@ height: calc(100% - 75px);
       display: flex;
       width: 100%;
       height: 100%;
+      text-decoration: none;
+
 
       button{
         width: 50%;
         height: 70%;
+        @media(max-width: $phoneMedia){
+          width: 70%;
+          font-size: 12px;
+          
+        }
       }
     }
   }
@@ -1035,5 +1099,10 @@ height: calc(100% - 75px);
       }
     }
   }
+  
+}
+
+button{
+  font-family: 'Press Start 2P', cursive;
   
 }
