@@ -37,7 +37,8 @@ module.exports ={
                 auth0_id: users[0].auth0_id,
                 credit: users[0].credit,
                 wins: users[0].wins,
-                games: users[0].games
+                games: users[0].games,
+                color: users[0].color
                 }
             res.redirect('/');
             } else {
@@ -63,12 +64,12 @@ module.exports ={
         });
     },
     getUser: async (req,res) =>{
-        const {name, picture, email, auth0_id} = req.session.user
+        const {name, picture, email, auth0_id, color} = req.session.user
         stats = await req.app.get('db').get_stats({auth0_id})
         // .then(stats => {
             console.log('stats',stats)
             const {credit, wins, games} = stats[0]
-            update = {name, picture, email, auth0_id, credit, wins, games}
+            update = {name, picture, email, auth0_id, credit, wins, games, color}
             res.status(200).json(update)
         // })
         

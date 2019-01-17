@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './App.scss';
 import Header from './components/Header';
 import routes from './routes'
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom'
 import styled from 'styled-components'
+
 
 
   
@@ -17,10 +20,8 @@ class App extends Component {
 
 
   updateWindow=()=>{
-    console.log('test')
     window.addEventListener('resize', ()=>{
       this.setState({screenHeight: window.innerHeight})
-      console.log('height2', this.state.screenHeight)
     })
   }
 
@@ -31,12 +32,19 @@ class App extends Component {
       
       <div 
       className="App" 
-      style={{height: this.state.screenHeight}}>
+      style={{height: this.state.screenHeight}}
+      >
         <Header/>
-        <div className = 'routeParent'>{routes}</div>
+        <div className = 'routeParent' style={{backgroundColor: this.props.color}}>{routes}</div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) =>{
+  return{
+    color: state.color
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(App));

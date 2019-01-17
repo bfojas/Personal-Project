@@ -158,6 +158,7 @@ app.post('/api/creditcheck', profileController.creditCheck);
 app.post('/api/creditadd', profileController.creditAdd)
 app.put('/api/edit', profileController.edit);
 app.delete('/api/delete/:id', profileController.delete);
+app.put('/api/color', profileController.color);
 // app.put('/api/statUpdate', profileController.statUpdate)
 
 

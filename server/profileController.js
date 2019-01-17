@@ -66,6 +66,12 @@ module.exports ={
     //     req.session.wins = wins;
     //     req.session.games = games;
 
+    },
+
+    color: (req,res)=>{
+        const {color, auth0_id} = req.body;
+        req.app.get('db').edit_color({color, auth0_id})
+        .then(color=> res.send(color[0].color))
     }
 
 }

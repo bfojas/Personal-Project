@@ -53,7 +53,6 @@ export class Game extends Component{
 
         //receive bank
         socket.on('stats', stats=>{
-            console.log('socket stats',stats)
             props.updateStats(stats)
         })
 
@@ -77,12 +76,23 @@ export class Game extends Component{
         setTimeout(()=>{
         socket.emit('user',{user: this.props.auth0_id})},500)
         })
+        document.addEventListener('keydown', e=>{this.keyHandle(e)})
     };
 
     componentWillUnmount=()=>{
         socket.disconnect()
     };
-
+    keyHandle =(e)=>{
+        const {code} = e;
+        if (code === "ArrowRight")
+        {this.raiseBet()}
+        else if(code === "ArrowLeft")
+        {this.lowerBet()}
+        else if (code === 'ArrowUp')
+        {this.placeBet('high')}
+        else if (code === 'ArrowDown')
+        {this.placeBet('low')}
+    }
     placeBet = (value)=>{
         let {betInput} = this.state
         let betAmount=0;
@@ -110,7 +120,10 @@ export class Game extends Component{
         socket.emit('chatSend', {text:text, user:this.props.user});
         this.setState({messageText:''})}
     }
+
+    
     render(){
+        console.log('history', this.props.history)
         const {timer, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
         const displayChat =
             chatMessages.map(chats=>{
@@ -166,7 +179,10 @@ export class Game extends Component{
                             }}
                             />
                         </div>
-                        
+                        <div className="bankContainer">
+                            <div>Bank:</div>
+                            <div>{this.props.bank}</div>
+                        </div>
                     </div>
                     <div className="cardImageContainer">
                         <img className="cardImage" src={fromServer && fromServer.image}
@@ -174,29 +190,28 @@ export class Game extends Component{
                                 e.target.src=fromServer.altimage}}
                             alt={fromServer && fromServer.code}/>
                     </div>
-                    <div classname="betContainer">               
-                        <div>
-                            <div className="bankContainer">
-                                <div>Bank:</div>
-                                <div>{this.props.bank}</div>
-                            </div>
-                            <input type="number" 
+                    <div className="betContainer">               
+                        <div className="bet">
+                            <div>Bet Amount: </div>
+                            <input className="betInput" type="number" 
                                 min="0" 
                                 max={this.props.bank}
                                 value={betInput} 
                                 onChange={e=>this.setState({betInput: e.target.value})}/>
                         </div>
-                        <div >
-                            <button onClick={()=>this.lowerBet()} disabled={buttonDisable}>Bet -5</button>
-                            <button onClick={()=>this.raiseBet()} disabled={buttonDisable}>Bet +5</button>
-                        </div>
-                        <div>
-                            <button onClick={()=>this.placeBet('low')} disabled={buttonDisable}>
-                                Lower
-                            </button>
-                            <button onClick={()=>this.placeBet('high')} disabled={buttonDisable}>
-                                Higher
-                            </button>
+                        <div className="betButtonContainer">
+                            <div className="betButtons">
+                                <button onClick={()=>this.lowerBet()} disabled={buttonDisable}>Bet -5</button>
+                                <button onClick={()=>this.raiseBet()} disabled={buttonDisable}>Bet +5</button>
+                            </div>
+                            <div className="betButtons">
+                                <button onClick={()=>this.placeBet('low')} disabled={buttonDisable}>
+                                    Lower
+                                </button>
+                                <button onClick={()=>this.placeBet('high')} disabled={buttonDisable}>
+                                    Higher
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

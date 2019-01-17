@@ -6,14 +6,16 @@ create table users (
     auth0_id varchar(25) unique,
     credit integer,
     wins integer,
-    games integer);
+    games integer,
+    color varchar(30));
 
 create table game_table (
     socket_id text,
-    auth0_id varchar(25) references users(auth0_id),
+    auth0_id varchar(25) ,
+    foreign key (auth0_id) references users(auth0_id),
     bet integer,
     win boolean
-)
+);
 
 
 create table deck (altimage text, image text, value integer, code varchar(3));

@@ -21,9 +21,10 @@ class Login extends Component{
             :
             <div className='logParent'>
                 <div className="logHead">
-                    <h1>Login to enjoy these benefits!</h1>
                 </div>
                 <div className="logInfoContainer">
+                <h1>Login to enjoy these benefits!</h1>
+
                     <div className="logInfo">
                         <ul>
                             <li>Ability to actually use this app!</li>
@@ -36,9 +37,9 @@ class Login extends Component{
                         alt="play"/>
                         </div>
                     </div>
-                    <div className="logButton">
-                        <button onClick={this.login}>Log In</button>
-                    </div>
+                </div>
+                <div className="logButton">
+                    <button onClick={this.login}>Log In</button>
                 </div>
             </div>
         )

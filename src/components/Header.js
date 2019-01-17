@@ -11,8 +11,8 @@ class Header extends Component {
     componentDidMount(){
         
         axios.get('/auth/user-data').then(response =>{
-            const {name, picture, email, auth0_id, credit, wins, games} = response.data
-            this.props.setUser([name, picture, email, auth0_id, credit, wins, games])
+            const {name, picture, email, auth0_id, credit, wins, games, color} = response.data
+            this.props.setUser([name, picture, email, auth0_id, credit, wins, games, color])
           })
     }
     login= ()=>{

@@ -1,4 +1,4 @@
-$mainColor: green;
+// $mainColor: green;
 
 .App {
   // height: 100%;
@@ -8,7 +8,7 @@ $mainColor: green;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // position: relative;
+  // background-color: $mainColor;
 }
 
 
@@ -48,7 +48,7 @@ header, .head {
   
   .headerImage {
     margin-left: 30px;
-    @media(max-width: 668px){
+    @media(max-width: 360px){
       // display: none;
       margin-left: 10px;
     }
@@ -65,7 +65,7 @@ header, .head {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    @media(max-width:668px){
+    @media(max-width:360px){
       width: 80%;
     }
     li{
@@ -77,7 +77,7 @@ header, .head {
         height: 30px;
         width: 100%;
 
-        @media (max-width: 668px){
+        @media (max-width: 360px){
           height: 50px;
         }
       }
@@ -93,7 +93,7 @@ align-items: center;
 justify-content: center;
 height: calc(100% - 75px);
 // position: relative;
-background-color: $mainColor;
+// background-color: $mainColor;
 
   .gameParent {
     width: 100%;
@@ -114,7 +114,7 @@ background-color: $mainColor;
     align-items: center;
     .userMobile {
       display: none;
-      @media (max-width: 668px){
+      @media (max-width: 360px){
         display: flex;
         flex-direction: column;
         height: 15%;
@@ -136,7 +136,7 @@ background-color: $mainColor;
       align-items: center;
       
       
-      @media (max-width: 668px){
+      @media (max-width: 360px){
       flex-direction: column;
       }
 
@@ -148,7 +148,7 @@ background-color: $mainColor;
         height: 100%;
         width: 35%;
         // max-width: 300px;
-        @media(max-width:668px){
+        @media(max-width:360px){
           border: solid black 5px;
           background-color: white;
           width: 95%;
@@ -164,7 +164,7 @@ background-color: $mainColor;
           width: 100%;
           height: 50%;
           
-          @media (max-width: 668px){
+          @media (max-width: 360px){
             width: 30%;
             height: 100%;
           }
@@ -173,14 +173,14 @@ background-color: $mainColor;
             width: 95%;
             // height: 100%;
             // width: auto;
-            @media (max-width: 668px){
+            @media (max-width: 360px){
               width: 100%;
             }
           }
         }
         .statsMobile {
           display: none;
-          @media (max-width: 668px){
+          @media (max-width: 360px){
             font-size: 5.5vw;
             // background-color: aqua;
             
@@ -198,7 +198,6 @@ background-color: $mainColor;
       height: 100%;
       width: 60%;
       max-width: 600px;
-      // background-color: blue;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -209,7 +208,7 @@ background-color: $mainColor;
       
       
       
-      @media(max-width:668px){
+      @media(max-width:360px){
         height: 50%
       }
 
@@ -254,7 +253,7 @@ background-color: $mainColor;
             width: 75%;
           }
         }
-        @media (max-width: 668px){
+        @media (max-width: 360px){
           display: none;
         }
         
@@ -272,7 +271,7 @@ background-color: $mainColor;
         border-right: solid black 10px;
         border-bottom: solid black 10px;
         margin-bottom: 10px;
-        @media (max-width: 668px){
+        @media (max-width: 360px){
           border-left: solid black 5px;
           border-right: solid black 5px;
           border-bottom: solid black 5px;
@@ -290,7 +289,7 @@ background-color: $mainColor;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          @media (max-width: 668px){
+          @media (max-width: 360px){
             font-size: 2.5vh
           }
 
@@ -305,7 +304,7 @@ background-color: $mainColor;
           justify-content: center;
           z-index: 3;
         }
-        @media (max-width: 668px){
+        @media (max-width: 360px){
           height: 100%;
         }
       }
@@ -352,7 +351,7 @@ background-color: $mainColor;
         justify-content: left;
         align-items: left;
       }
-      @media (max-width: 668px){
+      @media (max-width: 360px){
         flex-direction: column;
         height: 120px;
         div{
@@ -379,7 +378,7 @@ background-color: $mainColor;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    @media (max-width: 668px){
+    @media (max-width: 360px){
       width: 100vw;
       display: flex;
       flex-direction: column;
@@ -392,20 +391,105 @@ background-color: $mainColor;
       flex-direction: column;
       padding: 10;
 
+      
+      
+    }
+    .infoEdit{
+      width: 50%;
+      height: 50%;
+      
+      .userEditDiv{
+        background-color: black;
+      color: white;
+        width: 100%;
+        // margin: 5px;
+        height: 12%;
+        font-weight: bold;
+      }
       .editButtons{
         display:flex;
         flex-direction: row;
+        width: 80%;
+        height: 20%;
+        margin: 10px;
+
+        .editNav{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50%;
+          height: 100%;
+          text-decoration: none;
+
+          button{
+            height: 40px;
+            width: 120px;
+            font-weight: bold;
+            @media(max-width: 360px){
+              width: 100px;
+            }
+          }
+
+        }
         
 
       }
-
-      .imageContainer{
+      .colorContainer{
+        display: flex;
+        flex-direction: column;
+        height: 15%;
         width: 100%;
-        max-width: 250px;
-        
+        font-weight: bold;
+        font-size: 24px;
+        .colorTitle{
+          margin: 0 0 15px 0;
+          height: 50%;
+          width: 100%;
 
-        
+        }
+        .colorBox{
+          display: flex;
+          flex-direction: row;
+          height: 50%;
+          width: 50%;
+          div{
+            border: solid black 2px;
+            height: 25px;
+            width: 25px;
+            margin: 5px;
+          }
+          .colorOne{
+            background-color: green;
+          }
+          .colorTwo{
+            background-color: grey;
+          }
+          .colorThree{
+            background-color: aqua;
+          }
+          .colorFour{
+            background-color: red;
+          }
+        }
       }
+      @media(max-width: 360px){
+        height: 60%;
+        width: 80%;
+      }
+    }
+
+    .imageContainer{
+      width: 50%;
+      height: 50%;
+      max-height: 250px;
+      max-width: 250px;
+      img{
+        width: 100%;
+      }
+      @media(max-width: 360px){
+        height: 40%;
+      }
+      
     }
 
    
@@ -415,11 +499,12 @@ background-color: $mainColor;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     
     .logHead {
-      height: 20%;
+      height: 10%;
+      width: 100%;
     }
     .logInfoContainer {
       height: 60%;
@@ -429,6 +514,20 @@ background-color: $mainColor;
       justify-content: center;
       align-items: center;
       background-color: black;
+      color: white;
+      
+      h1 {
+        width: 80%;
+        height: 30px;
+        font-size: 4.0vw;
+        @media(max-width: 360px){
+          font-size: 20px;
+        }
+        @media(min-width: 1000px){
+          font-size: 40px
+        }
+      }
+
       .logInfo {
         height: 75%;
         width: 90%;
@@ -437,32 +536,57 @@ background-color: $mainColor;
         justify-content: space-around;
         align-items: center;
         background-color: white;
+        color: black;
+        font-size: 20px;
         margin: 10px;
-
-        h1 {
-          width: 100%;
-          height: 30px;
+        @media (max-width:360px){
+          font-size: 12px;
         }
+
+       
         ul {
           flex-direction: column;
           justify-content: center;
           align-items: center;
           width: 80%;
-          height: 30%;
+          height: 15%;
           background-color: white;
+          margin: 0;
+
         }
         .loginPic{
           background-color: white;
           width: 80%;
           height: 60%;
           img {
-            height: 90%;
+            height: 100%;
             width: auto;
             max-width: 400px;
-            // max-height: 50%;
+            @media( max-width: 360px){
+              max-width: 100%;
+              height: auto;
+            }
+
           }
         }
       } 
+    }
+    .logButton{
+      height: 10%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button{
+        height: 50px;
+        width: 100px;
+        font-size: 24px;
+        @media (max-width: 360px){
+          font-size: 16px;
+          height: 80%;
+          width: 75px;
+        }
+      }
     }
   }
   .homeParent{
@@ -474,7 +598,7 @@ background-color: $mainColor;
     display: flex;
     justify-content: space-around; 
     align-items: center;
-    background-color: $mainColor;
+    // background-color: $mainColor;
     .homeWelcome{
       width: 90%;
       height: 30%;
@@ -515,7 +639,7 @@ background-color: $mainColor;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        @media (max-width: 668px){
+        @media (max-width: 360px){
           font-size: 3.5vw;
         }
         li{
@@ -542,17 +666,17 @@ background-color: $mainColor;
       height: 100%;
       text-decoration: none;
 
-      @media(max-width: 668px){
+      @media(max-width: 360px){
         width: 50%;
       }
 
 
       button{
         height: 50px;
-        width: 50%;
+        width: 100px;
         font-size: 20px;
 
-        @media(max-width: 668px){
+        @media(max-width: 360px){
           font-size: 14px;
       }
       }
@@ -583,7 +707,7 @@ background-color: $mainColor;
 .chatContent {
   height: 100%;
   width: 45%;
-  background-color:$mainColor;
+  // background-color:$mainColor;
   position: relative;
   justify-content: space-around;
   display: flex;
@@ -603,7 +727,7 @@ background-color: $mainColor;
       flex-direction: row;
       justify-content: space-around;
       margin: 0 0 10px 0;
-      @media (max-width: 668px) {
+      @media (max-width: 360px) {
         flex-direction: column;
       }
 
@@ -621,7 +745,7 @@ background-color: $mainColor;
         padding-left: 4px;
         width: 70%;
         overflow-wrap: break-word;
-        @media (max-width:668px){
+        @media (max-width:360px){
           padding: 0 0 0 10px;
         }
       }
@@ -646,20 +770,31 @@ background-color: $mainColor;
   justify-content: space-evenly;
   width: 45%;
   height: 100%;
-  background-color: $mainColor;
+  // background-color: $mainColor;
 }
 
 .gameInfoContainer{
-  position: relative;
+  // position: relative;
   height: 25%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  // background-color: black;
+  // color: white;
+  font-weight: bold;
+  font-size: 24px;
+
   
   .timerContainer{
+    height: 100%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
+    @media(max-width: 360px){
+      font-size: 12px;
+    }
     
     .timer{
       display: flex;
@@ -667,7 +802,6 @@ background-color: $mainColor;
       transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
-
     }
     .chartTimer{
       background-color: yellow;
@@ -680,12 +814,106 @@ background-color: $mainColor;
       z-index: 3;
     }
 
+    
+  }
+  .bankContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  @media( max-width: 360px){
+    height: 20%;
   }
 }
 
-.cardImage{
-  position: relative;
-  width:100%;
-  max-width: 226px;
+  .cardImageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    // position: relative;
+    width:100%;
+    img{
+      width: 100%;
+      max-width: 100%;
+      max-width: 350px;
+      
+    }
+    @media(max-width: 360px){
+      height: 40%;
+    }
+  }
+
+.betContainer{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+
+  .bet{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 20%;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: bold;
+
+    @media(max-width:360px){
+      height: 30%;
+      font-size: 12px;
+    }
+    .betInput{
+      width: 100%;
+      max-width: 200px;
+      height: 20px;
+      text-align: center;
+    }
+    @media(max-width: 360px){
+      height: 10%;
+    }
+  }
+  .betButtonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 55%;
+    width: 100%;
+    .betButtons{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      height: 50%;
+      width: 60%;
+      button{ 
+        width: 45%;
+        max-width: 150px;
+        height: 35px;
+      }
+    }
+    @media(max-width: 360px){
+      
+      height: 60%;
+      .betButtons{
+        width: 90%;
+        button{
+        height: 35px;
+
+          font-size: 12px;
+        }  
+      }
+    }
+    
+  }
+  @media(max-width: 360px){
+    height: 30%;
+  }
 }
+
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {logOutUser} from '../ducks/reducer';
+import {logOutUser, updateColor} from '../ducks/reducer';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
 import { Doughnut } from 'react-chartjs-2';
@@ -16,6 +16,7 @@ class Profile extends Component{
           this.props.logOutUser('');
         })
         .then(setTimeout(()=>this.props.history.push('/'),500))}
+
     }
 
     
@@ -156,12 +157,14 @@ const mapStateToProps = (state)=>{
         auth0_id: state.auth0_id,
         bank: state.bank,
         wins: state.wins,
-        games: state.games
+        games: state.games,
+        color: state.color
     }
 }
 
 const mapDispatchToProps = {
-    logOutUser:logOutUser
+    logOutUser:logOutUser,
+    updateColor: updateColor
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile))

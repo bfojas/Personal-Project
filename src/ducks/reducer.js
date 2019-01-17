@@ -5,12 +5,14 @@ const INITIAL_STATE ={
     auth0_id: '',
     bank: 0,
     wins:0,
-    games:0
+    games:0,
+    color: 'green'
 }
 const SET_USER = "SET_USER";
 const LOGOUT_USER = "LOGOUT_USER";
 const EDIT_USER = "EDIT_USER";
 const UPDATE_STATS = "UPDATE_STATS";
+const UPDATE_COLOR = "UPDATE_COLOR";
 
 export default function reducer (state = INITIAL_STATE, action) {
 
@@ -22,7 +24,8 @@ export default function reducer (state = INITIAL_STATE, action) {
             auth0_id: action.payload[3],
             bank: action.payload[4],
             wins: action.payload[5],
-            games: action.payload[6]})
+            games: action.payload[6],
+            color: action.payload[7]})
 
         case EDIT_USER:
             return Object.assign({},state,{
@@ -38,13 +41,18 @@ export default function reducer (state = INITIAL_STATE, action) {
                 auth0_id: '',
                 bank: 0,
                 wins: 0,
-                games: 0})
+                games: 0,
+                color: 'green'})
         
         case UPDATE_STATS:
             return Object.assign({},state,
                 {bank:action.payload.credit,
                 wins: action.payload.wins,
                 games: action.payload.games})
+
+        case UPDATE_COLOR:
+                    console.log('hit')
+                    return Object.assign({},state,{color: action.payload})
         default: return state;
     }
 }
@@ -74,5 +82,12 @@ export function updateStats(stats){
     return{
         type: UPDATE_STATS,
         payload: stats
+    }
+}
+
+export function updateColor(color){
+    return {
+        type: UPDATE_COLOR,
+        payload: color
     }
 }
