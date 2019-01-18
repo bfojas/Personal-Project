@@ -38,7 +38,7 @@ app.use(session({
 
 let timeLimit = 
 process.env.HOST == "localhost"
-?10
+?21
 :21;
 let previousCard =[];
 let countdown = timeLimit;
@@ -82,6 +82,15 @@ io.sockets.on('connection', socket =>{
 
     socket.on('disconnect', () =>{
         app.get('db').remove_user_table({socket_id: socket.id})
+        .then(val =>{console.log('delete', val[0].bet)
+            const {auth0_id, bet, win} = val[0]
+            if (bet !== null){
+                console.log('delete hit')
+                if(win ===true){
+                    app.get('db').delete_win({auth0_id, bet})}
+                else if (win === false)
+                    app.get('db').delete_loss({auth0_id, bet})
+        }})
         sockets = sockets.filter(val=> {
             return val !== socket.id})
     })
@@ -103,7 +112,10 @@ setInterval(function(){
 //send bank info to sockets
     sockets.forEach(s=>{
         app.get('db').get_bank({socket_id: s}).then(res=> {
-            return io.sockets.connected[s].emit('stats', res[0])})
+            console.log('bank', res[0])
+            res.length
+            ?io.sockets.connected[s].emit('stats', res[0])
+            :null})
         })
 
 //send winners list

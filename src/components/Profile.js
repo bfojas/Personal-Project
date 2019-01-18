@@ -16,7 +16,6 @@ class Profile extends Component{
           this.props.logOutUser('');
         })
         .then(setTimeout(()=>this.props.history.push('/'),500))}
-
     }
 
     
@@ -110,7 +109,7 @@ class Profile extends Component{
                 <div className="profileButtons">
                     <div className="profileButtonsOne">
                         <NavLink className="navLink" to="/delete">
-                            <button>Delete your Profile</button>
+                            <button>Delete Profile</button>
                         </NavLink>
                         <NavLink className="navLink" onClick={this.logout} to="/">
                             <button>Log Out</button>
@@ -118,7 +117,7 @@ class Profile extends Component{
                     </div>
                     <div className="profileButtonsTwo">
                         <NavLink className="navLink" to="/edit">
-                            <button>Edit your Profile</button>
+                            <button>Edit Profile</button>
                         </NavLink>
                         <NavLink className="navLink" to="/credits">
                             <button>Purchase Credits</button>

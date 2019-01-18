@@ -71,20 +71,21 @@ export class Game extends Component{
     };
 
     componentDidMount=()=>{
-        // if (this.props.auth0_id){
         socket.on('connect', ()=>{
         setTimeout(()=>{
         socket.emit('user',{user: this.props.auth0_id})},500)
         })
-        document.addEventListener('keydown', e=>{this.keyHandle(e)})
     };
 
     componentWillUnmount=()=>{
-        socket.disconnect()
+        socket.disconnect();
     };
-    keyHandle =(e)=>{
+    handleKey =(e)=>{
+        console.log('key', e)
         const {code} = e;
-        if (code === "ArrowRight")
+        if (this.state.buttonDisable === true)
+        {return null}
+        else if (code === "ArrowRight")
         {this.raiseBet()}
         else if(code === "ArrowLeft")
         {this.lowerBet()}
@@ -95,6 +96,7 @@ export class Game extends Component{
     }
     placeBet = (value)=>{
         let {betInput} = this.state
+        console.log('amount', betInput)
         let betAmount=0;
         betInput < 1
         ?betAmount = 0
@@ -105,6 +107,7 @@ export class Game extends Component{
         socket.emit('bet', {auth0_id: this.props.auth0_id, bet: betAmount, value: value})
     }
     raiseBet = ()=>{
+        console.log('bet', this.state)
         this.setState({betInput: this.state.betInput + 5})
     }
     lowerBet = ()=>{
@@ -121,13 +124,29 @@ export class Game extends Component{
         this.setState({messageText:''})}
     }
 
+    handleKey = (e) => {
+        console.log(e.key)
+        console.log('key', e)
+        const {key} = e;
+        if (this.state.buttonDisable === true)
+        {return null}
+        else if (key === "ArrowRight")
+        {this.raiseBet()}
+        else if(key === "ArrowLeft")
+        {this.lowerBet()}
+        else if (key === 'ArrowUp')
+        {this.placeBet('high')}
+        else if (key === 'ArrowDown')
+        {this.placeBet('low')}
+    }
+
     
     render(){
         const {timer, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
         const displayChat =
             chatMessages.map(chats=>{
             return <div className="chatMessage">
-                <div className="chatUser">{chats.user}:</div>
+                <div className="chatUser" style={{color: this.props.color}}>{chats.user}:</div>
                 <div className="chatText">{chats.text}</div>
             </div>
         })
@@ -150,9 +169,7 @@ export class Game extends Component{
             }]
         };
         let windowWatch=115;
-        // window.inner/5
         
-        // window.addEventListener('resize', windowWatch = window.innerHeight/5)
         return(
             
             !this.props.user.length
@@ -161,7 +178,7 @@ export class Game extends Component{
             {this.props.history.push('/login')}
             </div>
             :
-            <div className = 'gameParent'>
+            <div className = 'gameParent' onKeyDown={(e) => this.handleKey(e)} tabIndex="0">
                 <div className= "gameContent">
                     <div className="gameInfoContainer">
                         <div className="timerContainer">
@@ -242,7 +259,8 @@ const mapStateToProps= (state)=>{
         user: state.user,
         credit: state.credit,
         auth0_id: state.auth0_id,
-        bank: state.bank
+        bank: state.bank,
+        color: state.color
     }
 }
 

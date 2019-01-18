@@ -16,7 +16,7 @@ class Login extends Component{
             this.props.user
             ?
             <div>
-            {this.props.history.push('/')}
+            {this.props.history.push('/profile')}
             </div>
             :
             <div className='logParent'>
