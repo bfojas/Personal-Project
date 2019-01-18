@@ -81,7 +81,6 @@ export class Game extends Component{
         socket.disconnect();
     };
     handleKey =(e)=>{
-        console.log('key', e)
         const {code} = e;
         if (this.state.buttonDisable === true)
         {return null}
@@ -96,7 +95,6 @@ export class Game extends Component{
     }
     placeBet = (value)=>{
         let {betInput} = this.state
-        console.log('amount', betInput)
         let betAmount=0;
         betInput < 1
         ?betAmount = 0
@@ -107,7 +105,6 @@ export class Game extends Component{
         socket.emit('bet', {auth0_id: this.props.auth0_id, bet: betAmount, value: value})
     }
     raiseBet = ()=>{
-        console.log('bet', this.state)
         this.setState({betInput: this.state.betInput + 5})
     }
     lowerBet = ()=>{
@@ -125,8 +122,6 @@ export class Game extends Component{
     }
 
     handleKey = (e) => {
-        console.log(e.key)
-        console.log('key', e)
         const {key} = e;
         if (this.state.buttonDisable === true)
         {return null}

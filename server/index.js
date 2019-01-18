@@ -54,7 +54,6 @@ io.sockets.on('connection', socket =>{
 
 //receive and handle bets
     socket.on('bet', betRequest=>{
-        console.log(betRequest.auth0_id)
         let win = false;
         if (winningGuess === "tie" || 
         winningGuess === betRequest.value ){
@@ -85,7 +84,6 @@ io.sockets.on('connection', socket =>{
         .then(val =>{console.log('delete', val[0].bet)
             const {auth0_id, bet, win} = val[0]
             if (bet !== null){
-                console.log('delete hit')
                 if(win ===true){
                     app.get('db').delete_win({auth0_id, bet})}
                 else if (win === false)
@@ -112,7 +110,6 @@ setInterval(function(){
 //send bank info to sockets
     sockets.forEach(s=>{
         app.get('db').get_bank({socket_id: s}).then(res=> {
-            console.log('bank', res[0])
             res.length
             ?io.sockets.connected[s].emit('stats', res[0])
             :null})
