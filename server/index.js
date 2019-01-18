@@ -73,8 +73,9 @@ io.sockets.on('connection', socket =>{
 
 //handle chat messages
     socket.on('chatSend', message=>{
+        const chatKey = Date.now()
         message.text === "who here?"
-        ?io.sockets.to('gameRoom').emit('message', {text:'yo momma',user:'Server'})
+        ?io.sockets.to('gameRoom').emit('message', {text:'yo momma',user:'Server', key: chatKey})
         :io.sockets.to('gameRoom').emit('message', message)
     })
 
@@ -126,7 +127,6 @@ setInterval(function(){
         }
     })
 
-//update stats
 
 //reset game table
     app.get('db').clear_table();
@@ -152,7 +152,6 @@ app.post('/api/creditadd', profileController.creditAdd)
 app.put('/api/edit', profileController.edit);
 app.delete('/api/delete/:id', profileController.delete);
 app.put('/api/color', profileController.color);
-// app.put('/api/statUpdate', profileController.statUpdate)
 
 
 const path = require('path')

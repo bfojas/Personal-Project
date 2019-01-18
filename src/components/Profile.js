@@ -7,7 +7,10 @@ import {NavLink} from 'react-router-dom';
 import { Doughnut } from 'react-chartjs-2';
 
 class Profile extends Component{
-    
+    constructor(props){
+        super(props)
+        this.state={birds: 'none'}
+    }
 
     logout=()=> {
         let yes=window.confirm('Are you sure you want to log out?')
@@ -18,7 +21,12 @@ class Profile extends Component{
         .then(setTimeout(()=>this.props.history.push('/'),500))}
     }
 
-    
+    birdHandle=(e)=>{
+        if(e.key === 'ArrowUp')
+        {this.setState({birds: 'block'})}
+        else if(e.key === 'ArrowDown')
+        {this.setState({birds: 'none'})}
+    }
     
 
     render(){
@@ -60,7 +68,7 @@ class Profile extends Component{
             {this.props.history.push('/login')}
             </div>
             :
-            <div className="profileParent">
+            <div className="profileParent" onKeyDown={e=> this.birdHandle(e)} tabIndex="0">
                 <div className="userMobile">
                     <div className="mobileHello" >Hello {user}!</div>
                     <div className="mobileEmail">Email: {email}</div>
@@ -123,6 +131,9 @@ class Profile extends Component{
                             <button>Purchase Credits</button>
                         </NavLink>
                     </div>
+                </div>
+                <div className="birds" style={{display: this.state.birds}}>
+                    <img src='/images/birds.png' alt="birds"/>
                 </div>
             </div>
         )

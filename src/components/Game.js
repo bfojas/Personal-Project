@@ -117,7 +117,7 @@ export class Game extends Component{
 
     sendMessage = (text)=>{
         if (text.length){
-        socket.emit('chatSend', {text:text, user:this.props.user});
+        socket.emit('chatSend', {text:text, user:this.props.user, key:Date.now()});
         this.setState({messageText:''})}
     }
 
@@ -140,7 +140,7 @@ export class Game extends Component{
         const {timer, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
         const displayChat =
             chatMessages.map(chats=>{
-            return <div className="chatMessage">
+            return <div className="chatMessage" key={`${chats.key}${chats.user}`}>
                 <div className="chatUser" style={{color: this.props.color}}>{chats.user}:</div>
                 <div className="chatText">{chats.text}</div>
             </div>

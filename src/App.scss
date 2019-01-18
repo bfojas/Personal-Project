@@ -983,7 +983,9 @@ height: calc(100% - 75px);
     }
 
     h1{
-      height: 35%;
+      margin: 10px;
+      font-size: 20px;
+      height: 45%;
       width: 100%;
       margin: 0;
       display: flex;
@@ -994,11 +996,12 @@ height: calc(100% - 75px);
       }
     }
     p{
+      margin: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 80%;
-      height: 60%;
+      width: 90%;
+      height: 55%;
       background-color: white;
       color: black;
     }
@@ -1044,4 +1047,9 @@ height: calc(100% - 75px);
 button{
   font-family: 'Press Start 2P', cursive;
   
+}
+
+.birds{
+  position: fixed;
+  border: 10px black solid;
 }
