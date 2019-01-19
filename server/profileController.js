@@ -21,7 +21,6 @@ module.exports ={
         .catch(error=>console.log('edit error', error));
     },
 
-
     delete: (req,res) =>{
         const {id} = req.params;
         req.app.get('db').delete_user({auth0_id:id})
@@ -32,7 +31,7 @@ module.exports ={
 
     creditCheck: (req,res) =>{
         const {id} = req.body.token
-        const {amount, auth0_id} = req.body.user
+        const {amount} = req.body.user
         stripe.charges.create({source:id, 
             amount, 
             currency: 'usd',
@@ -40,11 +39,9 @@ module.exports ={
             (error, response)=>{
                 error
                 ?res.status(500).send({error})
-                :res.status(200).send({response})
-
-            })
-
-        
+                :res.status(200).send(response)
+            }
+        )
     },
     creditAdd: (req,res)=>{
         const {amount, auth0_id} = req.body.user
@@ -61,5 +58,4 @@ module.exports ={
         req.app.get('db').edit_color({color, auth0_id})
         .then(color=> res.send(color[0].color))
     }
-
 }

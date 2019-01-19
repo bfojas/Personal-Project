@@ -14,6 +14,7 @@ export class Game extends Component{
             betInput: 5,
             buttonDisable: true,
             timer: 0,
+            timerColor: 'green',
             socketId:'',
             winners: [],
             bank: 0,
@@ -59,6 +60,25 @@ export class Game extends Component{
         //receive timer
         socket.on('timer', countdown=>{
             this.setState({timer: countdown.countdown})
+            countdown.countdown <=2 
+            ? this.setState ({timerColor: '#FF0000'})
+            :countdown.countdown <= 4
+            ?this.setState({timerColor: '#FF2200'})
+            :countdown.countdown <=6 
+            ? this.setState ({timerColor: '#EE4400'})
+            :countdown.countdown <= 8
+            ?this.setState({timerColor: '#CC6600'})
+            :countdown.countdown <=10 
+            ? this.setState ({timerColor: '#AA8800'})
+            :countdown.countdown <= 12
+            ?this.setState({timerColor: '#88AA00'})
+            :countdown.countdown <=14 
+            ? this.setState ({timerColor: '#66CC00'})
+            :countdown.countdown <= 16
+            ?this.setState({timerColor: '#44EE00'})
+            :countdown.countdown <=18 
+            ? this.setState ({timerColor: '#22ff00'})
+            :this.setState({timerColor: '#00ff00'})
         })
 
         //receive messages
@@ -137,7 +157,7 @@ export class Game extends Component{
 
     
     render(){
-        const {timer, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
+        const {timer, timerColor, fromServer, buttonDisable, betInput, chatMessages, messageText} = this.state;
         const displayChat =
             chatMessages.map(chats=>{
             return <div className="chatMessage" key={`${chats.key}${chats.user}`}>
@@ -154,19 +174,18 @@ export class Game extends Component{
             datasets: [{
                 data: chartPercent,
                 backgroundColor: [
-                '#FF6384',
-                '#36A2EB'
+                'white',
+                timerColor
                 ],
                 hoverBackgroundColor: [
-                '#FF6384',
-                '#36A2EB'
+                'white',
+                timerColor
                 ]
             }]
         };
         let windowWatch=115;
         
         return(
-            
             !this.props.user.length
             ?
             <div>
@@ -237,16 +256,11 @@ export class Game extends Component{
                         onChange={e=>this.setState({messageText:e.target.value})}
                         onKeyDown={e=>{if(e.keyCode===13) {this.sendMessage(messageText)}}} />
                         <button onClick={()=>this.sendMessage(messageText)}>Send</button>
-                        
-                        
                     </div>
                 </div>
             </div>
-            
         )
     }
-
-
 }
 
 const mapStateToProps= (state)=>{
