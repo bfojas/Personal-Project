@@ -26,7 +26,7 @@ export function Home(props) {
                 How to play:
                 <ul className="rulesList">
                     <li>A single card is dealt out by the server to everyone.</li>
-                    <li>Everyone in the game then has 20 seconds to guess if the next card will be higher or lower. Ace is the highest card.</li>
+                    <li>Everyone in the game then has 15 seconds to guess if the next card will be higher or lower. Ace is the highest card.</li>
                     <li>You can add a bet amount to your guess if you feel bold enough
                         <ul>
                             <li>Don't worry, it's fake money...</li>

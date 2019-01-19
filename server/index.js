@@ -38,8 +38,8 @@ app.use(session({
 
 let timeLimit = 
 process.env.HOST == "localhost"
-?10
-:21;
+?16
+:16;
 let previousCard =[];
 let countdown = timeLimit;
 let winningGuess = '';
@@ -54,6 +54,8 @@ io.sockets.on('connection', socket =>{
 
 //receive and handle bets
     socket.on('bet', betRequest=>{
+        console.log('bet', betRequest.value)
+        console.log('win', winningGuess)
         let win = false;
         if (winningGuess === "tie" || 
         winningGuess === betRequest.value ){
@@ -76,6 +78,15 @@ io.sockets.on('connection', socket =>{
         const chatKey = Date.now()
         message.text === "who here?"
         ?io.sockets.to('gameRoom').emit('message', {text:'yo momma',user:'Server', key: chatKey})
+        :message.text === 'players?'
+        ?app.get('db').get_players().then(players=>{
+            let list = "";
+            players.forEach(val=> list = list + val.name + ", ")
+            io.sockets.to('gameRoom')
+            io.sockets.to('gameRoom')
+            .emit('message', {text:list.slice(0,-2),
+            user: 'Players'})
+        })
         :io.sockets.to('gameRoom').emit('message', message)
     })
 
@@ -118,19 +129,18 @@ setInterval(function(){
 
 //send winners list
     app.get('db').winners().then(winners=>{
-        // console.log('winners',winners)
-        setTimeout(()=>{if(winners.length){
+        console.log('winners',winners)
+        if(winners.length){
         let list = "";
         winners.forEach(val=> list = list + val.name + ", ")
 
         io.sockets.to('gameRoom')
         .emit('message', {text:list.slice(0,-2), user: `${previousCard[0].code} winners`})
-        }},200)
+        }
     })
 
-
 //reset game table
-    app.get('db').clear_table();
+    .then(app.get('db').clear_table());
         
 //draw card
     app.get('db').draw_card().then(cardResponse=>{

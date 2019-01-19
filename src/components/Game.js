@@ -60,25 +60,25 @@ export class Game extends Component{
         //receive timer
         socket.on('timer', countdown=>{
             this.setState({timer: countdown.countdown})
-            countdown.countdown <=2 
-            ? this.setState ({timerColor: '#FF0000'})
-            :countdown.countdown <= 4
-            ?this.setState({timerColor: '#FF2200'})
-            :countdown.countdown <=6 
-            ? this.setState ({timerColor: '#EE4400'})
-            :countdown.countdown <= 8
-            ?this.setState({timerColor: '#CC6600'})
-            :countdown.countdown <=10 
-            ? this.setState ({timerColor: '#AA8800'})
-            :countdown.countdown <= 12
-            ?this.setState({timerColor: '#88AA00'})
-            :countdown.countdown <=14 
-            ? this.setState ({timerColor: '#66CC00'})
-            :countdown.countdown <= 16
-            ?this.setState({timerColor: '#44EE00'})
-            :countdown.countdown <=18 
-            ? this.setState ({timerColor: '#22ff00'})
-            :this.setState({timerColor: '#00ff00'})
+            countdown.countdown <=3 
+            ? this.setState ({timerColor: '#CC4400'})
+            :countdown.countdown <=6
+            ?this.setState({timerColor: '#AA6600'})
+            :countdown.countdown <=9 
+            ? this.setState ({timerColor: '#888800'})
+            :countdown.countdown <=12
+            ?this.setState({timerColor: '#66AA00'})
+            // :countdown.countdown <= 15
+            :this.setState ({timerColor: '#44CC00'})
+            // :countdown.countdown <= 12
+            // ?this.setState({timerColor: '#88AA00'})
+            // :countdown.countdown <=14 
+            // ? this.setState ({timerColor: '#66CC00'})
+            // :countdown.countdown <= 16
+            // ?this.setState({timerColor: '#44EE00'})
+            // :countdown.countdown <=18 
+            // ? this.setState ({timerColor: '#22ff00'})
+            // :this.setState({timerColor: '#00ff00'})
         })
 
         //receive messages
@@ -165,7 +165,7 @@ export class Game extends Component{
                 <div className="chatText">{chats.text}</div>
             </div>
         })
-        const chartPercent = [20-timer, timer]
+        const chartPercent = [15-timer, timer]
         const data = {
             labels: [
                 'Time',
