@@ -20,8 +20,6 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json())
 app.use( express.static( `${__dirname}/../build` ) );
 
-
-
 app.use(session({
     store: new(connect(session))({
         conString: process.env.CONNECTION_STRING
@@ -34,11 +32,9 @@ app.use(session({
     }
 }))
 
-
-
 let timeLimit = 
 process.env.HOST == "localhost"
-?16
+?6
 :16;
 let previousCard =[];
 let countdown = timeLimit;
@@ -54,8 +50,6 @@ io.sockets.on('connection', socket =>{
 
 //receive and handle bets
     socket.on('bet', betRequest=>{
-        console.log('bet', betRequest.value)
-        console.log('win', winningGuess)
         let win = false;
         if (winningGuess === "tie" || 
         winningGuess === betRequest.value ){
@@ -106,13 +100,13 @@ io.sockets.on('connection', socket =>{
     })
 })
 
-
 setInterval(function(){
     countdown--;
     io.sockets.emit('timer', {countdown:countdown})
 },1000)    
 
-setInterval(function(){ 
+setInterval(async function(){ 
+    let data= await app.get('db')
     countdown = timeLimit
     if(!io.sockets.adapter.rooms['gameRoom']) return;
 
@@ -128,8 +122,8 @@ setInterval(function(){
         })
 
 //send winners list
-    app.get('db').winners().then(winners=>{
-        console.log('winners',winners)
+    await data.winners().then(async winRes=>{
+        let winners = await winRes
         if(winners.length){
         let list = "";
         winners.forEach(val=> list = list + val.name + ", ")
@@ -140,7 +134,7 @@ setInterval(function(){
     })
 
 //reset game table
-    .then(setTimeout(()=>{app.get('db').clear_table()},300));
+    .then(setTimeout(()=>{app.get('db').clear_table()},300))
         
 //draw card
     app.get('db').draw_card().then(cardResponse=>{
@@ -153,6 +147,7 @@ setInterval(function(){
         else
         {{winningGuess = 'tie'}}
     }); 
+
 }, `${timeLimit}000`);
 
 app.get('/auth/callback', authController.login);
