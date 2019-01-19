@@ -19,7 +19,7 @@ export function Home(props) {
             <div className="homeParent">
                 <div className="homeWelcome">
                 <h1>Welcome to my project!</h1>
-                <p>This is just a simple game made by a web dev student.<br/>
+                <p>This is just a simple game made by a student.<br/>
                 Feel free to login and enjoy!</p>
                 </div>
                 <div className="rules">
@@ -27,10 +27,10 @@ export function Home(props) {
                 <ul className="rulesList">
                     <li>A single card is dealt out by the server to everyone.</li>
                     <li>Everyone in the game then has 15 seconds to guess if the next card will be higher or lower. Ace is the highest card.</li>
-                    <li>You can add a bet amount to your guess if you feel bold enough
+                    <li>You can add a bet amount to your guess if you feel bold enough.
                         <ul>
                             <li>Don't worry, it's fake money...</li>
-                            <li>Find the add credits button in your profile to add more fake money</li>
+                            <li>Find the add credits button in your profile to add more fake money.</li>
                         </ul>
                     </li>
                     <li>There's a chat on the side that show's who won. Feel free to chat with everyone else that's playing!</li>

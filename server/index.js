@@ -140,7 +140,7 @@ setInterval(function(){
     })
 
 //reset game table
-    .then(app.get('db').clear_table());
+    .then(setTimeout(app.get('db').clear_table(),300));
         
 //draw card
     app.get('db').draw_card().then(cardResponse=>{

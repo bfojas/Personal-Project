@@ -32,6 +32,7 @@ class Credits extends Component{
             })
             alert('Thank You! Identity Stolen! (just kidding)')
         })
+        .catch(res=>{alert('Oopsie!')})
     }
 
     stripeRedirect = () =>{

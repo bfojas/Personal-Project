@@ -12,7 +12,6 @@ module.exports ={
         client_secret: process.env.AUTH0_CLIENT_SECRET,
         code,
         grant_type: 'authorization_code',
-        // redirect_uri: `http://${req.headers.host}/auth/callback`
         redirect_uri
     };
 
@@ -40,7 +39,7 @@ module.exports ={
                 games: users[0].games,
                 color: users[0].color
                 }
-            res.redirect('/');
+            res.redirect('/profile');
             } else {
                 return db.create_user({
                     name: user.nickname,
@@ -50,7 +49,7 @@ module.exports ={
                 })
             .then(newUsers => {
                 req.session.user = newUsers[0];
-                res.redirect('/');
+                res.redirect('/profile');
             })}
         })
     }

@@ -19,7 +19,8 @@ class Edit extends Component{
     }
     colorToDb = (color)=>{
         axios.put('/api/color', {color, auth0_id: this.props.auth0_id})
-        .then(res=>this.props.updateColor(res.data)).then(res=>console.log('color', this.props.color))
+        .then(res=>this.props.updateColor(res.data))
+        // .then(res=>console.log('color', this.props.color))
     }
 
     render(){
@@ -41,15 +42,18 @@ class Edit extends Component{
                 <div className="infoEdit">
                     <div className="userEditDiv">
                         <div>Username: </div>
-                        <input value={this.state.editName} onChange={e=>this.setState({editName: e.target.value})}/>
+                        <input value={this.state.editName} 
+                        onChange={e=>this.setState({editName: e.target.value})}/>
                     </div>
                     <div className="userEditDiv">
                         <div>E-mail: </div>
-                        <input value={this.state.editEmail} onChange={e=>this.setState({editEmail: e.target.value})}/>
+                        <input value={this.state.editEmail} 
+                        onChange={e=>this.setState({editEmail: e.target.value})}/>
                     </div>
                     <div className="userEditDiv">
                         <div>Image Url: </div>
-                        <input value={this.state.editImage} onChange={e=>this.setState({editImage: e.target.value})}/>
+                        <input value={this.state.editImage} 
+                        onChange={e=>this.setState({editImage: e.target.value})}/>
                     </div>
                     <div className="editButtons">
                         <NavLink className="editNav" to="/profile">

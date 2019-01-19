@@ -100,19 +100,19 @@ export class Game extends Component{
     componentWillUnmount=()=>{
         socket.disconnect();
     };
-    handleKey =(e)=>{
-        const {code} = e;
-        if (this.state.buttonDisable === true)
-        {return null}
-        else if (code === "ArrowRight")
-        {this.raiseBet()}
-        else if(code === "ArrowLeft")
-        {this.lowerBet()}
-        else if (code === 'ArrowUp')
-        {this.placeBet('high')}
-        else if (code === 'ArrowDown')
-        {this.placeBet('low')}
-    }
+    // handleKey =(e)=>{
+    //     const {code} = e;
+    //     if (this.state.buttonDisable === true)
+    //     {return null}
+    //     else if (code === "ArrowRight")
+    //     {this.raiseBet()}
+    //     else if(code === "ArrowLeft")
+    //     {this.lowerBet()}
+    //     else if (code === 'ArrowUp')
+    //     {this.placeBet('high')}
+    //     else if (code === 'ArrowDown')
+    //     {this.placeBet('low')}
+    // }
     placeBet = (value)=>{
         let {betInput} = this.state
         let betAmount=0;

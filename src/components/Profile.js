@@ -48,14 +48,14 @@ class Profile extends Component{
             datasets: [{
                 data: chartPercent,
                 backgroundColor: [
-                '#36A2EB',
-                '#FF6384',
-                '#FF6384'
+                'green',
+                '#CC4400',
+                '#CC4400'
                 ],
                 hoverBackgroundColor: [
-                '#36A2EB',
-                '#FF6384',
-                '#FF6384'
+                'green',
+                '#CC4400',
+                '#CC4400'
                 ]
             }]
         };

@@ -51,7 +51,6 @@ export default function reducer (state = INITIAL_STATE, action) {
                 games: action.payload.games})
 
         case UPDATE_COLOR:
-                    console.log('hit')
                     return Object.assign({},state,{color: action.payload})
         default: return state;
     }
