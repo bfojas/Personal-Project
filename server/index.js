@@ -38,7 +38,7 @@ app.use(session({
 
 let timeLimit = 
 process.env.HOST == "localhost"
-?21
+?10
 :21;
 let previousCard =[];
 let countdown = timeLimit;
@@ -82,7 +82,7 @@ io.sockets.on('connection', socket =>{
 
     socket.on('disconnect', () =>{
         app.get('db').remove_user_table({socket_id: socket.id})
-        .then(val =>{console.log('delete', val[0].bet)
+        .then(val =>{
             const {auth0_id, bet, win} = val[0]
             if (bet !== null){
                 if(win ===true){
@@ -118,13 +118,14 @@ setInterval(function(){
 
 //send winners list
     app.get('db').winners().then(winners=>{
-        if(winners.length){
+        // console.log('winners',winners)
+        setTimeout(()=>{if(winners.length){
         let list = "";
         winners.forEach(val=> list = list + val.name + ", ")
 
         io.sockets.to('gameRoom')
         .emit('message', {text:list.slice(0,-2), user: `${previousCard[0].code} winners`})
-        }
+        }},200)
     })
 
 
