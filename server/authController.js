@@ -64,10 +64,12 @@ module.exports ={
     },
     getUser: async (req,res) =>{
         const {name, picture, email, auth0_id, color} = req.session.user
-        stats = await req.app.get('db').get_stats({auth0_id})
+        let data = await req.app.get('db')
+        
+        let update = await data.get_stats({auth0_id}).then(stats=>{
             const {credit, wins, games} = stats[0]
-            update = {name, picture, email, auth0_id, credit, wins, games, color}
-            res.status(200).json(update)
+            return {name, picture, email, auth0_id, credit, wins, games, color}})
+            .then(response=>res.json(response))
         
 
     }
