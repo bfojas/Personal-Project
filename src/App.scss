@@ -750,9 +750,21 @@ height: calc(100% - 75px);
       height: 24px;
       margin: 0 10px 0 0;
     }
-    button{
-      margin: 5px;
-      height: 26px;
+    .chatButtons{
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button{
+        margin: 5px;
+        height: 26px;
+      }
+      @media (max-width: $phoneMedia){
+        width: 100%;
+        button{
+          width: 50%;
+          font-size: 8px;}
+      }
     }
 
     @media(max-width: $phoneMedia){

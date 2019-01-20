@@ -16,7 +16,6 @@ export class Game extends Component{
             timer: 0,
             timerColor: 'green',
             socketId:'',
-            winners: [],
             bank: 0,
             chatMessages:[],
             messageText:''
@@ -40,13 +39,6 @@ export class Game extends Component{
             })}
           })
         
-          //receive winners list
-        socket.on('winners', list =>{
-            this.setState({
-                winners: list
-            })
-        })
-        
         //receive socket id
         socket.on('socketId', message =>{
             this.setState({socketId: message})
@@ -68,17 +60,7 @@ export class Game extends Component{
             ? this.setState ({timerColor: '#888800'})
             :countdown.countdown <=12
             ?this.setState({timerColor: '#66AA00'})
-            // :countdown.countdown <= 15
             :this.setState ({timerColor: '#44CC00'})
-            // :countdown.countdown <= 12
-            // ?this.setState({timerColor: '#88AA00'})
-            // :countdown.countdown <=14 
-            // ? this.setState ({timerColor: '#66CC00'})
-            // :countdown.countdown <= 16
-            // ?this.setState({timerColor: '#44EE00'})
-            // :countdown.countdown <=18 
-            // ? this.setState ({timerColor: '#22ff00'})
-            // :this.setState({timerColor: '#00ff00'})
         })
 
         //receive messages
@@ -255,7 +237,10 @@ export class Game extends Component{
                         <input type="text" value={messageText} 
                         onChange={e=>this.setState({messageText:e.target.value})}
                         onKeyDown={e=>{if(e.keyCode===13) {this.sendMessage(messageText)}}} />
-                        <button onClick={()=>this.sendMessage(messageText)}>Send</button>
+                        <div className="chatButtons">
+                            <button onClick={()=>this.sendMessage(messageText)}>Send</button>
+                            <button onClick={()=>this.sendMessage("players?")}>Players</button>
+                        </div>
                     </div>
                 </div>
             </div>
