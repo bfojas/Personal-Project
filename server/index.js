@@ -47,6 +47,7 @@ io.sockets.on('connection', async socket =>{
     socket.on('user', user=>{
         app.get('db').add_user_table({auth0_id: user.user, socket_id: socket.id})
         .then(announce=>{
+            console.log('announce', announce)
             io.sockets.to('gameRoom')
             .emit('message', 
             {text:`${announce[0].name} has joined`, 

@@ -3,7 +3,7 @@ create table users (
     name varchar(50), 
     email varchar(75), 
     picture text,
-    auth0_id varchar(25) unique primary key,
+    auth0_id text unique primary key,
     credit integer,
     wins integer,
     games integer,
