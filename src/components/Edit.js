@@ -77,8 +77,10 @@ class Edit extends Component{
                         alt="User"/>
                     <div className="uploadContainer">
                         <div>Upload Profile Image</div>
-                        <input type="file" id="selectedFile" style={{display:'none'}} onChange={this.selectImage}/>
-                        <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
+                        <input type="file" id="selectedFile" 
+                        // style={{display:'none'}} 
+                        onChange={this.selectImage}/>
+                        {/* <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" /> */}
                         <NavLink onClick={this.uploadImage} to="/profile">
                             <button className="uploadButton" >Upload</button>
                         </NavLink>
