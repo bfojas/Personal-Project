@@ -56,8 +56,11 @@ class Credits extends Component{
                 </div>
                 <div className="creditInput">
                     <div>Amount:</div>
-                    <input type="text" value={addCredit} 
-                        onChange={e=>this.setState({addCredit:e.target.value})} />
+                    <select onChange={e=>this.setState({addCredit:e.target.value})}>
+                        <option value={100}>100 credits</option>
+                        <option value={500}>500 credits</option>
+                        <option value={1000}>1000 credits</option>
+                    </select>
                 </div>
                 <div className="creditButtons">
                     

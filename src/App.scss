@@ -1028,8 +1028,9 @@ height: calc(100% - 75px);
     @media(max-width: $phoneMedia){
       font-size: 16px;
     }
-    input{
-      height: 60%;
+    select{
+      height: 80%;
+      width: 100%;
       text-align: center;
     }
   }

@@ -18,7 +18,8 @@ export class Game extends Component{
             socketId:'',
             bank: 0,
             chatMessages:[],
-            messageText:''
+            messageText:'',
+            bankFont: '24px'
         }
         
         if(this.props){
@@ -72,29 +73,25 @@ export class Game extends Component{
         })
     };
 
+ 
+
     componentDidMount=()=>{
         socket.on('connect', ()=>{
         setTimeout(()=>{
         socket.emit('user',{user: this.props.auth0_id})},500)
         })
+        this.fontBank(this.props.bank)
     };
 
     componentWillUnmount=()=>{
         socket.disconnect();
     };
-    // handleKey =(e)=>{
-    //     const {code} = e;
-    //     if (this.state.buttonDisable === true)
-    //     {return null}
-    //     else if (code === "ArrowRight")
-    //     {this.raiseBet()}
-    //     else if(code === "ArrowLeft")
-    //     {this.lowerBet()}
-    //     else if (code === 'ArrowUp')
-    //     {this.placeBet('high')}
-    //     else if (code === 'ArrowDown')
-    //     {this.placeBet('low')}
-    // }
+
+    fontBank = (bank)=>{
+        if(bank.toString().length > 5)
+        {this.setState({bankFont: '16px'})}
+    }
+
     placeBet = (value)=>{
         let {betInput} = this.state
         let betAmount=0;
@@ -147,6 +144,8 @@ export class Game extends Component{
                 <div className="chatText">{chats.text}</div>
             </div>
         })
+
+        
         const chartPercent = [15-timer, timer]
         const data = {
             labels: [
@@ -193,7 +192,9 @@ export class Game extends Component{
                         </div>
                         <div className="bankContainer">
                             <div>Bank:</div>
-                            <div>{this.props.bank}</div>
+                            <div style={{fontSize: this.state.bankFont}}>
+                                {this.props.bank}
+                            </div>
                         </div>
                     </div>
                     <div className="cardImageContainer">

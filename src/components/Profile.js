@@ -9,8 +9,15 @@ import { Doughnut } from 'react-chartjs-2';
 class Profile extends Component{
     constructor(props){
         super(props)
-        this.state={birds: 'none'}
+        this.state={birds: 'none',
+            bankFont: '24px'}
     }
+
+componentDidMount(){
+    if(this.props.bank.toString().length > 5)
+    {this.setState({bankFont: '20px'})}
+
+}
 
     logout=()=> {
         let yes=window.confirm('Are you sure you want to log out?')
@@ -93,9 +100,9 @@ class Profile extends Component{
                             <div>Email: {email}</div>
                             </div>
                             <div className="stats">
-                                <div>Bank: {bank} </div>
-                                <div>Wins: {wins}</div>
-                                <div>Games: {games}</div>
+                                <div style={{fontSize: this.state.bankFont}}>Bank:<br/>{bank} </div>
+                                <div>Wins:<br/>{wins}</div>
+                                <div>Games:<br/>{games}</div>
                             </div>
                         </div>                        
                         <div className="chartDiv">
