@@ -18,8 +18,8 @@ where auth0_id = (select auth0_id from game_table
 
 update users
 set games = games +1
-where auth0_id = (select auth0_id from game_table where bet is not null);
+where auth0_id = (select auth0_id from game_table where bet is not null and socket_id = ${socket_id});
 
 update users 
 set wins = wins +1
-where auth0_id = (select auth0_id from game_table where win = true);
+where auth0_id = (select auth0_id from game_table where win = true and socket_id = ${socket_id});
