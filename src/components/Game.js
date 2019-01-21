@@ -89,7 +89,7 @@ export class Game extends Component{
 
     fontBank = (bank)=>{
         if(bank.toString().length > 5)
-        {this.setState({bankFont: '16px'})}
+        {this.setState({bankFont: '1.5vh'})}
     }
 
     placeBet = (value)=>{
@@ -192,7 +192,7 @@ export class Game extends Component{
                         </div>
                         <div className="bankContainer">
                             <div>Bank:</div>
-                            <div style={{fontSize: this.state.bankFont}}>
+                            <div className="bankNumber" style={{fontSize: this.state.bankFont}}>
                                 {this.props.bank}
                             </div>
                         </div>
