@@ -3,7 +3,15 @@ import {connect} from 'react-redux';
 import {withRouter, NavLink} from 'react-router-dom';
 import {editUser, updateColor} from '../ducks/reducer';
 import axios from 'axios';
+import ReactS3 from 'react-s3'
 
+
+const config = {
+    bucketName: 'dev-fun-bucket',
+    region: 'us-east-1',
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET,
+  }
 class Edit extends Component{
     constructor(props){
         super(props)
@@ -11,6 +19,7 @@ class Edit extends Component{
             editName: this.props.user,
             editEmail: this.props.email,
             editImage: this.props.image,
+            body:[]
         }
     }
     edit = (value)=>{
@@ -22,8 +31,36 @@ class Edit extends Component{
         .then(res=>this.props.updateColor(res.data))
         // .then(res=>console.log('color', this.props.color))
     }
+    selectImage = async (e) =>{
+        console.log('taget', e.target.files[0])
+        let uploaded = await e.target.files[0]
+        this.setState({body : uploaded})
+        console.log('state', this.state.body)
+    }
 
+   
+
+    uploadImage = ()=>{
+        const {user, auth0_id, email} = this.props
+        
+        ReactS3.uploadFile(this.state.body, config)
+        .then(data=>{
+        axios.put('/api/upload', {image: data.location,
+             auth0_id: auth0_id,
+            name: user,
+            email: email})
+            .then(this.props
+                .editUser({image: data.location,
+                auth0_id: auth0_id,
+               name: user,
+               email: email}))
+        })
+        .catch(err=> {alert(err)})  
+    }
+    
+    
     render(){
+        
         const {image} = this.props
         return (
             !this.props.user.length
@@ -34,10 +71,18 @@ class Edit extends Component{
             :
             <div className="editParent">
                 <div className="imageContainer">
-                <img src={image} 
-                onError={(e)=>{e.target.onerror = null; 
-                    e.target.src="images/unavailable.jpg"}}
-                    alt="User"/>
+                    <img src={image} 
+                    onError={(e)=>{e.target.onerror = null; 
+                        e.target.src="images/unavailable.jpg"}}
+                        alt="User"/>
+                    <div className="uploadContainer">
+                        <div>Upload Profile Image</div>
+                        <input type="file" id="selectedFile" style={{display:'none'}} onChange={this.selectImage}/>
+                        <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
+                        <NavLink onClick={this.uploadImage} to="/profile">
+                            <button className="uploadButton" >Upload</button>
+                        </NavLink>
+                    </div>
                 </div>
                 <div className="infoEdit">
                     <div className="userEditDiv">

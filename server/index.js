@@ -17,6 +17,14 @@ const authController = require('./authController')
 const profileController = require('./profileController')
 const connect=require('connect-pg-simple');
 const bodyParser = require('body-parser');
+
+const config = {
+    bucketName: 'dev-fun-bucket',
+    region: 'us-east-1',
+    accessKeyId: process.env.REACT_APP_ACCESS,
+    secretAccessKey: process.env.REACT_APP_SECRET,
+  }
+
 app.use(bodyParser.json())
 app.use( express.static( `${__dirname}/../build` ) );
 
@@ -177,6 +185,7 @@ app.post('/api/creditadd', profileController.creditAdd)
 app.put('/api/edit', profileController.edit);
 app.delete('/api/delete/:id', profileController.delete);
 app.put('/api/color', profileController.color);
+app.put('/api/upload', profileController.upload)
 
 
 const path = require('path')

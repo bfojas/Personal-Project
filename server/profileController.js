@@ -57,5 +57,15 @@ module.exports ={
         const {color, auth0_id} = req.body;
         req.app.get('db').edit_color({color, auth0_id})
         .then(color=> res.send(color[0].color))
+    },
+
+    upload: (req,res)=>{
+        const db = req.app.get('db');
+        const {auth0_id, image,name, email} = req.body;
+        req.session.picture = image
+        db.edit({
+            user:name, email, image, auth0_id})
+        .then(()=>res.send())
+        .catch(error=>console.log('edit error', error))
     }
 }
