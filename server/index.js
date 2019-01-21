@@ -103,17 +103,17 @@ io.sockets.on('connection', async socket =>{
     })
 
 
-    socket.on('disconnect',  async () =>{
+    socket.on('disconnect',  () =>{
         app.get('db').remove_user_table({socket_id: socket.id})
-        .then(async val =>{
-            const {socket_id, auth0_id, bet, win} = val[0]
+        .then( val =>{
+            const {auth0_id, bet, win} = val[0]
             if (bet !== null){
                 if(win ===true){
                     app.get('db').delete_win({auth0_id, bet})}
                 else if (win === false)
                     app.get('db').delete_loss({auth0_id, bet})
             }
-            return await app.get('db').announce({auth0_id})
+            return app.get('db').announce({auth0_id})
         })
         .then( res=> {
             io.sockets.to('gameRoom')
@@ -149,7 +149,7 @@ setInterval(async function(){
         })
 
 //send winners list
-    await data.winners().then(async winRes=>{
+     data.winners().then(async winRes=>{
         let winners = await winRes
         if(winners.length){
         let list = "";
