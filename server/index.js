@@ -41,11 +41,18 @@ let countdown = timeLimit;
 let winningGuess = '';
 let sockets = [];
 
-io.sockets.on('connection', socket =>{
+io.sockets.on('connection', async socket =>{
     sockets.push(socket.id)
     socket.join('gameRoom');
     socket.on('user', user=>{
         app.get('db').add_user_table({auth0_id: user.user, socket_id: socket.id})
+        .then(announce=>{
+            io.sockets.to('gameRoom')
+            .emit('message', 
+            {text:`${announce[0].name} has joined`, 
+            user: 'server', 
+            key: Date.now()})
+        })
     })
 
 //receive and handle bets
@@ -66,35 +73,46 @@ io.sockets.on('connection', socket =>{
     socket.emit('messageFromServer', previousCard);//first card
     socket.emit('timer', {countdown: countdown});//timer
     socket.emit('socketId', socket.id);//socket id to client
-
+    
 //handle chat messages
     socket.on('chatSend', message=>{
         const chatKey = Date.now()
-        message.text === "who here?"
+        const {text, user} = message
+        text === "who here?"
         ?io.sockets.to('gameRoom').emit('message', {text:'yo momma',user:'Server', key: chatKey})
-        :message.text === 'players?'
+        :text === 'players?'
         ?app.get('db').get_players().then(players=>{
             let list = "";
             players.forEach(val=> list = list + val.name + ", ")
-            io.sockets.to('gameRoom')
+            // io.sockets.to('gameRoom')
             io.sockets.to('gameRoom')
             .emit('message', {text:list.slice(0,-2),
-            user: 'Players'})
+            user: 'Players', key: chatKey}, )
         })
-        :io.sockets.to('gameRoom').emit('message', message)
+        :io.sockets.to('gameRoom')
+        .emit('message', {text:text, user: user, key: chatKey})
     })
 
 
-    socket.on('disconnect', () =>{
+    socket.on('disconnect',  async () =>{
         app.get('db').remove_user_table({socket_id: socket.id})
-        .then(val =>{
-            const {auth0_id, bet, win} = val[0]
+        .then(async val =>{
+            const {socket_id, auth0_id, bet, win} = val[0]
             if (bet !== null){
                 if(win ===true){
                     app.get('db').delete_win({auth0_id, bet})}
                 else if (win === false)
                     app.get('db').delete_loss({auth0_id, bet})
-        }})
+            }
+            return await app.get('db').announce({auth0_id})
+        })
+        .then( res=> {
+            io.sockets.to('gameRoom')
+            .emit('message', 
+                {text: `${res[0].name} has left`, 
+                user: 'server', 
+                key: Date.now()})
+        })
         sockets = sockets.filter(val=> {
             return val !== socket.id})
     })

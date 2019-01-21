@@ -60,8 +60,9 @@ class Credits extends Component{
                         onChange={e=>this.setState({addCredit:e.target.value})} />
                 </div>
                 <div className="creditButtons">
+                    
                     <StripeCheckout
-                        ComponentClass = "stripe"
+                        ComponentClass = "div"
                         email = {email}
                         amount={addCredit}
                         name= "Get Credits!"
@@ -72,6 +73,8 @@ class Credits extends Component{
                         stripeKey = {process.env.REACT_APP_STRIPE_KEY}
                         closed ={()=>this.props.history.push('/profile')}
                     />
+                    {/* <button className="stripeButton">Pay</button>
+                    </StripeCheckout> */}
                     <NavLink className="creditCancel" to="/profile">
                         <button>Cancel</button>
                     </NavLink>
