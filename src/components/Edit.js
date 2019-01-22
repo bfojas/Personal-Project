@@ -76,14 +76,18 @@ class Edit extends Component{
                         e.target.src="images/unavailable.jpg"}}
                         alt="User"/>
                     <div className="uploadContainer">
-                        <div>Upload Profile Image</div>
+                        <div className="uploadText">Upload Profile Image</div>
+                        <div className="uploadButtons">
                         <input type="file" id="selectedFile" 
-                        // style={{display:'none'}} 
+                        // style={{visibility: 'hidden'}} 
+                        style={{display:'none'}} 
                         onChange={this.selectImage}/>
+                        <label for='selectedFile'>Select File</label>
                         {/* <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" /> */}
-                        <NavLink onClick={this.uploadImage} to="/profile">
+                        <NavLink className="upload" onClick={this.uploadImage} to="/profile">
                             <button className="uploadButton" >Upload</button>
                         </NavLink>
+                        </div>
                     </div>
                 </div>
                 <div className="infoEdit">
