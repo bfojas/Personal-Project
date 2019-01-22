@@ -551,6 +551,7 @@ height: calc(100% - 75px);
       img{
         width: 80%;
         max-width: 300px;
+        max-height: 45%;;
       }
       @media(max-width: $phoneMedia){
         
@@ -561,6 +562,7 @@ height: calc(100% - 75px);
         img{
           height: 90%;
           width: 40%;
+          max-height: 80%;
 
         }
       }

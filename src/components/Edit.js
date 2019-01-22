@@ -19,7 +19,8 @@ class Edit extends Component{
             editName: this.props.user,
             editEmail: this.props.email,
             editImage: this.props.image,
-            body:[]
+            body:[],
+            uploadDisable: true
         }
     }
     edit = (value)=>{
@@ -35,7 +36,9 @@ class Edit extends Component{
         console.log('taget', e.target.files[0])
         let uploaded = await e.target.files[0]
         this.setState({body : uploaded})
-        console.log('state', this.state.body)
+        this.state.body?
+        this.setState({uploadDisable: false})
+        :this.setState({uploadDisable: true})
     }
 
    
@@ -84,8 +87,11 @@ class Edit extends Component{
                         onChange={this.selectImage}/>
                         <label for='selectedFile'>Select File</label>
                         {/* <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" /> */}
-                        <NavLink className="upload" onClick={this.uploadImage} to="/profile">
-                            <button className="uploadButton" >Upload</button>
+                        <NavLink className="upload" 
+                            onClick={this.uploadImage} 
+                            to="/profile" 
+                            >
+                            <button className="uploadButton" disabled={this.state.uploadDisable}>Upload</button>
                         </NavLink>
                         </div>
                     </div>
