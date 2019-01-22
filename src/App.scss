@@ -1142,10 +1142,14 @@ height: calc(100% - 75px);
     //   width: 40%;
     //   height: 100%;
     // }
-    .stripeButton{
-      display: none;
+    label{
+      display: flex;
     width: 100%;
-    height: 200%;
+    height: 45%;
+    background-color: #e7e7e7;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
     }
     .creditCancel{
       height: 40px;

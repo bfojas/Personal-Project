@@ -75,7 +75,10 @@ class Credits extends Component{
                         allowRememberMe={false}
                         stripeKey = {process.env.REACT_APP_STRIPE_KEY}
                         closed ={()=>this.props.history.push('/profile')}
-                    />
+                    >
+                    <button id="stripeButton" style={{display: 'none'}}>test</button>
+                    </StripeCheckout>
+                    <label for="stripeButton">Stripe Pay</label>
                     {/* <button className="stripeButton">Pay</button>
                     </StripeCheckout> */}
                     <NavLink className="creditCancel" to="/profile">
