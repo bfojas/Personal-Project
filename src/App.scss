@@ -2,44 +2,42 @@ $phoneMedia: 415px;
 .App {
   width: 100vw;
   text-align: center;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
 }
 
-
-
-header, .head {
+header,
+.head {
   width: 100%;
   height: 75px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
 
-.navLink{
+.navLink {
   text-decoration: none;
 }
-.head{
+.head {
   display: flex;
   background-color: black;
   max-width: 1000px;
   justify-content: space-between;
   align-items: center;
-  
+
   .headerImage {
     margin-left: 30px;
-    @media(max-width: $phoneMedia){
+    @media (max-width: $phoneMedia) {
       // display: none;
       margin-left: 10px;
     }
-    img{
+    img {
       max-height: 75px;
     }
-
   }
   ul {
     height: 100%;
@@ -50,12 +48,11 @@ header, .head {
     justify-content: center;
     align-items: center;
     padding: 0;
-    @media(max-width:$phoneMedia){
+    @media (max-width: $phoneMedia) {
       width: 80%;
-      
     }
-    li{
-      margin:0 5px;
+    li {
+      margin: 0 5px;
       list-style-type: none;
       width: 33%;
 
@@ -64,7 +61,7 @@ header, .head {
         width: 100%;
         font-size: 12px;
 
-        @media (max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           height: 50px;
           font-size: 3vw;
         }
@@ -73,13 +70,13 @@ header, .head {
   }
 }
 
-.routeParent{
-max-width: 1000px;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-height: calc(100% - 75px);
+.routeParent {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 75px);
 
   .gameParent {
     width: 100%;
@@ -89,7 +86,7 @@ height: calc(100% - 75px);
     justify-content: space-around;
     align-items: center;
   }
-  .profileParent{
+  .profileParent {
     width: 100%;
     height: 100%;
     display: flex;
@@ -98,41 +95,39 @@ height: calc(100% - 75px);
     align-items: center;
     .userMobile {
       display: none;
-      @media (max-width: $phoneMedia){
+      @media (max-width: $phoneMedia) {
         display: flex;
         flex-direction: column;
         height: 15%;
-        .mobileHello{
+        .mobileHello {
           font-size: 3vh;
           font-weight: bold;
           margin: 10px;
         }
-        .mobileEmail{
+        .mobileEmail {
           font-size: 2vh;
         }
       }
     }
-    .imageContainer{
+    .imageContainer {
       width: 100%;
       height: 75%;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
-      
-      
-      @media (max-width: $phoneMedia){
-      flex-direction: column;
+
+      @media (max-width: $phoneMedia) {
+        flex-direction: column;
       }
 
-      .image{
-        
+      .image {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
         width: 35%;
-        @media(max-width:$phoneMedia){
+        @media (max-width: $phoneMedia) {
           border: solid black 5px;
           background-color: white;
           width: 95%;
@@ -147,27 +142,27 @@ height: calc(100% - 75px);
           justify-content: center;
           width: 100%;
           height: 50%;
-          
-          @media (max-width: $phoneMedia){
+
+          @media (max-width: $phoneMedia) {
             width: 30%;
             height: 100%;
             align-items: center;
           }
 
-          img{
+          img {
             height: 90%;
             max-width: 100%;
-            @media (max-width: $phoneMedia){
+            @media (max-width: $phoneMedia) {
               height: 80%;
             }
           }
         }
         .statsMobile {
           display: none;
-          @media (max-width: $phoneMedia){
+          @media (max-width: $phoneMedia) {
             font-size: 4.5vw;
             // background-color: aqua;
-            
+
             width: 55%;
             display: flex;
             flex-direction: column;
@@ -175,10 +170,9 @@ height: calc(100% - 75px);
             align-items: center;
           }
         }
-
       }
     }
-    .profileContainer{
+    .profileContainer {
       height: 100%;
       width: 60%;
       max-width: 600px;
@@ -189,39 +183,33 @@ height: calc(100% - 75px);
       background-color: black;
       color: white;
 
-      
-      
-      
-      @media(max-width:$phoneMedia){
-        height: 50%
+      @media (max-width: $phoneMedia) {
+        height: 50%;
       }
 
-      .profile{
+      .profile {
         // background-color: aqua;
-        
-        font-size: 3.0vh;
+
+        font-size: 3vh;
         width: 90%;
-        height:50%;
+        height: 50%;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         align-items: center;
-        .profileGreet{
+        .profileGreet {
           height: 50%;
           font-size: 16px;
         }
-        .profileHello{
+        .profileHello {
           margin: 10px;
           font-size: 3vw;
-          @media (min-width: 1000px){
+          @media (min-width: 1000px) {
             font-size: 30px;
           }
-          
         }
-        
-        
-        
-        .stats{
+
+        .stats {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -235,19 +223,18 @@ height: calc(100% - 75px);
           border-right: solid black 10px;
           border-top: solid black 10px;
 
-          div{
-            height:33%;
+          div {
+            height: 33%;
             width: 75%;
             font-size: 24px;
           }
         }
-        @media (max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           display: none;
         }
-        
       }
 
-      .chartDiv{
+      .chartDiv {
         height: 50%;
         width: 90%;
         background-color: white;
@@ -259,7 +246,7 @@ height: calc(100% - 75px);
         border-right: solid black 10px;
         border-bottom: solid black 10px;
         margin-bottom: 10px;
-        @media (max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           border-left: solid black 5px;
           border-right: solid black 5px;
           border-bottom: solid black 5px;
@@ -267,7 +254,6 @@ height: calc(100% - 75px);
           margin-bottom: 0;
           width: 100%;
         }
-
 
         .winPercentage {
           color: black;
@@ -277,12 +263,11 @@ height: calc(100% - 75px);
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          @media (max-width: $phoneMedia){
-            font-size: 2vh
+          @media (max-width: $phoneMedia) {
+            font-size: 2vh;
           }
-
         }
-        .chart{
+        .chart {
           background-color: yellow;
           width: 50%;
           height: 50%;
@@ -292,7 +277,7 @@ height: calc(100% - 75px);
           justify-content: center;
           z-index: 3;
         }
-        @media (max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           height: 100%;
         }
       }
@@ -313,13 +298,12 @@ height: calc(100% - 75px);
         flex-direction: row;
         height: 100%;
 
-        a{
+        a {
           width: 75%;
           height: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
-
 
           button {
             display: flex;
@@ -327,49 +311,46 @@ height: calc(100% - 75px);
             height: 100%;
             justify-content: center;
             align-items: center;
-            @media(max-width: $phoneMedia){
+            @media (max-width: $phoneMedia) {
               font-size: 10px;
             }
           }
         }
       }
-      .profileButtonsOne{
+      .profileButtonsOne {
         // height: 100px;
         justify-content: right;
         align-items: right;
       }
-      .profileButtonsTwo{
+      .profileButtonsTwo {
         justify-content: left;
         align-items: left;
       }
-      @media (max-width: $phoneMedia){
+      @media (max-width: $phoneMedia) {
         flex-direction: column;
         height: 120px;
-        div{
+        div {
           display: flex;
           width: 100%;
           height: 100%;
           margin: 5px;
           justify-content: center;
-          div{
+          div {
             width: 46%;
-
           }
         }
       }
-    
     }
-  
   }
 
-  .editParent{
+  .editParent {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    @media (max-width: $phoneMedia){
+    @media (max-width: $phoneMedia) {
       width: 100vw;
       display: flex;
       flex-direction: column;
@@ -381,34 +362,31 @@ height: calc(100% - 75px);
       align-items: center;
       flex-direction: column;
       padding: 10;
-
-      
-      
     }
-    .infoEdit{
+    .infoEdit {
       width: 50%;
       height: 50%;
-      
-      .userEditDiv{
+
+      .userEditDiv {
         background-color: black;
         color: white;
         width: 90%;
         // margin: 5px;
         height: 15%;
         font-weight: bold;
-        input{
-          width:80%;
+        input {
+          width: 80%;
           margin-bottom: 5px;
         }
       }
-      .editButtons{
-        display:flex;
+      .editButtons {
+        display: flex;
         flex-direction: row;
         width: 80%;
         height: 20%;
         margin: 10px;
 
-        .editNav{
+        .editNav {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -416,38 +394,34 @@ height: calc(100% - 75px);
           height: 100%;
           text-decoration: none;
 
-          button{
+          button {
             height: 40px;
             width: 120px;
             font-weight: bold;
-            @media(max-width: $phoneMedia){
+            @media (max-width: $phoneMedia) {
               width: 100px;
             }
           }
-
         }
-        
-
       }
-      .colorContainer{
+      .colorContainer {
         display: flex;
         flex-direction: column;
         height: 20%;
         width: 100%;
         font-weight: bold;
         font-size: 24px;
-        .colorTitle{
+        .colorTitle {
           // margin: 0 0 8px 0;
           height: 50%;
           width: 100%;
-
         }
-        .colorBox{
+        .colorBox {
           display: flex;
           flex-direction: row;
           height: 50%;
           width: 50%;
-          div{
+          div {
             border: solid black 2px;
             height: 25px;
             width: 25px;
@@ -455,17 +429,17 @@ height: calc(100% - 75px);
           }
         }
 
-        @media(max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           font-size: 14px;
         }
       }
-      @media(max-width: $phoneMedia){
+      @media (max-width: $phoneMedia) {
         height: 70%;
         width: 80%;
       }
     }
 
-    .imageContainer{
+    .imageContainer {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -473,15 +447,15 @@ height: calc(100% - 75px);
       width: 50%;
       height: 50%;
       background-color: black;
-        color: white;
-        input{
-          height: 24px;
-        }
-        button {
-          height: 24px;
-          width: 100px;
-        }
-      .uploadContainer{
+      color: white;
+      input {
+        height: 24px;
+      }
+      button {
+        height: 24px;
+        width: 100px;
+      }
+      .uploadContainer {
         width: 70%;
         height: 35%;
         display: flex;
@@ -489,87 +463,82 @@ height: calc(100% - 75px);
         align-items: center;
         flex-direction: column;
 
-        
-        div{
+        div {
           width: 80%;
           height: 30%;
           // background-color: green;
         }
-        .uploadButtons{
+        .uploadButtons {
           display: flex;
           flex-direction: row;
           justify-content: space-evenly;
           align-items: center;
 
-        label{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-          width: 45%;
-          background-color:#e7e7e7;
-            color:black;
-        }
-        .upload{
-          height: 100%;
-          width: 45%;
-          button{
-            width: 100%;
-            height: 100%;;
+          label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 45%;
+            background-color: #e7e7e7;
+            color: black;
+          }
+          .upload {
+            height: 100%;
+            width: 45%;
+            button {
+              width: 100%;
+              height: 100%;
+            }
           }
         }
-        }
-        @media (max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           height: 95%;
           width: 40%;
           font-size: 10px;
 
-          .uploadText{
+          .uploadText {
             width: 100%;
             height: 40%;
           }
-          .uploadButtons{
+          .uploadButtons {
             height: 45%;
             width: 100%;
             justify-content: space-evenly;
             flex-direction: column;
-          .upload, label {
-            height: 45%;
-            width: 100%;
-            font-size: 10px;
-            background-color:#e7e7e7;
-            color:black;
-
-            button{
-              height: 100%;
+            .upload,
+            label {
+              height: 45%;
               width: 100%;
+              font-size: 10px;
+              background-color: #e7e7e7;
+              color: black;
+
+              button {
+                height: 100%;
+                width: 100%;
+              }
             }
           }
         }
-        }
       }
-      img{
+      img {
         width: 80%;
         max-width: 300px;
-        max-height: 45%;;
+        max-height: 45%;
       }
-      @media(max-width: $phoneMedia){
-        
+      @media (max-width: $phoneMedia) {
         height: 25%;
         width: 80%;
         flex-direction: row;
         justify-content: space-around;
-        img{
+        img {
           height: 90%;
           width: 40%;
           max-height: 80%;
-
         }
       }
-      
     }
-
-   
   }
   .logParent {
     height: 100%;
@@ -578,7 +547,7 @@ height: calc(100% - 75px);
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    
+
     .logHead {
       height: 10%;
       width: 100%;
@@ -592,20 +561,20 @@ height: calc(100% - 75px);
       align-items: center;
       background-color: black;
       color: white;
-      @media(max-width:$phoneMedia){
+      @media (max-width: $phoneMedia) {
         height: 80%;
       }
-      
+
       h1 {
         width: 90%;
         height: 10%;
         font-size: 2.5vw;
         margin: 5px;
-        @media(max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           font-size: 16px;
         }
-        @media(min-width: 1000px){
-          font-size: 24px
+        @media (min-width: 1000px) {
+          font-size: 24px;
         }
       }
 
@@ -620,11 +589,10 @@ height: calc(100% - 75px);
         color: black;
         font-size: 14px;
         margin: 10px;
-        @media (max-width:$phoneMedia){
+        @media (max-width: $phoneMedia) {
           font-size: 10px;
         }
 
-       
         ul {
           flex-direction: column;
           justify-content: center;
@@ -633,17 +601,16 @@ height: calc(100% - 75px);
           height: 15%;
           background-color: white;
           margin: 0;
-          @media (max-width: $phoneMedia){
+          @media (max-width: $phoneMedia) {
             padding: 0;
           }
-          li{
+          li {
             text-align: left;
-            margin: 10px 0 0 0 ;
+            margin: 10px 0 0 0;
             list-style-type: square;
           }
-
         }
-        .loginPic{
+        .loginPic {
           background-color: white;
           width: 80%;
           height: 60%;
@@ -651,26 +618,25 @@ height: calc(100% - 75px);
             height: 100%;
             // width: auto;
             max-width: 100%;
-            @media( max-width: $phoneMedia){
+            @media (max-width: $phoneMedia) {
               max-width: 100%;
               height: auto;
             }
-
           }
         }
-      } 
+      }
     }
-    .logButton{
+    .logButton {
       height: 10%;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      button{
+      button {
         height: 50px;
         width: 100px;
         font-size: 20px;
-        @media (max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           font-size: 12px;
           height: 80%;
           width: 75px;
@@ -678,32 +644,32 @@ height: calc(100% - 75px);
       }
     }
   }
-  .homeParent{
+  .homeParent {
     position: relative;
     flex-direction: column;
     width: 100%;
     max-width: 1000px;
     height: 100%;
     display: flex;
-    justify-content: space-around; 
+    justify-content: space-around;
     align-items: center;
     // background-color: $mainColor;
-    .homeWelcome{
+    .homeWelcome {
       width: 90%;
       height: 30%;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      h1{
+      h1 {
         width: 90%;
-        margin: 10px 0 0 0 ;
+        margin: 10px 0 0 0;
         font-size: 4.5vh;
-        @media(max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           font-size: 3.5vh;
         }
       }
-      p{
+      p {
         font-size: 2vh;
       }
     }
@@ -732,20 +698,19 @@ height: calc(100% - 75px);
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        @media (max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           font-size: 1.5vh;
         }
-        li{
-        margin: 5px 0 0 0;
-        width: 90%;
-        text-align: left;
-        list-style-type: square;
+        li {
+          margin: 5px 0 0 0;
+          width: 90%;
+          text-align: left;
+          list-style-type: square;
         }
-        
       }
     }
-      
-    .homeButtons{
+
+    .homeButtons {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -753,30 +718,28 @@ height: calc(100% - 75px);
       width: 60%;
       height: 15%;
 
-    .homeLinks{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 30%;
-      height: 100%;
-      text-decoration: none;
-      
+      .homeLinks {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+        height: 100%;
+        text-decoration: none;
 
-      @media(max-width: $phoneMedia){
-        width: 50%;
+        @media (max-width: $phoneMedia) {
+          width: 50%;
+        }
+
+        button {
+          height: 50px;
+          width: 100px;
+          font-size: 12px;
+
+          @media (max-width: $phoneMedia) {
+            font-size: 10px;
+          }
+        }
       }
-
-
-      button{
-        height: 50px;
-        width: 100px;
-        font-size: 12px;
-
-        @media(max-width: $phoneMedia){
-          font-size: 10px;
-      }
-      }
-    }
     }
   }
 }
@@ -791,16 +754,16 @@ height: calc(100% - 75px);
   .chatWindow {
     margin: 10px 0;
     background-color: white;
-    overflow: auto ;
+    overflow: auto;
     width: 100%;
     height: 90%;
     display: flex;
     flex-direction: column;
-    @media(max-width:$phoneMedia){
+    @media (max-width: $phoneMedia) {
       height: 75%;
     }
-    
-    .chatMessage{
+
+    .chatMessage {
       flex-direction: column;
       justify-content: space-around;
       font-size: 14px;
@@ -809,67 +772,64 @@ height: calc(100% - 75px);
         font-size: 8px;
       }
 
-
-      .chatUser{
+      .chatUser {
         font-weight: bold;
         text-align: left;
         width: 95%;
         margin: 2px 0 3px 2px;
       }
 
-      .chatText{
+      .chatText {
         justify-content: left;
         text-align: left;
         padding-left: 10px;
         margin-bottom: 12px;
         width: 90%;
         overflow-wrap: break-word;
-        @media (max-width:$phoneMedia){
+        @media (max-width: $phoneMedia) {
           padding-left: 4px;
           margin-bottom: 7px;
         }
       }
     }
-
   }
   .chatInput {
-    width:100%;
-    height:10%;
+    width: 100%;
+    height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
-    input{
+    input {
       width: 75%;
       height: 24px;
       margin: 0 10px 0 0;
     }
-    .chatButtons{
-      
+    .chatButtons {
       display: flex;
       justify-content: center;
       align-items: center;
-      button{
+      button {
         margin: 5px;
         height: 26px;
       }
-      @media (max-width: $phoneMedia){
+      @media (max-width: $phoneMedia) {
         width: 100%;
-        button{
+        button {
           width: 50%;
-          font-size: 8px;}
+          font-size: 8px;
+        }
       }
     }
 
-    @media(max-width: $phoneMedia){
+    @media (max-width: $phoneMedia) {
       flex-direction: column;
-      input{
+      input {
         width: 100%;
         margin: 0;
       }
     }
   }
 }
-
 
 .gameContent {
   position: relative;
@@ -880,7 +840,7 @@ height: calc(100% - 75px);
   height: 100%;
 }
 
-.gameInfoContainer{
+.gameInfoContainer {
   height: 25%;
   display: flex;
   flex-direction: row;
@@ -888,27 +848,26 @@ height: calc(100% - 75px);
   font-weight: bold;
   font-size: 24px;
 
-  
-  .timerContainer{
+  .timerContainer {
     height: 100%;
     width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     position: relative;
-    @media(max-width: $phoneMedia){
+    @media (max-width: $phoneMedia) {
       font-size: 12px;
       width: 60%;
     }
-    
-    .timer{
+
+    .timer {
       display: flex;
       position: absolute;
       transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
     }
-    .chartTimer{
+    .chartTimer {
       background-color: yellow;
       width: 50%;
       height: 50%;
@@ -918,42 +877,38 @@ height: calc(100% - 75px);
       justify-content: center;
       z-index: 3;
     }
-
-    
   }
-  .bankContainer{
+  .bankContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width:30%;
+    width: 30%;
   }
-  @media( max-width: $phoneMedia){
+  @media (max-width: $phoneMedia) {
     height: 20%;
     font-size: 10px;
-
   }
 }
 
-  .cardImageContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    width:100%;
-    margin-top: 5px;
-    img{
-      width: 100%;
-      max-width: 275px;
-      max-height: 100%;
-      
-    }
-    @media(max-width: $phoneMedia){
-      height: 40%;
-    }
+.cardImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  margin-top: 5px;
+  img {
+    width: 100%;
+    max-width: 275px;
+    max-height: 100%;
   }
+  @media (max-width: $phoneMedia) {
+    height: 40%;
+  }
+}
 
-.betContainer{
+.betContainer {
   width: 100%;
   height: 25%;
   display: flex;
@@ -961,7 +916,7 @@ height: calc(100% - 75px);
   align-items: center;
   flex-direction: column;
 
-  .bet{
+  .bet {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -971,70 +926,68 @@ height: calc(100% - 75px);
     font-size: 20px;
     font-weight: bold;
 
-    @media(max-width:$phoneMedia){
+    @media (max-width: $phoneMedia) {
       height: 30%;
       font-size: 10px;
-      div{
+      div {
         margin: 0 0 3px 0;
       }
     }
-    .betInput{
+    .betInput {
       width: 100%;
       max-width: 200px;
       height: 20px;
       text-align: center;
     }
-    @media(max-width: $phoneMedia){
+    @media (max-width: $phoneMedia) {
       height: 10%;
     }
   }
-  .betButtonContainer{
+  .betButtonContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 55%;
     width: 100%;
-    .betButtons{
+    .betButtons {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
       height: 50%;
       width: 60%;
-      button{ 
+      button {
         width: 45%;
         max-width: 150px;
         height: 35px;
       }
     }
-    @media(max-width: $phoneMedia){
-      
+    @media (max-width: $phoneMedia) {
       height: 60%;
-      .betButtons{
+      .betButtons {
         width: 90%;
-        button{
-        height: 35px;
+        button {
+          height: 35px;
 
           font-size: 8px;
-        }  
+        }
       }
     }
-    
   }
-  @media(max-width: $phoneMedia){
+  @media (max-width: $phoneMedia) {
     height: 30%;
   }
 }
 
-.deleteContainer{
+.deleteContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 80%;
 
-  .deleteButtons{
+  .deleteButtons {
     width: 100%;
     height: 60px;
     display: flex;
@@ -1042,7 +995,7 @@ height: calc(100% - 75px);
     justify-content: space-around;
     align-items: center;
 
-    .deleteButts{
+    .deleteButts {
       justify-content: center;
       align-items: center;
       display: flex;
@@ -1050,32 +1003,30 @@ height: calc(100% - 75px);
       height: 100%;
       text-decoration: none;
 
-
-      button{
+      button {
         width: 50%;
         height: 70%;
-        @media(max-width: $phoneMedia){
+        @media (max-width: $phoneMedia) {
           width: 70%;
           font-size: 12px;
-          
         }
       }
     }
   }
 }
 
-.purchaseContainer{
+.purchaseContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
   width: 80%;
   height: 60%;
-  @media(max-width: $phoneMedia){
+  @media (max-width: $phoneMedia) {
     height: 80%;
   }
 
-  .purchaseMessage{
+  .purchaseMessage {
     background-color: black;
     color: white;
     display: flex;
@@ -1084,11 +1035,11 @@ height: calc(100% - 75px);
     justify-content: center;
     width: 100%;
     height: 40%;
-    @media(max-width: $phoneMedia){
-      height:50%;
+    @media (max-width: $phoneMedia) {
+      height: 50%;
     }
 
-    h1{
+    h1 {
       margin: 10px;
       font-size: 20px;
       height: 45%;
@@ -1097,11 +1048,11 @@ height: calc(100% - 75px);
       display: flex;
       justify-content: center;
       align-items: center;
-      @media (max-width: $phoneMedia){
+      @media (max-width: $phoneMedia) {
         font-size: 16px;
       }
     }
-    p{
+    p {
       margin: 10px;
       display: flex;
       justify-content: center;
@@ -1111,7 +1062,6 @@ height: calc(100% - 75px);
       background-color: white;
       color: black;
     }
-
   }
 
   .creditInput {
@@ -1119,67 +1069,65 @@ height: calc(100% - 75px);
     height: 40px;
     font-size: 24px;
     font-weight: bold;
-    @media(max-width: $phoneMedia){
+    @media (max-width: $phoneMedia) {
       font-size: 16px;
     }
-    select{
+    select {
       height: 80%;
       width: 100%;
       text-align: center;
     }
   }
 
-  .creditButtons{
+  .creditButtons {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 20%;
     width: 20%;
-    @media(max-width: $phoneMedia){
+    @media (max-width: $phoneMedia) {
       width: 60%;
     }
     // div{
     //   width: 40%;
     //   height: 100%;
     // }
-    label{
+    label {
       display: flex;
-    width: 100%;
-    height: 45%;
-    background-color: #e7e7e7;
-    font-size: 14px;
-    justify-content: center;
-    align-items: center;
+      width: 100%;
+      height: 45%;
+      background-color: #e7e7e7;
+      font-size: 14px;
+      justify-content: center;
+      align-items: center;
     }
-    .creditCancel{
+    .creditCancel {
       height: 40px;
       width: 100%;
-      button{
+      button {
         height: 100%;
         width: 100%;
       }
     }
   }
-  
 }
 
-button{
-  font-family: 'Press Start 2P', cursive;
-  
+button {
+  font-family: "Press Start 2P", cursive;
 }
 
-.birds{
+.birds {
   position: fixed;
   border: 10px black solid;
 }
 
-.creditButtons > button > span{
-  font-family: 'Press Start 2P', cursive;
+.creditButtons > button > span {
+  font-family: "Press Start 2P", cursive;
   // display: none;
 }
 
-.stripeButton{
+.stripeButton {
   display: none;
-width: 100%;
-height: 200%;
+  width: 100%;
+  height: 200%;
 }
