@@ -214,6 +214,7 @@ export class Game extends Component {
               >
                 {this.props.bank}
               </div>
+              <div className="bankNumber-mobile">{this.props.bank}</div>
             </div>
           </div>
           <div className="cardImageContainer">

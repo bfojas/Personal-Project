@@ -29,16 +29,10 @@ class Login extends Component {
               <li>Ability to actually use this app!</li>
               <li>That's it. That's the only benefit...</li>
             </ul>
-            <div className="loginPic">
-              <img
-                src="https://s3-us-west-1.amazonaws.com/dev-fun-cards/login.jpg"
-                onError={e => {
-                  e.target.onerror = null;
-                  e.target.src = "/images/login.jpg";
-                }}
-                alt="play"
-              />
-            </div>
+            <div
+              className="loginPic"
+              style={{ backgroundImage: "url('/images/login.jpg')" }}
+            />
           </div>
         </div>
         <div className="logButton">

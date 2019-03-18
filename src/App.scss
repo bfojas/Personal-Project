@@ -142,6 +142,7 @@ header,
           justify-content: center;
           width: 100%;
           height: 50%;
+          overflow: hidden;
 
           @media (max-width: $phoneMedia) {
             width: 30%;
@@ -151,7 +152,7 @@ header,
 
           img {
             height: 90%;
-            max-width: 100%;
+            // width: 90%;
             @media (max-width: $phoneMedia) {
               height: 80%;
             }
@@ -611,18 +612,10 @@ header,
           }
         }
         .loginPic {
-          background-color: white;
           width: 80%;
           height: 60%;
-          img {
-            height: 100%;
-            // width: auto;
-            max-width: 100%;
-            @media (max-width: $phoneMedia) {
-              max-width: 100%;
-              height: auto;
-            }
-          }
+          background-size: cover;
+          background-position: center;
         }
       }
     }
@@ -884,10 +877,27 @@ header,
     align-items: center;
     flex-direction: column;
     width: 30%;
+
+    .bankNumber {
+      display: flex;
+    }
+
+    .bankNumber-mobile {
+      display: none;
+    }
   }
   @media (max-width: $phoneMedia) {
     height: 20%;
     font-size: 10px;
+    .bankContainer {
+      .bankNumber {
+        display: none;
+      }
+
+      .bankNumber-mobile {
+        display: flex;
+      }
+    }
   }
 }
 
