@@ -6,4 +6,5 @@ Uses ReactJs, NodeJs, PostgreSQL, Axios, Auth0, socket.io, Amazon S3, ChartJs, S
 
 <img src="https://s3.amazonaws.com/dev-fun-bucket/card_fun1.png" alt="Welcome" />
 <img src="https://s3.amazonaws.com/dev-fun-bucket/card_fun2.png" alt="Game" />
-<img src="https://s3.amazonaws.com/dev-fun-bucket/card_fun3.png" alt="Profile-Mobile" />
+<img src="https://s3.amazonaws.com/dev-fun-bucket/card_fun.3png" alt="Stripe" />
+<img src="https://s3.amazonaws.com/dev-fun-bucket/card_fun4.png" alt="Profile-Mobile" />
